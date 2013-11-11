@@ -122,6 +122,7 @@
 	     <GridView
 		    android:id="@+id/gridView1"
 	        android:contentDescription="@string/pe_gridviewdescription"
+	        android:scrollbarFadeDuration="0"
 		    android:numColumns="2"
 		    android:padding="40dip"
 		    android:layout_gravity="center_horizontal"
