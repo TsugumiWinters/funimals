@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Mobile Picture Books</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="css/userStories.css" type="text/css" media="screen" />
+	<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+	<script src="js/userStories.js"></script>
+	<script type="text/javascript">
+		document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+			initApp();
+		}
+    </script>
+</head>
+<body>
+	<div id="blackScreen" onclick="tutorialStepFunc();">
+	</div>
+	<div id="container">
+		<img id="bookImg" src="images/Library/openBook.png"/>
+		<div id="hand">
+			<img src="images/General/hand1.png" width="100%" height="100%" />
+		</div>
+		<div id="tappy">
+			<img src="images/General/tap.gif" width="100%" height="100%" />
+		</div>
+		<div id="skip">
+			<font color="white">SKIP</font>
+		</div>
+		<div id="tutorialBox" onclick="tutorialStepFunc();">
+			<h3 align="center"><b id="tutorialText"></b></h3>
+		</div>
+		<div id="back">
+			<img src="images/General/back.png" width="100%" height="100%" />
+		</div>
+		<div id="add">
+			<img src="images/Library/AddStory.png" width="100%" height="100%" />
+		</div>
+		<div id="stories">
+		</div>
+		<div id="library">
+			<img src="images/General/Library.png" width="100%" height="100%" />
+		</div>
+		<div id="home">
+			<img src="images/General/Home.png" width="100%" height="100%" />
+		</div>
+		<div id="photo">
+			<img id="photoImg" src="images/Library/Previews/defaultPreview.png" width="100%" height="100%" />
+		</div>
+		<div id="titleArea">
+			<img src="images/Library/Title.png" width="100%" height="100%" />
+			<div id="titleText"></div>
+		</div>
+		<div id="read">
+			<img id="readImg" src="images/Library/ReadStory.png" width="100%" height="100%" />
+		</div>
+	</div>
+</body>
+</html>

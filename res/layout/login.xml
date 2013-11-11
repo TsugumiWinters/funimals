@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView android:layout_weight="30" android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+	    
+	    <LinearLayout android:orientation="vertical"
+			android:layout_width="match_parent" android:layout_height="match_parent">
+	   
+		    <TextView
+		        android:id="@+id/tvName"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Name" />
+		
+		    <Spinner
+		        android:id="@+id/sName"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="Name" />
+		
+		    <TextView
+		        android:id="@+id/tvAge"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Age" />
+		
+		    <RadioGroup
+		        android:id="@+id/rgAge"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+		
+		        <RadioButton
+		            android:id="@+id/rAge6"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:checked="true"
+		            android:text="Age 6" />
+		
+		        <RadioButton
+		            android:id="@+id/rAge7"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Age 7" />
+		
+		        <RadioButton
+		            android:id="@+id/rAge8"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Age 8" />
+		    </RadioGroup>
+		
+		    <TextView
+		        android:id="@+id/tvGradeLevel"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Grade Level" />
+		
+		    <RadioGroup
+		        android:id="@+id/rgGradeLevel"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+		
+		        <RadioButton
+		            android:id="@+id/rGradePrep"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:checked="true"
+		            android:text="Preparatory" />
+		
+		        <RadioButton
+		            android:id="@+id/rGrade1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Grade 1" />
+		
+		        <RadioButton
+		            android:id="@+id/rGrade2"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Grade 2" />
+		        
+		        <RadioButton
+		            android:id="@+id/rGrade3"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Grade 3" />
+		    </RadioGroup>
+		
+		    <Button
+		        android:id="@+id/bLogin"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Login" />
+		
+		</LinearLayout>
+	
+	</ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,27 @@
+Text Box: 246 213 176
+Text Box Outline: 228 108 10
+
+Welcome to Mobile Picture Books!
+Since you are new, we will teach you how to make your own stories.
+Right now you are at the first page of your very own virtual storybook!
+Your basic details are over here at the right page of your book.
+Oops, it looks like you don’t have your profile picture set up yet!
+Tap this to upload your own picture!
+Wow, you look good!
+You can always close your book and go back to the library by tapping the library button…
+…or you can choose to go back to the main screen by tapping the home button.
+Tap this button to go to the next page.
+
+This page of the book is where you will see all the stories you have saved.
+Right now this page has two sample stories to help you understand the basics.
+The titles of your stories will be shown here.
+Tapping the titles changes the preview picture to the right.
+Now here is your story page and it’s kind of empty!
+Try adding a new story by tapping this button.
+
+This screen is where you make your own pictures!
+First you need to tap this paint brush to choose a scene for your picture.
+Tap the left and right arrows to change scenes.
+Tap the pictures to select them.
+Tap these tabs to add characters and objects.
+Tap this button when you're finished.

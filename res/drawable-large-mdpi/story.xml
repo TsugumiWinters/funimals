@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <TextView
+     xmlns:android="http://schemas.android.com/apk/res/android"
+	        android:id="@+id/pe_story"
+	        android:scrollbars = "vertical"
+	        android:text="Story"
+	        android:fontFamily="Georgia"
+	        android:textSize="35sp"
+	        android:lineSpacingExtra="10dp"
+	        android:paddingLeft="20dp"
+	        android:paddingRight="20dp"
+	        android:paddingTop="40dp"
+	        android:paddingBottom="40dp"
+	        android:contentDescription="@string/description"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/pe_story_bg"
+	        android:layout_below="@+id/pe_savestory_button"/>	  
