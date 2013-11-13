@@ -54,7 +54,7 @@ public class ImageAdapter extends BaseAdapter {
 		ImageView imageView = (ImageView) gridView
 				.findViewById(R.id.sticker_image);
 
-		imageView.setOnLongClickListener(new MyOnLongClickListener());
+	//	imageView.setOnLongClickListener(new MyOnLongClickListener());
 		imageView.setOnTouchListener(new MyOnTouchListener());
 		
 		String stickerName = stickers[position];
@@ -64,7 +64,7 @@ public class ImageAdapter extends BaseAdapter {
 		imageView.setContentDescription(stickerName);
 		return gridView;
 	}
-	
+	/*
 	private final class MyOnLongClickListener implements OnLongClickListener {
 		@Override
 		public boolean onLongClick(View view) {
@@ -83,7 +83,7 @@ public class ImageAdapter extends BaseAdapter {
 			        return true;
 		}
 	  }
-	
+	*/
 	private final class MyOnTouchListener implements OnTouchListener {
 		@Override
 		public boolean onTouch(View view, MotionEvent event) {
@@ -93,13 +93,22 @@ public class ImageAdapter extends BaseAdapter {
 		    case MotionEvent.ACTION_DOWN:
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
 		    	image.setImageResource(id);
-		    	break;
+		    	return true;
+		    case MotionEvent.ACTION_MOVE:
+		    	ClipData data = ClipData.newPlainText("", "");
+		        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+		        view.startDrag(data, shadowBuilder, view, 0);
+		        
+		        view.playSoundEffect(SoundEffectConstants.CLICK);
+		        id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
+		    	image.setImageResource(id);
+		        
+		        view.setVisibility(View.INVISIBLE);
+		        return true;
 		    case MotionEvent.ACTION_UP:
-		    case MotionEvent.ACTION_HOVER_EXIT:
-		    case MotionEvent.ACTION_CANCEL:
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
 		    	image.setImageResource(id);
-		    	break;
+		    	return true;
 		    	
 		    default: break;
 		    }
