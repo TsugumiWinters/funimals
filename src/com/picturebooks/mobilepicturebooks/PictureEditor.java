@@ -864,8 +864,8 @@ public class PictureEditor extends Activity {
 				stickerImageView.setX(ssX);
 				stickerImageView.setY(ssY);
 				pictureBackground.addView(stickerImageView);
-				stickerImageView.setOnLongClickListener(new MyOnLongClickListener());
-				stickerImageView.setOnTouchListener(new MyOnTouchListener());
+			//	stickerImageView.setOnLongClickListener(new MyOnLongClickListener());
+			//	stickerImageView.setOnTouchListener(new MyOnTouchListener());
 
 			}
 
@@ -1800,13 +1800,23 @@ public class PictureEditor extends Activity {
 		    case MotionEvent.ACTION_DOWN:
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
 		    	image.setImageResource(id);
-		    	break;
-		    case MotionEvent.ACTION_UP:
+		    	return true;
+		    case MotionEvent.ACTION_MOVE:
+		    	ClipData data = ClipData.newPlainText("", "");
+		        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+		        view.startDrag(data, shadowBuilder, view, 0);
+		        
+		        view.playSoundEffect(SoundEffectConstants.CLICK);
+		        id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
+		    	image.setImageResource(id);
+		        
+		        view.setVisibility(View.INVISIBLE);
+		        return true;
 		    case MotionEvent.ACTION_HOVER_EXIT:
 		    case MotionEvent.ACTION_CANCEL:
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
 		    	image.setImageResource(id);
-		    	break;
+		    	return true;
 		    	
 		    default: break;
 		    }
