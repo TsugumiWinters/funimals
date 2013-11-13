@@ -864,8 +864,8 @@ public class PictureEditor extends Activity {
 				stickerImageView.setX(ssX);
 				stickerImageView.setY(ssY);
 				pictureBackground.addView(stickerImageView);
-				stickerImageView.setOnLongClickListener(new MyOnLongClickListener());
-				stickerImageView.setOnTouchListener(new MyOnTouchListener());
+				//stickerImageView.setOnLongClickListener(new MyOnLongClickListener());				// AFFECTED
+				stickerImageView.setOnTouchListener(new MyOnTouchListener());						// AFFECTED
 
 			}
 
@@ -947,6 +947,27 @@ public class PictureEditor extends Activity {
 		}
 	}
 
+	public void clearImage(int i) {
+		for (int a = 0; a < pictureBackground.getChildCount(); a++) {
+			View view = pictureBackground.getChildAt(a);
+			if (i == 1 && view.getContentDescription().toString().startsWith("kid_") == true){
+				Kids.add(view.getContentDescription().toString());
+				SelectedKids.remove(a);
+				pictureBackground.removeViewAt(a);
+			}
+			else if(i == 2 && view.getContentDescription().toString().startsWith("adult_") == true){
+				Adults.add(view.getContentDescription().toString());
+				SelectedAdults.remove(a);
+				pictureBackground.removeViewAt(a);
+			}
+			else if(i == 3 && view.getContentDescription().toString().startsWith("thing_") == true){
+				Things.add(view.getContentDescription().toString());
+				SelectedThings.remove(a);
+				pictureBackground.removeViewAt(a);
+			}
+		}
+	}
+
 	public void changeBackground(int backgroundID) {
 
 		switch (backgroundID % 9) {
@@ -1025,7 +1046,7 @@ public class PictureEditor extends Activity {
 		}
 	}
 
-	class MyDragListener_GridView implements OnDragListener {
+	class MyDragListener_GridView implements OnDragListener {							// IMAGE CHOOSE AT THE RIGHT
 
 		@Override
 		public boolean onDrag(View v, DragEvent event) {
@@ -1057,14 +1078,17 @@ public class PictureEditor extends Activity {
 							contentDescription, "_");
 					String stickerCategory = strTok.nextToken();
 					if (stickerCategory.equals("adult")) {
+						System.out.println("ADULT: "+contentDescription);
 						Adults.add(contentDescription);
 						SelectedAdults.remove(contentDescription);
 						changeGridView(1);
 					} else if (stickerCategory.equals("kid")) {
+						System.out.println("KID: "+contentDescription);
 						Kids.add(contentDescription);
 						SelectedKids.remove(contentDescription);
 						changeGridView(2);
 					} else if (stickerCategory.equals("thing")) {
+						System.out.println("THING: "+contentDescription);
 						Things.add(contentDescription);
 						SelectedThings.remove(contentDescription);
 						changeGridView(3);
@@ -1085,7 +1109,7 @@ public class PictureEditor extends Activity {
 		}
 	}
 
-	class MyDragListener_RelativeLayout implements OnDragListener {
+	class MyDragListener_RelativeLayout implements OnDragListener {								// PICTURE BACKGROUND EDITOR
 
 		@Override
 		public boolean onDrag(View v, DragEvent event) {
@@ -1108,22 +1132,38 @@ public class PictureEditor extends Activity {
 				ViewGroup container = (ViewGroup) v;
 				Log.d("CONTAINER",
 						"Container : " + container.getContentDescription());
-				if (owner.getContentDescription().equals(
-						container.getContentDescription()) == false) {
-					String contentDescription = view.getContentDescription()
-							.toString();
-					StringTokenizer strTok = new StringTokenizer(
-							contentDescription, "_");
+				
+				System.out.println("CHECK Container : " + container.getContentDescription());
+				
+				
+				if (owner.getContentDescription().equals(container.getContentDescription()) == false) { 
+					String contentDescription = view.getContentDescription().toString();
+					StringTokenizer strTok = new StringTokenizer(contentDescription, "_");
 					String stickerCategory = strTok.nextToken();
+					
 					if (stickerCategory.equals("adult")) {
+						
+						if(SelectedAdults.size() > 0)
+							clearImage(2);
+						
 						Adults.remove(contentDescription);
 						SelectedAdults.add(contentDescription);
 						gridView.setAdapter(new ImageAdapter(context, Adults));
+						
 					} else if (stickerCategory.equals("kid")) {
+						
+						if(SelectedKids.size() > 0)
+							clearImage(1);
+						
 						Kids.remove(contentDescription);
 						SelectedKids.add(contentDescription);
 						gridView.setAdapter(new ImageAdapter(context, Kids));
+						
 					} else if (stickerCategory.equals("thing")) {
+						
+						if(SelectedThings.size() > 0)
+							clearImage(3);
+						
 						Things.remove(contentDescription);
 						SelectedThings.add(contentDescription);
 						gridView.setAdapter(new ImageAdapter(context, Things));
@@ -1796,6 +1836,11 @@ public class PictureEditor extends Activity {
 			int id;
 			switch (event.getAction()) {
 		    case MotionEvent.ACTION_DOWN:
+	    	    ClipData data = ClipData.newPlainText("", "");
+		        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+		        view.startDrag(data, shadowBuilder, view, 0);
+			        
+			        view.playSoundEffect(SoundEffectConstants.CLICK);
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
 		    	image.setImageResource(id);
 		    	break;
