@@ -1769,7 +1769,9 @@ public class PictureEditor extends Activity {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/** TODO: drag and drop **/
+	
 	private final class MyOnLongClickListener implements OnLongClickListener {
 		@Override
 		public boolean onLongClick(View view) {
