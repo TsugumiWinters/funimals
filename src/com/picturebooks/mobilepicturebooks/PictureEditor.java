@@ -948,23 +948,33 @@ public class PictureEditor extends Activity {
 	}
 
 	public void clearImage(int i) {
-		for (int a = 0; a < pictureBackground.getChildCount(); a++) {
+		int a = 0;
+		while(i == 1 && SelectedKids.size() > 0){
 			View view = pictureBackground.getChildAt(a);
-			if (i == 1 && view.getContentDescription().toString().startsWith("kid_") == true){
+			if (view.getContentDescription().toString().startsWith("kid_") == true){
 				Kids.add(view.getContentDescription().toString());
-				SelectedKids.remove(a);
+				SelectedKids.remove(0);
 				pictureBackground.removeViewAt(a);
 			}
-			else if(i == 2 && view.getContentDescription().toString().startsWith("adult_") == true){
+			a++;
+		}
+		while(i == 2 && SelectedAdults.size() > 0){
+			View view = pictureBackground.getChildAt(a);
+			if(view.getContentDescription().toString().startsWith("adult_") == true){
 				Adults.add(view.getContentDescription().toString());
-				SelectedAdults.remove(a);
+				SelectedAdults.remove(0);
 				pictureBackground.removeViewAt(a);
 			}
-			else if(i == 3 && view.getContentDescription().toString().startsWith("thing_") == true){
+			a++;
+		}
+		while(i == 3 && SelectedThings.size() > 0){
+			View view = pictureBackground.getChildAt(a);
+			if(view.getContentDescription().toString().startsWith("thing_") == true){
 				Things.add(view.getContentDescription().toString());
-				SelectedThings.remove(a);
+				SelectedThings.remove(0);
 				pictureBackground.removeViewAt(a);
 			}
+			a++;
 		}
 	}
 
