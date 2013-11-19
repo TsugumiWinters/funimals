@@ -864,8 +864,10 @@ public class PictureEditor extends Activity {
 				stickerImageView.setX(ssX);
 				stickerImageView.setY(ssY);
 				pictureBackground.addView(stickerImageView);
+
 				//stickerImageView.setOnLongClickListener(new MyOnLongClickListener());				// AFFECTED
-				stickerImageView.setOnTouchListener(new MyOnTouchListener());						// AFFECTED
+				//stickerImageView.setOnTouchListener(new MyOnTouchListener());						// AFFECTED
+
 
 			}
 
@@ -947,6 +949,13 @@ public class PictureEditor extends Activity {
 		}
 		if(SelectedThings.size() != 0)
 			SelectedThings.remove(0);
+
+		int ctr = 0;
+		while(SelectedThings.size() != 0){
+			Log.e("hello", SelectedThings.get(ctr).toString());
+			SelectedThings.remove(ctr);
+			ctr++;
+		}
 	}
 
 	public void clearImage(int i) {
@@ -1455,7 +1464,7 @@ public class PictureEditor extends Activity {
 
 			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 				View view = pictureBackground.getChildAt(i);
-				view.setEnabled(false);
+			//	view.setEnabled(false);
 			}
 
 			storyTitle.setText(generatedTitle);
@@ -1867,11 +1876,11 @@ public class PictureEditor extends Activity {
 			int id;
 			switch (event.getAction()) {
 		    case MotionEvent.ACTION_DOWN:
+
 	    	    ClipData data = ClipData.newPlainText("", "");
 		        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
 		        view.startDrag(data, shadowBuilder, view, 0);
-			        
-			        view.playSoundEffect(SoundEffectConstants.CLICK);
+			    view.playSoundEffect(SoundEffectConstants.CLICK);
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
 		    	image.setImageResource(id);
 		    	break;
