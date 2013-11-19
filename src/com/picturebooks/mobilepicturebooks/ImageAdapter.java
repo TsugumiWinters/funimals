@@ -19,12 +19,15 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
  
 public class ImageAdapter extends BaseAdapter {
 	private Context context;
 	String[] stickers;
  
+	String contentDesc;
+	
 	public ImageAdapter(Context context, ArrayList<String> stickers) {
 		this.context = context;
 		this.stickers = new String[stickers.size()];
@@ -54,7 +57,6 @@ public class ImageAdapter extends BaseAdapter {
 		ImageView imageView = (ImageView) gridView
 				.findViewById(R.id.sticker_image);
 
-	//	imageView.setOnLongClickListener(new MyOnLongClickListener());
 		imageView.setOnTouchListener(new MyOnTouchListener());
 		
 		String stickerName = stickers[position];
@@ -62,28 +64,10 @@ public class ImageAdapter extends BaseAdapter {
 		int id = context.getResources().getIdentifier(stickerName, "drawable", context.getPackageName());
 		imageView.setImageResource(id);
 		imageView.setContentDescription(stickerName);
+		contentDesc = imageView.getContentDescription().toString();
 		return gridView;
 	}
-	/*
-	private final class MyOnLongClickListener implements OnLongClickListener {
-		@Override
-		public boolean onLongClick(View view) {
-			
-			        ClipData data = ClipData.newPlainText("", "");
-			        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-			        view.startDrag(data, shadowBuilder, view, 0);
-			        
-			        view.playSoundEffect(SoundEffectConstants.CLICK);
-			        ImageView image = (ImageView) view;
-					int id;
-			        id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-			    	image.setImageResource(id);
-			        
-			        view.setVisibility(View.INVISIBLE);
-			        return true;
-		}
-	  }
-	*/
+
 	private final class MyOnTouchListener implements OnTouchListener {
 		@Override
 		public boolean onTouch(View view, MotionEvent event) {
@@ -93,6 +77,9 @@ public class ImageAdapter extends BaseAdapter {
 		    case MotionEvent.ACTION_DOWN:
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
 		    	image.setImageResource(id);
+		    	 Toast toast = Toast.makeText(context, view.getContentDescription().toString(), Toast.LENGTH_SHORT);
+		
+		    	 toast.show();
 		    	return true;
 		    case MotionEvent.ACTION_MOVE:
 		    	ClipData data = ClipData.newPlainText("", "");

@@ -945,6 +945,8 @@ public class PictureEditor extends Activity {
 			if (view.getContentDescription().toString().startsWith("thing_") == true)
 				pictureBackground.removeViewAt(a);
 		}
+		if(SelectedThings.size() != 0)
+			SelectedThings.remove(0);
 	}
 
 	public void clearImage(int i) {
@@ -1251,6 +1253,9 @@ public class PictureEditor extends Activity {
 		protected String doInBackground(Object... params) {
 			charsInPic.removeAllElements();
 			objectsInPic.removeAllElements();
+			
+			//new
+			IGCharacter adultChar = new IGCharacter();
 
 			for (int a = 0; a < SelectedAdults.size(); a++) {
 				StringTokenizer strTok = new StringTokenizer(
@@ -1261,6 +1266,11 @@ public class PictureEditor extends Activity {
 				characterName = Character.toUpperCase(characterName.charAt(0))
 						+ (String) characterName.subSequence(1,
 								characterName.length());
+				
+				//new
+				adultChar = new IGCharacter();
+				adultChar = dbHelper.getCharacter(characterName);
+				
 				Log.d("PictureStickers", "SelectedAdult " + characterName);
 			}
 			for (int a = 0; a < SelectedKids.size(); a++) {
@@ -1309,7 +1319,8 @@ public class PictureEditor extends Activity {
 			ICR = createICR();
 
 			LASGenerator sg = new LASGenerator();
-			PlotMaker pm = new PlotMaker();
+			PlotMaker pm = new PlotMaker(adultChar);
+			
 			boolean isError = false;
 
 			try {
@@ -1506,6 +1517,10 @@ public class PictureEditor extends Activity {
 		protected String doInBackground(Object... params) {
 			charsInPic.removeAllElements();
 			objectsInPic.removeAllElements();
+			
+			//new
+			IGCharacter adultChar = new IGCharacter();
+
 
 			for (int a = 0; a < SelectedAdults.size(); a++) {
 				StringTokenizer strTok = new StringTokenizer(
@@ -1516,6 +1531,11 @@ public class PictureEditor extends Activity {
 				characterName = Character.toUpperCase(characterName.charAt(0))
 						+ (String) characterName.subSequence(1,
 								characterName.length());
+				
+				//new
+				adultChar = new IGCharacter();
+				adultChar = dbHelper.getCharacter(characterName);
+				
 				Log.d("PictureStickers", "SelectedAdult " + characterName);
 			}
 			for (int a = 0; a < SelectedKids.size(); a++) {
@@ -1564,7 +1584,8 @@ public class PictureEditor extends Activity {
 			ICR = createICR();
 
 			LASGenerator sg = new LASGenerator();
-			PlotMaker pm = new PlotMaker();
+			PlotMaker pm = new PlotMaker(adultChar);
+			
 			boolean isError = false;
 
 			try {
