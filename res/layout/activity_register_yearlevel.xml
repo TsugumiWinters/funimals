@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/general_background" >
+
+    <ImageView
+        android:id="@+id/registrationlevel_btn_back"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="15dp"
+        android:contentDescription="@string/button_back"
+        android:scaleType="fitXY"
+        android:src="@drawable/general_back" />
+
+    <ImageView
+        android:id="@+id/registrationlevel_btn_next"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="15dp"
+        android:contentDescription="@string/button_next"
+        android:scaleType="fitXY"
+        android:src="@drawable/general_next" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="275dp"
+        android:layout_marginRight="275dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="27dp"
+        android:paddingBottom="15dp"
+        android:gravity="center"
+        android:background="@drawable/general_entergrade"
+        android:orientation="vertical"
+        android:weightSum="5" >
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_weight="1" />
+
+        <ImageView
+       		android:id="@+id/registrationlevel_btn_prep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/general_prep"
+            android:contentDescription="@string/registration_prep"
+            android:layout_weight="1" />
+
+        <ImageView
+       		android:id="@+id/registrationlevel_btn_grade1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/general_grade1"
+            android:contentDescription="@string/registration_grade1"
+            android:layout_weight="1" />
+
+        <ImageView
+       		android:id="@+id/registrationlevel_btn_grade2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/general_grade2"
+            android:contentDescription="@string/registration_grade2"
+            android:layout_weight="1" />
+
+        <ImageView
+       		android:id="@+id/registrationlevel_btn_grade3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/general_grade3"
+            android:contentDescription="@string/registration_grade3"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</RelativeLayout>
