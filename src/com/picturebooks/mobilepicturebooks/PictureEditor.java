@@ -77,7 +77,8 @@ import database_entities.StoryFile;
 public class PictureEditor extends Activity {
 
 	private static Context context;
-
+	public static boolean createdStory = false;
+	
 	private DatabaseHelper dbHelper;
 
 	private int tutorialStep = 0;
@@ -645,13 +646,14 @@ public class PictureEditor extends Activity {
 				for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 					View view = pictureBackground.getChildAt(i);
 					view.setEnabled(true);
+					PictureEditor.createdStory = false;
 				}
 
 				restart_button.setImageResource(R.drawable.pe_restart_button);
 				restart_button.setEnabled(true);
 				createstory_button.setVisibility(View.VISIBLE);
-				createstory_button.setEnabled(true);
-				createstory_button.setImageResource(R.drawable.pe_createstory_button);
+			//	createstory_button.setEnabled(true);
+				createstory_button.setImageResource(R.drawable.pe_createstory_button_disabled);
 				editstory_button.setVisibility(View.INVISIBLE);
 
 				bgTitleLayout.setVisibility(View.VISIBLE);
@@ -1208,7 +1210,7 @@ public class PictureEditor extends Activity {
 					view.setY(event.getY() + view.getY() - 105);
 
 					container.addView(view);
-					if (SelectedKids.size() > 0 && SelectedThings.size() > 0) {
+					if (SelectedKids.size() > 0 && SelectedThings.size() > 0 && SelectedAdults.size() > 0) {
 						createstory_button
 								.setImageResource(R.drawable.pe_createstory_button);
 						createstory_button.setEnabled(true);
@@ -1464,6 +1466,7 @@ public class PictureEditor extends Activity {
 
 			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 				View view = pictureBackground.getChildAt(i);
+				PictureEditor.createdStory = true;
 			//	view.setEnabled(false);
 			}
 
@@ -1727,7 +1730,8 @@ public class PictureEditor extends Activity {
 
 			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 				View view = pictureBackground.getChildAt(i);
-				view.setEnabled(false);
+				PictureEditor.createdStory = true;
+				//view.setEnabled(false);
 			}
 
 			storyTitle.setText(generatedTitle);
@@ -1821,9 +1825,9 @@ public class PictureEditor extends Activity {
 					StoriesActivity.class);
 			PictureEditor.this.startActivity(mainIntent);
 			PictureEditor.this.finish();
+			PictureEditor.createdStory = false;
 
 		}
-
 	}
 	
 	public void captureView(int viewId, String filename) {

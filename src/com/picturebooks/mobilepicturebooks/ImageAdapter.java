@@ -17,6 +17,9 @@ import android.view.View.DragShadowBuilder;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,8 +28,6 @@ import android.widget.Toast;
 public class ImageAdapter extends BaseAdapter {
 	private Context context;
 	String[] stickers;
-	
-	Toast toast;
 	
 	public ImageAdapter(Context context, ArrayList<String> stickers) {
 		this.context = context;
@@ -75,31 +76,34 @@ public class ImageAdapter extends BaseAdapter {
 			int id;
 			switch (event.getAction()) {
 		    case MotionEvent.ACTION_DOWN:
+		    	if(PictureEditor.createdStory) {
+
+			    	
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
 		    	image.setImageResource(id);
-			   	 toast = Toast.makeText(context, view.getContentDescription(), Toast.LENGTH_SHORT);
-					
-
-		    	 toast.show();
-		    	return true;
-		    case MotionEvent.ACTION_MOVE:
-		    	ClipData data = ClipData.newPlainText("", "");
-		        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-		        view.startDrag(data, shadowBuilder, view, 0);
-		        
-		        view.playSoundEffect(SoundEffectConstants.CLICK);
-		        id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-		    	image.setImageResource(id);
-		        
-		    	toast.cancel();
-		        view.setVisibility(View.INVISIBLE);
-		        return true;
-		    case MotionEvent.ACTION_UP:
-		    	id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-		    	image.setImageResource(id);
-		    	toast.cancel();
-		    	return true;
 		    	
+		    	
+		    	 return true;
+		    	}
+		    case MotionEvent.ACTION_MOVE:
+		    	if(!PictureEditor.createdStory) {
+		    		ClipData data = ClipData.newPlainText("", "");
+			        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+			        view.startDrag(data, shadowBuilder, view, 0);
+			        
+			        view.playSoundEffect(SoundEffectConstants.CLICK);
+			        id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
+			    	image.setImageResource(id);
+			        
+			        view.setVisibility(View.INVISIBLE);
+			        return true;
+		    	}		    	
+		    case MotionEvent.ACTION_UP:
+		    	if(PictureEditor.createdStory) {
+		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
+		    	 image.setImageResource(id);
+		    	 return true;    	
+		    	}
 		    default: break;
 		    }
 			
