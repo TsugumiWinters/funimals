@@ -79,6 +79,7 @@ public class ImageAdapter extends BaseAdapter {
 		    	image.setImageResource(id);
 			   	 toast = Toast.makeText(context, view.getContentDescription(), Toast.LENGTH_SHORT);
 					
+
 		    	 toast.show();
 		    	return true;
 		    case MotionEvent.ACTION_MOVE:

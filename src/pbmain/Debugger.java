@@ -66,6 +66,8 @@ public class Debugger {
 		Vector<IGCharacter> inputExtras = new Vector<IGCharacter>();
 		Vector<IGObject> inputObjects = new Vector<IGObject>();
 		Background bg = null;
+		
+		IGCharacter adultChar = new IGCharacter();
 
 		Scanner sc = new Scanner(System.in);
 
@@ -111,7 +113,7 @@ public class Debugger {
 			System.out.println("Chosen theme: " + chosenTheme.getMoralLesson() + " " + chosenTheme.getID());
 
 			StoryTree storyTree = new StoryTree(chosenTheme);
-			PlotMaker pm = new PlotMaker();
+			PlotMaker pm = new PlotMaker(adultChar);
 			pm.createStoryTree(chosenTheme, ICR);
 			storyTree = pm.getStoryTree();
 			System.out.println("\nplot maker completed successfully.\n");
