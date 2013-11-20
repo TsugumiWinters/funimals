@@ -407,6 +407,17 @@
 		android:layout_alignRight="@+id/pe_bg" />
 
 	<ImageView
+	    android:id="@+id/tutorial_adults_tab"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/tutorial_delete"
+		android:layout_alignLeft="@+id/pe_stickersLayout"
+		android:layout_marginBottom="17dp"
+		android:contentDescription="@string/description"
+	    android:src="@drawable/tutorial_adults_tab" 
+	    android:visibility="invisible" />
+	
+	<ImageView
 		android:id="@+id/tutorial_kids_tab"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -459,4 +470,5 @@
 		android:src="@drawable/tutorial_skip"
 		android:layout_alignBottom="@+id/pe_stickersLayout"
 		android:layout_alignRight="@+id/pe_stickersLayout" />
+
 </RelativeLayout>
