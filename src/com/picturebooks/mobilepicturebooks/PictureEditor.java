@@ -1277,7 +1277,7 @@ public class PictureEditor extends Activity {
 			mDialog.setIndeterminateDrawable(getResources().getDrawable(R.layout.progress_dialog_icon_drawable_animation));
 			mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			//mDialog.setMessage("Some Text");
-			mDialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+			mDialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 			mDialog.show();
 		}
 
