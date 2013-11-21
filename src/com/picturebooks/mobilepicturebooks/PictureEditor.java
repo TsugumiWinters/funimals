@@ -35,6 +35,7 @@ import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -53,6 +54,7 @@ import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
@@ -1282,7 +1284,9 @@ public class PictureEditor extends Activity {
 			mDialog = new ProgressDialog(context);
 			mDialog.setIndeterminate(true);
 			mDialog.setIndeterminateDrawable(getResources().getDrawable(R.layout.progress_dialog_icon_drawable_animation));
+			mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			//mDialog.setMessage("Some Text");
+			mDialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 			mDialog.show();
 		}
 
