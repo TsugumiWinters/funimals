@@ -42,6 +42,13 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.View.OnDragListener;
 import android.view.ViewGroup;
+
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
+import android.webkit.WebView;
+
 import android.widget.AbsoluteLayout;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -1240,8 +1247,33 @@ public class PictureEditor extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 
-			mDialog = new ProgressDialog(context);
+			/*mDialog = new ProgressDialog(context);
 			mDialog.setMessage("Generating story...");
+			mDialog.show();*/
+			
+            /*setContentView(R.layout.dialog);
+           
+            ImageView imageView=(ImageView) findViewById(R.id.imageView1);
+           
+            Animation a = AnimationUtils.loadAnimation(PictureEditor.this, R.layout.progress_anim);
+            a.setDuration(2000);
+            imageView.startAnimation(a);
+           
+            a.setInterpolator(new Interpolator()
+            {
+                private final int frameCount = 50;
+
+                @Override
+                public float getInterpolation(float input)
+                {
+                    return (float)Math.floor(input*frameCount)/frameCount;
+                }
+            });*/
+			
+			mDialog = new ProgressDialog(context);
+			mDialog.setIndeterminate(true);
+			mDialog.setIndeterminateDrawable(getResources().getDrawable(R.layout.progress_dialog_icon_drawable_animation));
+			//mDialog.setMessage("Some Text");
 			mDialog.show();
 		}
 
