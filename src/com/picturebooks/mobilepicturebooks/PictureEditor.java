@@ -80,7 +80,8 @@ import database_entities.StoryFile;
 public class PictureEditor extends Activity {
 
 	private static Context context;
-
+	public static boolean createdStory = false;
+	
 	private DatabaseHelper dbHelper;
 
 	private int tutorialStep = 0;
@@ -648,13 +649,14 @@ public class PictureEditor extends Activity {
 				for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 					View view = pictureBackground.getChildAt(i);
 					view.setEnabled(true);
+					PictureEditor.createdStory = false;
 				}
 
 				restart_button.setImageResource(R.drawable.pe_restart_button);
 				restart_button.setEnabled(true);
 				createstory_button.setVisibility(View.VISIBLE);
-				createstory_button.setEnabled(true);
-				createstory_button.setImageResource(R.drawable.pe_createstory_button);
+			//	createstory_button.setEnabled(true);
+				createstory_button.setImageResource(R.drawable.pe_createstory_button_disabled);
 				editstory_button.setVisibility(View.INVISIBLE);
 
 				bgTitleLayout.setVisibility(View.VISIBLE);
@@ -698,6 +700,9 @@ public class PictureEditor extends Activity {
 			@Override
 			public void onClick(View v) {
 				changeGridView(1);
+				if (tutorialStep != 0) {
+					tutorialNext(findViewById(R.id.tutorial_adults_tab));
+				}
 			}
 		});
 
@@ -867,11 +872,6 @@ public class PictureEditor extends Activity {
 				stickerImageView.setX(ssX);
 				stickerImageView.setY(ssY);
 				pictureBackground.addView(stickerImageView);
-
-				//stickerImageView.setOnLongClickListener(new MyOnLongClickListener());				// AFFECTED
-				//stickerImageView.setOnTouchListener(new MyOnTouchListener());						// AFFECTED
-
-
 			}
 
 			gridView.setAdapter(new ImageAdapter(context, Adults));
@@ -1211,7 +1211,7 @@ public class PictureEditor extends Activity {
 					view.setY(event.getY() + view.getY() - 105);
 
 					container.addView(view);
-					if (SelectedKids.size() > 0 && SelectedThings.size() > 0) {
+					if (SelectedKids.size() > 0 && SelectedThings.size() > 0 && SelectedAdults.size() > 0) {
 						createstory_button
 								.setImageResource(R.drawable.pe_createstory_button);
 						createstory_button.setEnabled(true);
@@ -1492,6 +1492,7 @@ public class PictureEditor extends Activity {
 
 			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 				View view = pictureBackground.getChildAt(i);
+				PictureEditor.createdStory = true;
 			//	view.setEnabled(false);
 			}
 
@@ -1755,7 +1756,8 @@ public class PictureEditor extends Activity {
 
 			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 				View view = pictureBackground.getChildAt(i);
-				view.setEnabled(false);
+				PictureEditor.createdStory = true;
+				//view.setEnabled(false);
 			}
 
 			storyTitle.setText(generatedTitle);
@@ -1849,9 +1851,9 @@ public class PictureEditor extends Activity {
 					StoriesActivity.class);
 			PictureEditor.this.startActivity(mainIntent);
 			PictureEditor.this.finish();
+			PictureEditor.createdStory = false;
 
 		}
-
 	}
 	
 	public void captureView(int viewId, String filename) {
@@ -1878,53 +1880,6 @@ public class PictureEditor extends Activity {
 		}
 	}
 
-	private final class MyOnLongClickListener implements OnLongClickListener {
-		@Override
-		public boolean onLongClick(View view) {
-			
-			        ClipData data = ClipData.newPlainText("", "");
-			        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-			        view.startDrag(data, shadowBuilder, view, 0);
-			        
-			        view.playSoundEffect(SoundEffectConstants.CLICK);
-			        ImageView image = (ImageView) view;
-					int id;
-			        id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-			    	image.setImageResource(id);
-			        
-			        view.setVisibility(View.INVISIBLE);
-			        return true;
-		}
-	  }
-	
-	private final class MyOnTouchListener implements OnTouchListener {
-		@Override
-		public boolean onTouch(View view, MotionEvent event) {
-			ImageView image = (ImageView) view;
-			int id;
-			switch (event.getAction()) {
-		    case MotionEvent.ACTION_DOWN:
-
-	    	    ClipData data = ClipData.newPlainText("", "");
-		        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-		        view.startDrag(data, shadowBuilder, view, 0);
-			    view.playSoundEffect(SoundEffectConstants.CLICK);
-		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
-		    	image.setImageResource(id);
-		    	break;
-		    case MotionEvent.ACTION_UP:
-		    case MotionEvent.ACTION_HOVER_EXIT:
-		    case MotionEvent.ACTION_CANCEL:
-		    	id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-		    	image.setImageResource(id);
-		    	break;
-		    	
-		    default: break;
-		    }
-			
-			return false;
-		}
-	  }
 
 	public void tutorialNext(View v) {
 		Log.d("Next Tutorial", "Next Tutorial");
@@ -1976,9 +1931,6 @@ public class PictureEditor extends Activity {
 		case 8:
 			image = (ImageView) findViewById(R.id.tutorial_things_tab);
 			image.setVisibility(View.VISIBLE);
-			toggleEnableGridView(false);
-			pictureBackground.setEnabled(false);
-			pictureBackground.setClickable(false);
 			things_button.setEnabled(true);
 			break;
 		case 9:
@@ -1987,9 +1939,24 @@ public class PictureEditor extends Activity {
 			things_button.setEnabled(false);
 			pictureBackground.setEnabled(true);
 			pictureBackground.setClickable(true);
-			toggleEnableGridView(true);
 			break;
 		case 10:
+			image = (ImageView) findViewById(R.id.tutorial_adults_tab);
+			image.setVisibility(View.VISIBLE);
+			toggleEnableGridView(false);
+			pictureBackground.setEnabled(false);
+			pictureBackground.setClickable(false);
+			adults_button.setEnabled(true);
+			break;
+		case 11:
+			image = (ImageView) findViewById(R.id.tutorial_stickers_hold);
+			image.setVisibility(View.VISIBLE);
+			adults_button.setEnabled(false);
+			pictureBackground.setEnabled(true);
+			pictureBackground.setClickable(true);
+			toggleEnableGridView(true);
+			break;
+		case 12:
 			image = (ImageView) findViewById(R.id.tutorial_create_story);
 			image.setVisibility(View.VISIBLE);
 			createstory_button.setEnabled(true);
@@ -2013,6 +1980,8 @@ public class PictureEditor extends Activity {
 			image.setVisibility(View.INVISIBLE);
 			image = (ImageView) findViewById(R.id.tutorial_things_tab);
 			image.setVisibility(View.INVISIBLE);
+			image = (ImageView) findViewById(R.id.tutorial_adults_tab);
+			image.setVisibility(View.INVISIBLE);
 			image = (ImageView) findViewById(R.id.tutorial_create_story);
 			image.setVisibility(View.INVISIBLE);
 			image = (ImageView) findViewById(R.id.tutorial_skip);
@@ -2025,7 +1994,7 @@ public class PictureEditor extends Activity {
 	public void tutorialSkip(View v) {
 		Log.d("Skip Tutorial", "Skip Tutorial");
 		v.setVisibility(View.INVISIBLE);
-		tutorialStep = 10;
+		tutorialStep = 12;
 		tutorialNext(v);
 	}
 
@@ -2043,9 +2012,7 @@ public class PictureEditor extends Activity {
 		things_button.setEnabled(enabled);
 	}
 
-	public void toggleEnableGridView(boolean enabled) {
-
-		
+	public void toggleEnableGridView(boolean enabled) {		
 		gridView.setVerticalScrollBarEnabled(enabled);
 		gridView.setEnabled(enabled);
 		Log.d("OYEA", "OYEA " + enabled);
