@@ -7,6 +7,7 @@ import pictureeditor.component.InputContentRepresentation;
 import android.content.Context;
 
 import com.picturebooks.mobilepicturebooks.ApplicationContextProvider;
+import com.picturebooks.mobilepicturebooks.PictureEditor;
 
 import database.DatabaseHelper;
 import database_entities.IGCharacter;
@@ -338,8 +339,10 @@ public class StoryElement {
 				//adult character must be a parent
 				IGCharacter mainChar = searchCharacter(MAINCHAR);
 				if(!dbMain.instantiateCharacter(mainChar.getMotherCharacterID()).getRole().equalsIgnoreCase(ICR.getBackground().getRequiredRole()))
-					searchedChar = dbMain.instantiateCharacter(mainChar.getMotherCharacterID());
-				else searchedChar = dbMain.instantiateCharacter(mainChar.getFatherCharacterID());
+					//searchedChar = dbMain.instantiateCharacter(mainChar.getMotherCharacterID());
+					searchedChar = PictureEditor.adultChar;
+				else //searchedChar = dbMain.instantiateCharacter(mainChar.getFatherCharacterID());
+				searchedChar = PictureEditor.adultChar;
 			}
 			else if(role.equalsIgnoreCase(ADULTWITHJOB)){
 				//adult character has a role

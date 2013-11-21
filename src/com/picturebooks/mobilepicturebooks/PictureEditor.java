@@ -9,11 +9,6 @@ import java.util.Collections;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-import com.picturebooks.mobilepicturebooks.R;
-import com.picturebooks.mobilepicturebooks.R.drawable;
-import com.picturebooks.mobilepicturebooks.R.id;
-import com.picturebooks.mobilepicturebooks.R.layout;
-
 import pictureeditor.component.InputContentRepresentation;
 import sentencegenerator.LASGenerator;
 import sentencegenerator.ReferringExpressionGenerator;
@@ -28,7 +23,6 @@ import storyplanner.title.TitleMaker;
 import storyplanner.title.TitleMakerException;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.database.SQLException;
@@ -45,20 +39,18 @@ import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
-import android.view.View.DragShadowBuilder;
 import android.view.View.OnDragListener;
-import android.view.View.OnLongClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+
 import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.webkit.WebView;
+
 import android.widget.AbsoluteLayout;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -69,7 +61,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import database.DatabaseHelper;
 import database_entities.Background;
 import database_entities.CharacterGoal;
@@ -83,7 +74,7 @@ public class PictureEditor extends Activity {
 
 	private static Context context;
 	public static boolean createdStory = false;
-	
+	public static IGCharacter adultChar = new IGCharacter();
 	private DatabaseHelper dbHelper;
 
 	private int tutorialStep = 0;
@@ -1296,7 +1287,7 @@ public class PictureEditor extends Activity {
 			objectsInPic.removeAllElements();
 			
 			//new
-			IGCharacter adultChar = new IGCharacter();
+			
 
 			for (int a = 0; a < SelectedAdults.size(); a++) {
 				StringTokenizer strTok = new StringTokenizer(
@@ -1309,7 +1300,7 @@ public class PictureEditor extends Activity {
 								characterName.length());
 				
 				//new
-				adultChar = new IGCharacter();
+			//	adultChar = new IGCharacter();
 				adultChar = dbHelper.getCharacter(characterName);
 				
 				Log.d("PictureStickers", "SelectedAdult " + characterName);
@@ -1561,7 +1552,7 @@ public class PictureEditor extends Activity {
 			objectsInPic.removeAllElements();
 			
 			//new
-			IGCharacter adultChar = new IGCharacter();
+		//	IGCharacter adultChar = new IGCharacter();
 
 
 			for (int a = 0; a < SelectedAdults.size(); a++) {
@@ -1575,7 +1566,7 @@ public class PictureEditor extends Activity {
 								characterName.length());
 				
 				//new
-				adultChar = new IGCharacter();
+			//	adultChar = new IGCharacter();
 				adultChar = dbHelper.getCharacter(characterName);
 				
 				Log.d("PictureStickers", "SelectedAdult " + characterName);
