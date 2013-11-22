@@ -11,6 +11,12 @@ import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.CycleInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -69,13 +75,19 @@ public class ImageAdapter extends BaseAdapter {
 		    case MotionEvent.ACTION_DOWN:
 		    	if(PictureEditor.createdStory) {
 		    	
-		    		if(!view.getContentDescription().toString().startsWith("t")) {
+		    		if(view.getContentDescription().toString().startsWith("a")) {
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 30.0f, 0.0f, 0.0f);  
 			    	    animation.setDuration(500);
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
-
+		    		}
+		    		else if(view.getContentDescription().toString().startsWith("k")) {
+		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  
+			    	    animation.setDuration(500);
+			    	    animation.setRepeatCount(2);
+			    	    animation.setRepeatMode(2);
+			    	    image.startAnimation(animation);
 		    		}
 		    	    	
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
