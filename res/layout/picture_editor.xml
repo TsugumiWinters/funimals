@@ -349,7 +349,7 @@
 		android:contentDescription="@string/description"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/tutorial_home"
+		android:src="@drawable/new_tutorial_home"
 		android:layout_below="@+id/pe_home_button"/>
 	  
 	<ImageView
@@ -358,7 +358,7 @@
 		android:contentDescription="@string/description"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/tutorial_library"
+		android:src="@drawable/new_tutorial_library"
 		android:visibility="invisible"
 		android:layout_below="@+id/pe_home_button"
 		android:layout_toRightOf="@+id/pe_home_button"/>
@@ -369,31 +369,10 @@
 		android:contentDescription="@string/description"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/tutorial_delete"
+		android:src="@drawable/new_tutorial_delete"
 		android:visibility="invisible"
 		android:layout_below="@+id/pe_home_button"
 		android:layout_toRightOf="@+id/pe_library_button"/>
-
-	<ImageView
-		android:id="@+id/tutorial_right_bg"
-		android:onClick="tutorialNext"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_toRightOf="@+id/pe_restart_button"
-		android:contentDescription="@string/description"
-		android:src="@drawable/tutorial_right_bg"
-		android:visibility="invisible"
-		android:layout_alignBottom="@+id/pe_bg" />
-
-	<ImageView
-		android:id="@+id/tutorial_left_bg"
-		android:onClick="tutorialNext"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:contentDescription="@string/description"
-		android:src="@drawable/tutorial_left_bg"
-		android:visibility="invisible"
-		android:layout_alignBottom="@+id/pe_bg" />
 	 
 	<ImageView
 		android:id="@+id/tutorial_requirements"
@@ -401,7 +380,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:contentDescription="@string/description"
-		android:src="@drawable/tutorial_requirements"
+		android:src="@drawable/new_tutorial_requirements"
 		android:visibility="invisible"
 		android:layout_alignTop="@+id/pe_bg"
 		android:layout_alignRight="@+id/pe_bg" />
@@ -414,7 +393,7 @@
 		android:layout_alignLeft="@+id/pe_stickersLayout"
 		android:layout_marginBottom="17dp"
 		android:contentDescription="@string/description"
-	    android:src="@drawable/tutorial_adults_tab" 
+	    android:src="@drawable/new_tutorial_adults_tab" 
 	    android:visibility="invisible" />
 	
 	<ImageView
@@ -425,7 +404,7 @@
 		android:layout_alignLeft="@+id/pe_stickersLayout"
 		android:layout_marginBottom="17dp"
 		android:contentDescription="@string/description"
-		android:src="@drawable/tutorial_kids_tab"
+		android:src="@drawable/new_tutorial_kids_tab"
 		android:visibility="invisible" />
 	 
 		<ImageView
@@ -436,7 +415,7 @@
 		android:layout_alignLeft="@+id/pe_stickersLayout"
 		android:layout_marginBottom="17dp"
 		android:contentDescription="@string/description"
-		android:src="@drawable/tutorial_things_tab"
+		android:src="@drawable/new_tutorial_things_tab"
 		android:visibility="invisible" />
 
 	  <ImageView
@@ -444,7 +423,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:contentDescription="@string/description"
-		android:src="@drawable/tutorial_stickers_hold"
+		android:src="@drawable/new_tutorial_stickers_hold"
 		android:visibility="invisible"
 		android:layout_alignTop="@+id/pe_bg"
 		android:layout_alignRight="@+id/pe_bg" />
@@ -455,7 +434,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:contentDescription="@string/description"
-		android:src="@drawable/tutorial_create_story"
+		android:src="@drawable/new_tutorial_create_story"
 		android:visibility="invisible"
 		android:layout_alignTop="@+id/pe_bg"
 		android:layout_toRightOf="@+id/pe_restart_button" />
@@ -470,5 +449,17 @@
 		android:src="@drawable/tutorial_skip"
 		android:layout_alignBottom="@+id/pe_stickersLayout"
 		android:layout_alignRight="@+id/pe_stickersLayout" />
+
+	<ImageView
+	    android:id="@+id/tutorial_left_right_bg"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/pe_bgTitleLayout"
+	    android:layout_alignLeft="@+id/tutorial_library"
+	    android:layout_marginLeft="33dp"
+	    android:contentDescription="@string/description"
+	    android:onClick="tutorialNext"
+	    android:src="@drawable/new_tutorial_left_right_bg"
+	    android:visibility="invisible" />
 
 </RelativeLayout>
