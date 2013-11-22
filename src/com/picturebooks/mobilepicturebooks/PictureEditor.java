@@ -648,7 +648,7 @@ public class PictureEditor extends Activity {
 				restart_button.setImageResource(R.drawable.pe_restart_button);
 				restart_button.setEnabled(true);
 				createstory_button.setVisibility(View.VISIBLE);
-			//	createstory_button.setEnabled(true);
+				createstory_button.setEnabled(false);
 				createstory_button.setImageResource(R.drawable.pe_createstory_button_disabled);
 				editstory_button.setVisibility(View.INVISIBLE);
 
@@ -1248,11 +1248,11 @@ public class PictureEditor extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-
-			/*mDialog = new ProgressDialog(context);
+/*
+			mDialog = new ProgressDialog(context);
 			mDialog.setMessage("Generating story...");
-			mDialog.show();*/
-			
+			mDialog.show();
+			*/
             /*setContentView(R.layout.dialog);
            
             ImageView imageView=(ImageView) findViewById(R.id.imageView1);
