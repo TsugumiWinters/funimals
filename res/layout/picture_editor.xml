@@ -462,4 +462,14 @@
 	    android:src="@drawable/new_tutorial_left_right_bg"
 	    android:visibility="invisible" />
 
+	<ImageView
+	    android:id="@+id/pe_read_button"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignTop="@+id/pe_bg"
+	    android:layout_toLeftOf="@+id/tutorial_library"
+	    android:contentDescription="@string/description"
+	    android:src="@drawable/pe_narrate_button"
+	    android:visibility="invisible" />
+
 </RelativeLayout>

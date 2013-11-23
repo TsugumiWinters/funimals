@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -33,6 +34,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -73,6 +75,11 @@ import database_entities.StoryFile;
 
 public class PictureEditor extends Activity {
 
+	// text to speech
+	private TextToSpeech tts;
+	ImageView read_button;
+	String currentStoryLine = "";
+	
 	private static Context context;
 	public static boolean createdStory = false;
 	public static IGCharacter adultChar = new IGCharacter();
@@ -245,7 +252,39 @@ public class PictureEditor extends Activity {
 		} catch (SQLException sqle) {
 			throw sqle;
 		}
+		
+		
+		
+		
+		
+		
+		// text to speech - initialize
+		//CLOSEBUTTON - textDisplay
+		read_button = (ImageView) findViewById(R.id.pe_read_button);
+		tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+			
+			@Override
+			public void onInit(int status) {
+				if(status != TextToSpeech.ERROR){
+					tts.setLanguage(Locale.US);
+				}
+			}
+		});
+		read_button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(!currentStoryLine.equals(""))
+					tts.speak(currentStoryLine, TextToSpeech.QUEUE_FLUSH, null);
 
+			}
+		});
+
+		
+		
+		
+		
+		
+		
 		// InitializeDB();
 		username = getIntent().getStringExtra("username");
 		age = getIntent().getIntExtra("age", 6);
@@ -593,6 +632,7 @@ public class PictureEditor extends Activity {
 							* sentenceLimitPerPage
 							&& a < sentenceCount; a++) {
 						textDisplay += sentences[a] + ". ";
+						currentStoryLine += sentences[a] + ". ";
 					}
 
 					storyTextView.setText(textDisplay);
@@ -619,6 +659,7 @@ public class PictureEditor extends Activity {
 							* sentenceLimitPerPage
 							&& a < sentenceCount; a++) {
 						textDisplay += sentences[a] + ". ";
+						currentStoryLine += sentences[a] + ". ";
 					}
 
 					storyTextView.setText(textDisplay);
@@ -725,6 +766,7 @@ public class PictureEditor extends Activity {
 			public void onClick(View v) {
 				search_bar.setVisibility(View.VISIBLE);
 				closedictionary_button.setVisibility(View.VISIBLE);
+				read_button.setVisibility(View.VISIBLE);
 				dictionary_list.setVisibility(View.VISIBLE);
 
 				save_button.setVisibility(View.INVISIBLE);
@@ -750,6 +792,7 @@ public class PictureEditor extends Activity {
 				searchdictionary_button.setVisibility(View.INVISIBLE);
 				definitionLayout.setVisibility(View.INVISIBLE);
 				closedictionary_button.setVisibility(View.INVISIBLE);
+				read_button.setVisibility(View.INVISIBLE);
 				dictionary_list.setVisibility(View.INVISIBLE);
 
 				save_button.setVisibility(View.VISIBLE);
@@ -895,6 +938,7 @@ public class PictureEditor extends Activity {
 
 			for (int a = 0; a < sentenceLimitPerPage && a < sentenceCount; a++) {
 				textDisplay += sentences[a] + ". ";
+				currentStoryLine += sentences[a] + ". ";
 			}
 
 			storyTitle.setText(generatedTitle);
@@ -935,6 +979,16 @@ public class PictureEditor extends Activity {
 			image.setVisibility(View.VISIBLE);
 			image = (ImageView) findViewById(R.id.tutorial_skip);
 			image.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		if(tts != null){
+			tts.stop();
+			tts.shutdown();	
 		}
 	}
 
@@ -1063,7 +1117,7 @@ public class PictureEditor extends Activity {
 			break;
 		}
 	}
-
+	
 	class MyDragListener_GridView implements OnDragListener {							// IMAGE CHOOSE AT THE RIGHT
 
 		@Override
@@ -1480,6 +1534,7 @@ public class PictureEditor extends Activity {
 
 			for (int a = 0; a < sentenceLimitPerPage && a < sentenceCount; a++) {
 				textDisplay += sentences[a] + ". ";
+				currentStoryLine += sentences[a] + ". ";
 			}
 
 			return background;
@@ -1518,6 +1573,7 @@ public class PictureEditor extends Activity {
 			searchdictionary_button.setVisibility(View.INVISIBLE);
 			definitionLayout.setVisibility(View.INVISIBLE);
 			closedictionary_button.setVisibility(View.INVISIBLE);
+			read_button.setVisibility(View.INVISIBLE);
 			dictionary_list.setVisibility(View.INVISIBLE);
 
 			save_button.setVisibility(View.VISIBLE);
@@ -1744,6 +1800,7 @@ public class PictureEditor extends Activity {
 
 			for (int a = 0; a < sentenceLimitPerPage && a < sentenceCount; a++) {
 				textDisplay += sentences[a] + ". ";
+				currentStoryLine += sentences[a] + ". ";
 			}
 
 			return background;
