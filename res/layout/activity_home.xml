@@ -38,59 +38,61 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/home_linearLayout1"
         android:contentDescription="@string/app_name"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         android:src="@drawable/general_title" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/home_title"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
         android:padding="20dp" >
 
         <LinearLayout
             android:id="@+id/home_linearLayout2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:weightSum="3" >
 
             <ImageView
                 android:id="@+id/home_btn_newpicture"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/button_newpicture"
                 android:onClick="clicked_btnNewPicture"
+                android:scaleType="centerInside"
                 android:src="@drawable/general_newpicture" />
 
             <ImageView
                 android:id="@+id/home_btn_viewlibrary"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/button_viewlibrary"
                 android:onClick="clicked_btnViewLibrary"
+                android:scaleType="centerInside"
                 android:src="@drawable/general_viewlibrary" />
 
             <ImageView
                 android:id="@+id/home_btn_seetutorial"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/button_seetutorial"
                 android:onClick="clicked_btnSeeTutorial"
+                android:scaleType="centerInside"
                 android:src="@drawable/general_seetutorial" />
         </LinearLayout>
 
         <FrameLayout
             android:id="@+id/home_usercanvas"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignRight="@+id/home_linearLayout2" >
+            android:layout_height="wrap_content" >
         </FrameLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
