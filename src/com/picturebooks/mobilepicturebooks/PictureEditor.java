@@ -43,6 +43,7 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.View.OnDragListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import android.view.Window;
 import android.view.WindowManager.LayoutParams;
@@ -1277,8 +1278,10 @@ public class PictureEditor extends Activity {
 			mDialog.setIndeterminateDrawable(getResources().getDrawable(R.layout.progress_dialog_icon_drawable_animation));
 			mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			//mDialog.setMessage("Some Text");
-			mDialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 			mDialog.show();
+			
+			mDialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
 		}
 
 		@Override
@@ -1895,27 +1898,23 @@ public class PictureEditor extends Activity {
 			image.setVisibility(View.VISIBLE);
 			break;
 		case 3:
-			image = (ImageView) findViewById(R.id.tutorial_right_bg);
+			image = (ImageView) findViewById(R.id.tutorial_left_right_bg);
 			image.setVisibility(View.VISIBLE);
 			right_button.setEnabled(true);
-			break;
-		case 4:
-			image = (ImageView) findViewById(R.id.tutorial_left_bg);
-			image.setVisibility(View.VISIBLE);
 			left_button.setEnabled(true);
 			break;
-		case 5:
+		case 4:
 			image = (ImageView) findViewById(R.id.tutorial_requirements);
 			image.setVisibility(View.VISIBLE);
 			right_button.setEnabled(false);
 			left_button.setEnabled(false);
 			break;
-		case 6:
+		case 5:
 			image = (ImageView) findViewById(R.id.tutorial_kids_tab);
 			image.setVisibility(View.VISIBLE);
 			kids_button.setEnabled(true);
 			break;
-		case 7:
+		case 6:
 			image = (ImageView) findViewById(R.id.tutorial_stickers_hold);
 			image.setVisibility(View.VISIBLE);
 			kids_button.setEnabled(false);
@@ -1923,19 +1922,19 @@ public class PictureEditor extends Activity {
 			pictureBackground.setEnabled(true);
 			pictureBackground.setClickable(true);
 			break;
-		case 8:
+		case 7:
 			image = (ImageView) findViewById(R.id.tutorial_things_tab);
 			image.setVisibility(View.VISIBLE);
 			things_button.setEnabled(true);
 			break;
-		case 9:
+		case 8:
 			image = (ImageView) findViewById(R.id.tutorial_stickers_hold);
 			image.setVisibility(View.VISIBLE);
 			things_button.setEnabled(false);
 			pictureBackground.setEnabled(true);
 			pictureBackground.setClickable(true);
 			break;
-		case 10:
+		case 9:
 			image = (ImageView) findViewById(R.id.tutorial_adults_tab);
 			image.setVisibility(View.VISIBLE);
 			toggleEnableGridView(false);
@@ -1943,7 +1942,7 @@ public class PictureEditor extends Activity {
 			pictureBackground.setClickable(false);
 			adults_button.setEnabled(true);
 			break;
-		case 11:
+		case 10:
 			image = (ImageView) findViewById(R.id.tutorial_stickers_hold);
 			image.setVisibility(View.VISIBLE);
 			adults_button.setEnabled(false);
@@ -1951,7 +1950,7 @@ public class PictureEditor extends Activity {
 			pictureBackground.setClickable(true);
 			toggleEnableGridView(true);
 			break;
-		case 12:
+		case 11:
 			image = (ImageView) findViewById(R.id.tutorial_create_story);
 			image.setVisibility(View.VISIBLE);
 			createstory_button.setEnabled(true);
@@ -1963,9 +1962,7 @@ public class PictureEditor extends Activity {
 			image.setVisibility(View.INVISIBLE);
 			image = (ImageView) findViewById(R.id.tutorial_delete);
 			image.setVisibility(View.INVISIBLE);
-			image = (ImageView) findViewById(R.id.tutorial_right_bg);
-			image.setVisibility(View.INVISIBLE);
-			image = (ImageView) findViewById(R.id.tutorial_left_bg);
+			image = (ImageView) findViewById(R.id.tutorial_left_right_bg);
 			image.setVisibility(View.INVISIBLE);
 			image = (ImageView) findViewById(R.id.tutorial_requirements);
 			image.setVisibility(View.INVISIBLE);
@@ -1989,7 +1986,7 @@ public class PictureEditor extends Activity {
 	public void tutorialSkip(View v) {
 		Log.d("Skip Tutorial", "Skip Tutorial");
 		v.setVisibility(View.INVISIBLE);
-		tutorialStep = 12;
+		tutorialStep = 11;
 		tutorialNext(v);
 	}
 
