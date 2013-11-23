@@ -19,9 +19,10 @@
             android:padding="5dp" >
 
             <ImageView
-                android:id="@+id/home_btn_soundon"
+                android:id="@+id/home_btn_sound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="clicked_btnSound"
                 android:contentDescription="@string/button_sound_on"
                 android:src="@drawable/general_soundon" />
 
@@ -29,6 +30,7 @@
                 android:id="@+id/home_btn_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="clicked_btnInfo"
                 android:contentDescription="@string/button_info"
                 android:src="@drawable/general_info" />
         </LinearLayout>
@@ -48,7 +50,7 @@
             android:padding="20dp" >
 
             <LinearLayout
-                android:id="@+id/linearLayout1"
+                android:id="@+id/home_linearLayout1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -59,6 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="clicked_btnNewPicture"
                     android:contentDescription="@string/button_newpicture"
                     android:src="@drawable/general_newpicture" />
 
@@ -67,6 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="clicked_btnViewLibrary"
                     android:contentDescription="@string/button_viewlibrary"
                     android:src="@drawable/general_viewlibrary" />
 
@@ -75,6 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="clicked_btnSeeTutorial"
                     android:contentDescription="@string/button_seetutorial"
                     android:src="@drawable/general_seetutorial" />
             </LinearLayout>
@@ -84,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/linearLayout1"
+                android:layout_alignTop="@+id/home_linearLayout1"
                 layout="@layout/user_canvas" />
 
         </RelativeLayout>

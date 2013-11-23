@@ -13,6 +13,7 @@
         android:layout_margin="15dp"
         android:contentDescription="@string/button_back"
         android:scaleType="fitXY"
+        android:onClick="clicked_btnBack"
         android:src="@drawable/general_back" />
 
     <ImageView
@@ -24,6 +25,7 @@
         android:layout_margin="15dp"
         android:contentDescription="@string/button_next"
         android:scaleType="fitXY"
+        android:onClick="clicked_btnNext"
         android:src="@drawable/general_next" />
 
     <LinearLayout
