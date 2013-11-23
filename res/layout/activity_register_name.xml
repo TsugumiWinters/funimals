@@ -26,6 +26,7 @@
         android:contentDescription="@string/button_next"
         android:scaleType="fitXY"
         android:onClick="clicked_btnNext"
+        android:visibility="invisible"
         android:src="@drawable/general_next" />
 
     <LinearLayout
