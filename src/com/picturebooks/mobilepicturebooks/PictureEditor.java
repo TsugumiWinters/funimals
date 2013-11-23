@@ -1006,6 +1006,15 @@ public class PictureEditor extends Activity {
 		super.onPause();
 		if(tts != null){
 			tts.stop();
+		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if(tts != null){
+			tts.stop();
 			tts.shutdown();	
 		}
 	}
