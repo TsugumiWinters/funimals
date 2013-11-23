@@ -26,6 +26,7 @@
         android:contentDescription="@string/button_next"
         android:scaleType="fitXY"
         android:onClick="clicked_btnNext"
+        android:visibility="gone"
         android:src="@drawable/general_next" />
 
     <LinearLayout
@@ -50,6 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/general_six"
+            android:tag="general_six"
+            android:onClick="clicked_btnAge"
             android:contentDescription="@string/registration_age6" />
 
         <ImageView
@@ -57,6 +60,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/general_seven"
+            android:tag="general_seven"
+            android:onClick="clicked_btnAge"
             android:contentDescription="@string/registration_age7" />
 
         <ImageView
@@ -64,6 +69,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/general_eight"
+            android:tag="general_eight"
+            android:onClick="clicked_btnAge"
             android:contentDescription="@string/registration_age8" />
 
     </LinearLayout>

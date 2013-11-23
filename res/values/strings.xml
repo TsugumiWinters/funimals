@@ -41,9 +41,9 @@
 	<string name="registration_year">What grade are you in?</string>
 	
 	<string name="registration_hint_name">Your name here</string>
-	<string name="registration_age6">(6) Six years old</string>
-	<string name="registration_age7">(7) Seven years old</string>
-	<string name="registration_age8">(8) Eight years old</string>
+	<string name="registration_age6">6 years old</string>
+	<string name="registration_age7">7 years old</string>
+	<string name="registration_age8">8 years old</string>
 	<string name="registration_prep">Prep</string>
 	<string name="registration_grade1">Grade 1</string>
 	<string name="registration_grade2">Grade 2</string>
