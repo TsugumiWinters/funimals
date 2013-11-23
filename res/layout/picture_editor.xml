@@ -470,6 +470,6 @@
 	    android:layout_toLeftOf="@+id/tutorial_library"
 	    android:contentDescription="@string/description"
 	    android:src="@drawable/pe_narrate_button"
-	    android:visibility="invisible" />
+	    android:visibility="visible" />
 
 </RelativeLayout>

@@ -46,14 +46,8 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.View.OnDragListener;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
-import android.view.Window;
 import android.view.WindowManager.LayoutParams;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
-import android.webkit.WebView;
 
 import android.widget.AbsoluteLayout;
 import android.widget.AdapterView;
@@ -775,7 +769,6 @@ public class PictureEditor extends Activity {
 			public void onClick(View v) {
 				search_bar.setVisibility(View.VISIBLE);
 				closedictionary_button.setVisibility(View.VISIBLE);
-				read_button.setVisibility(View.VISIBLE);
 				dictionary_list.setVisibility(View.VISIBLE);
 
 				save_button.setVisibility(View.INVISIBLE);
@@ -801,7 +794,6 @@ public class PictureEditor extends Activity {
 				searchdictionary_button.setVisibility(View.INVISIBLE);
 				definitionLayout.setVisibility(View.INVISIBLE);
 				closedictionary_button.setVisibility(View.INVISIBLE);
-				read_button.setVisibility(View.INVISIBLE);
 				dictionary_list.setVisibility(View.INVISIBLE);
 
 				save_button.setVisibility(View.VISIBLE);
@@ -1602,7 +1594,6 @@ public class PictureEditor extends Activity {
 			searchdictionary_button.setVisibility(View.INVISIBLE);
 			definitionLayout.setVisibility(View.INVISIBLE);
 			closedictionary_button.setVisibility(View.INVISIBLE);
-			read_button.setVisibility(View.INVISIBLE);
 			dictionary_list.setVisibility(View.INVISIBLE);
 
 			save_button.setVisibility(View.VISIBLE);
