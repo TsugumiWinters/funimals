@@ -8,7 +8,7 @@
 		android:contentDescription="@string/description"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/pe_home_button">
+		android:src="@drawable/home_button_selector">
 	</ImageView>
 	
 	<ImageView
@@ -16,7 +16,7 @@
 		android:contentDescription="@string/description"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/pe_library_button"
+		android:src="@drawable/library_button_selector"
 		android:layout_toRightOf="@+id/pe_home_button"/>
 	
 	<ImageView
@@ -24,7 +24,7 @@
 		android:contentDescription="@string/description"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/pe_restart_button"
+		android:src="@drawable/restart_button_selector"
 		android:layout_toRightOf="@+id/pe_library_button"/>
 	
 	<ImageView
@@ -32,7 +32,7 @@
 		android:contentDescription="@string/description"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/pe_createstory_button_disabled"
+		android:src="@drawable/createstory_button_selector"
 		android:layout_toRightOf="@+id/pe_restart_button"/>
 	
 	<AbsoluteLayout
@@ -55,7 +55,7 @@
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/pe_left_button"/>
+			android:src="@drawable/left_button_selector"/>
 		
 		<TextView
 			android:id="@+id/pe_bgtitle"
@@ -75,8 +75,8 @@
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/pe_right_button"
-			android:layout_toRightOf="@+id/pe_bgtitle"/>
+			android:src="@drawable/right_button_selector"
+			android:layout_toRightOf="@+id/pe_bgtitle" />
 		
 	</RelativeLayout>
 	
@@ -170,14 +170,14 @@
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/pe_dictionary_button"/>
+			android:src="@drawable/dictionary_button_selector"/>
 		 
 		<ImageView
 			android:id="@+id/pe_retrystory_button"
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/pe_retrystory_button"
+			android:src="@drawable/retrystory_button_selector"
 			android:layout_toRightOf="@+id/pe_dictionary_button"/>
 		 
 		<ImageView
@@ -185,7 +185,7 @@
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/pe_savestory_button"
+			android:src="@drawable/savestory_button_selector"
 			android:layout_toRightOf="@+id/pe_retrystory_button"/>
 		 
 		<EditText
@@ -203,7 +203,7 @@
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/pe_searchdictionary_button"
+			android:src="@drawable/searchdictionary_button_selector"
 			android:layout_toRightOf="@+id/pe_dictionary_button"
 			android:visibility="invisible"/>
 		 
@@ -254,7 +254,7 @@
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/pe_left_button_disabled"
+			android:src="@drawable/left_button_selector"
 			android:layout_below="@+id/pe_story_bg"/>
 		 
 		<TextView
@@ -276,7 +276,7 @@
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/pe_right_button_disabled"
+			android:src="@drawable/right_button_selector"
 			android:layout_below="@+id/pe_story_bg"
 			android:layout_toRightOf="@+id/pe_page"/>
 		 
@@ -285,7 +285,7 @@
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/pe_closedictionary_button"
+			android:src="@drawable/closedictionary_button_selector"
 			android:layout_below="@+id/pe_story_bg"
 			android:visibility="invisible"/>
 		 

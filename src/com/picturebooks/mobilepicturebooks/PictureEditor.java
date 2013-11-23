@@ -30,6 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -521,8 +522,8 @@ public class PictureEditor extends Activity {
 				gridView.setAdapter(new ImageAdapter(context, Adults));
 				changeGridView(1);
 
-				createstory_button
-						.setImageResource(R.drawable.pe_createstory_button_disabled);
+				Drawable restartDrawable = getResources().getDrawable(R.drawable.pe_createstory_button_disabled);
+				createstory_button.setImageDrawable(restartDrawable);
 				createstory_button.setEnabled(false);
 			}
 		});
@@ -534,13 +535,13 @@ public class PictureEditor extends Activity {
 				search_bar.setVisibility(View.VISIBLE);
 				dictionary_list.setVisibility(View.VISIBLE);
 				definitionLayout.setVisibility(View.INVISIBLE);
-
 			}
 		});
 
 		home_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				PictureEditor.createdStory = false;
 				Intent mainIntent = new Intent(PictureEditor.this,
 						HomeActivity.class);
 				PictureEditor.this.startActivity(mainIntent);
@@ -551,6 +552,7 @@ public class PictureEditor extends Activity {
 		library_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				PictureEditor.createdStory = false;
 				Intent mainIntent = new Intent(PictureEditor.this,
 						LibraryActivity.class);
 				PictureEditor.this.startActivity(mainIntent);
@@ -575,11 +577,13 @@ public class PictureEditor extends Activity {
 		createstory_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Drawable leftDrawable = getResources().getDrawable(R.drawable.pe_left_button_disabled);
+				pageLeft_button.setImageDrawable(leftDrawable);
+				pageLeft_button.setEnabled(false);	
 				if (tutorialStep != 0) {
 					tutorialNext(findViewById(R.id.tutorial_create_story));
 				}
 				new GetTask(PictureEditor.context).execute();
-
 			}
 		});
 
@@ -599,11 +603,12 @@ public class PictureEditor extends Activity {
 					storyTextView.scrollTo(0, 0);
 					page.setText("Page " + currentPage + " of " + numberOfPages);
 					if (currentPage >= numberOfPages) {
-						pageRight_button
-								.setImageResource(R.drawable.pe_right_button_disabled);
+						Drawable rightDrawable = getResources().getDrawable(R.drawable.pe_right_button_disabled);
+						pageRight_button.setImageDrawable(rightDrawable);
 						pageRight_button.setEnabled(false);
 					}
-					pageLeft_button.setImageResource(R.drawable.pe_left_button);
+					Drawable leftDrawable = getResources().getDrawable(R.drawable.pe_left_button);
+					pageLeft_button.setImageDrawable(leftDrawable);
 					pageLeft_button.setEnabled(true);
 				}
 			}
@@ -625,12 +630,12 @@ public class PictureEditor extends Activity {
 					storyTextView.scrollTo(0, 0);
 					page.setText("Page " + currentPage + " of " + numberOfPages);
 					if (currentPage <= 1) {
-						pageLeft_button
-								.setImageResource(R.drawable.pe_left_button_disabled);
+						Drawable leftDrawable = getResources().getDrawable(R.drawable.pe_left_button_disabled);
+						pageLeft_button.setImageDrawable(leftDrawable);
 						pageLeft_button.setEnabled(false);
 					}
-					pageRight_button
-							.setImageResource(R.drawable.pe_right_button);
+					Drawable rightDrawable = getResources().getDrawable(R.drawable.pe_right_button);
+					pageRight_button.setImageDrawable(rightDrawable);
 					pageRight_button.setEnabled(true);
 				}
 			}
@@ -639,18 +644,20 @@ public class PictureEditor extends Activity {
 		editstory_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
 				for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 					View view = pictureBackground.getChildAt(i);
 					view.setEnabled(true);
 					PictureEditor.createdStory = false;
 				}
-
-				restart_button.setImageResource(R.drawable.pe_restart_button);
+				Drawable restartDrawable = getResources().getDrawable(R.drawable.pe_restart_button);
+				restart_button.setImageDrawable(restartDrawable);
 				restart_button.setEnabled(true);
+				
 				createstory_button.setVisibility(View.VISIBLE);
 				createstory_button.setEnabled(false);
-				createstory_button.setImageResource(R.drawable.pe_createstory_button_disabled);
+				Drawable createDrawable = getResources().getDrawable(R.drawable.pe_createstory_button_disabled);
+				createstory_button.setImageDrawable(createDrawable);
+				
 				editstory_button.setVisibility(View.INVISIBLE);
 
 				bgTitleLayout.setVisibility(View.VISIBLE);
@@ -658,7 +665,7 @@ public class PictureEditor extends Activity {
 
 				stickersLayout.setVisibility(View.VISIBLE);
 				storyLayout.setVisibility(View.INVISIBLE);
-
+				
 			}
 		});
 
@@ -671,21 +678,21 @@ public class PictureEditor extends Activity {
 				changeBackground(backgroundID);
 				clearThings();
 				changeGridView(1);
-				createstory_button
-						.setImageResource(R.drawable.pe_createstory_button_disabled);
+				Drawable createDrawable = getResources().getDrawable(R.drawable.pe_createstory_button_disabled);
+				createstory_button.setImageDrawable(createDrawable);
 				createstory_button.setEnabled(false);
 			}
 		});
 
 		right_button.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v) {	
 				backgroundID++;
 				changeBackground(backgroundID);
 				clearThings();
 				changeGridView(1);
-				createstory_button
-						.setImageResource(R.drawable.pe_createstory_button_disabled);
+				Drawable createDrawable = getResources().getDrawable(R.drawable.pe_createstory_button_disabled);
+				createstory_button.setImageDrawable(createDrawable);
 				createstory_button.setEnabled(false);
 			}
 		});
@@ -902,12 +909,14 @@ public class PictureEditor extends Activity {
 			storyTextView.scrollTo(0, 0);
 			page.setText("Page " + currentPage + " of " + numberOfPages);
 			if (numberOfPages > 1) {
-				pageRight_button.setImageResource(R.drawable.pe_right_button);
+				Drawable rightDrawable = getResources().getDrawable(R.drawable.pe_right_button);
+				pageRight_button.setImageDrawable(rightDrawable);
 				pageRight_button.setEnabled(true);
 			}
-			restart_button
-					.setImageResource(R.drawable.pe_restart_button_disabled);
+			Drawable restartDrawable = getResources().getDrawable(R.drawable.pe_restart_button_disabled);
+			restart_button.setImageDrawable(restartDrawable);
 			restart_button.setEnabled(false);
+			
 			createstory_button.setVisibility(View.INVISIBLE);
 			editstory_button.setVisibility(View.VISIBLE);
 
@@ -919,22 +928,36 @@ public class PictureEditor extends Activity {
 			
 			if (isUserAuthor == 0) {
 
-				editstory_button.setImageResource(R.drawable.pe_editstory_button_disabled);
+				Drawable editDrawable = getResources().getDrawable(R.drawable.pe_editstory_button_disabled);
+				editstory_button.setImageDrawable(editDrawable);
 				editstory_button.setEnabled(false);
-				retry_button.setImageResource(R.drawable.pe_retrystory_button_disabled);
+				Drawable retryDrawable = getResources().getDrawable(R.drawable.pe_retrystory_button_disabled);
+				retry_button.setImageDrawable(retryDrawable);
 				retry_button.setEnabled(false);
-				save_button.setImageResource(R.drawable.pe_savestory_button_disabled);
+				Drawable saveDrawable = getResources().getDrawable(R.drawable.pe_savestory_button_disabled);
+				save_button.setImageDrawable(saveDrawable);
 				save_button.setEnabled(false);
-				
 				
 			}
 		}
 		if (tutorialMode == 1) {
 			toggleEnableEvents(false);
 			ImageView image = (ImageView) findViewById(R.id.tutorial_home);
-			image.setVisibility(View.VISIBLE);
+			image.setVisibility(View.VISIBLE);		
 			image = (ImageView) findViewById(R.id.tutorial_skip);
 			image.setVisibility(View.VISIBLE);
+			
+			Drawable homeDrawable = getResources().getDrawable(R.drawable.pe_home_button_disabled);
+			home_button.setImageDrawable(homeDrawable);
+			Drawable libDrawable = getResources().getDrawable(R.drawable.pe_library_button_disabled);
+			library_button.setImageDrawable(libDrawable);
+			Drawable restartDrawable = getResources().getDrawable(R.drawable.pe_restart_button_disabled);
+			restart_button.setImageDrawable(restartDrawable);
+			Drawable rightDrawable = getResources().getDrawable(R.drawable.pe_right_button_disabled);
+			right_button.setImageDrawable(rightDrawable);
+			Drawable leftDrawable = getResources().getDrawable(R.drawable.pe_left_button_disabled);
+			left_button.setImageDrawable(leftDrawable);
+
 		}
 	}
 
@@ -1112,8 +1135,8 @@ public class PictureEditor extends Activity {
 						changeGridView(3);
 					}
 					if (SelectedKids.size() <= 0 || SelectedThings.size() <= 0) {
-						createstory_button
-								.setImageResource(R.drawable.pe_createstory_button_disabled);
+						Drawable createDrawable = getResources().getDrawable(R.drawable.pe_createstory_button_disabled);
+						createstory_button.setImageDrawable(createDrawable);
 						createstory_button.setEnabled(false);
 					}
 				}
@@ -1206,8 +1229,8 @@ public class PictureEditor extends Activity {
 
 					container.addView(view);
 					if (SelectedKids.size() > 0 && SelectedThings.size() > 0 && SelectedAdults.size() > 0) {
-						createstory_button
-								.setImageResource(R.drawable.pe_createstory_button);
+						Drawable createDrawable = getResources().getDrawable(R.drawable.pe_createstory_button);
+						createstory_button.setImageDrawable(createDrawable);
 						createstory_button.setEnabled(true);
 					}
 				} else {
@@ -1499,12 +1522,14 @@ public class PictureEditor extends Activity {
 			storyTextView.scrollTo(0, 0);
 			page.setText("Page " + currentPage + " of " + numberOfPages);
 			if (numberOfPages > 1) {
-				pageRight_button.setImageResource(R.drawable.pe_right_button);
+				Drawable rightDrawable = getResources().getDrawable(R.drawable.pe_right_button);
+				pageRight_button.setImageDrawable(rightDrawable);
 				pageRight_button.setEnabled(true);
 			}
-			restart_button
-					.setImageResource(R.drawable.pe_restart_button_disabled);
+			Drawable restartDrawable = getResources().getDrawable(R.drawable.pe_restart_button_disabled);
+			restart_button.setImageDrawable(restartDrawable);
 			restart_button.setEnabled(false);
+			
 			createstory_button.setVisibility(View.INVISIBLE);
 			editstory_button.setVisibility(View.VISIBLE);
 
@@ -1762,13 +1787,16 @@ public class PictureEditor extends Activity {
 			storyTextView.setText(textDisplay);
 			storyTextView.scrollTo(0, 0);
 			page.setText("Page " + currentPage + " of " + numberOfPages);
+			
 			if (numberOfPages > 1) {
-				pageRight_button.setImageResource(R.drawable.pe_right_button);
+				Drawable rightDrawable = getResources().getDrawable(R.drawable.pe_right_button);
+				pageRight_button.setImageDrawable(rightDrawable);
 				pageRight_button.setEnabled(true);
 			}
-			restart_button
-					.setImageResource(R.drawable.pe_restart_button_disabled);
+			Drawable restartDrawable = getResources().getDrawable(R.drawable.pe_restart_button_disabled);
+			restart_button.setImageDrawable(restartDrawable);
 			restart_button.setEnabled(false);
+			
 			createstory_button.setVisibility(View.INVISIBLE);
 			editstory_button.setVisibility(View.VISIBLE);
 
@@ -1900,13 +1928,21 @@ public class PictureEditor extends Activity {
 		case 3:
 			image = (ImageView) findViewById(R.id.tutorial_left_right_bg);
 			image.setVisibility(View.VISIBLE);
+			Drawable rightDrawable = getResources().getDrawable(R.drawable.pe_right_button);
+			right_button.setImageDrawable(rightDrawable);
 			right_button.setEnabled(true);
+			Drawable leftDrawable = getResources().getDrawable(R.drawable.pe_left_button);
+			left_button.setImageDrawable(leftDrawable);
 			left_button.setEnabled(true);
 			break;
 		case 4:
 			image = (ImageView) findViewById(R.id.tutorial_requirements);
 			image.setVisibility(View.VISIBLE);
+			Drawable rightOffDrawable = getResources().getDrawable(R.drawable.pe_right_button_disabled);
+			right_button.setImageDrawable(rightOffDrawable);
 			right_button.setEnabled(false);
+			Drawable leftOffDrawable = getResources().getDrawable(R.drawable.pe_left_button_disabled);
+			left_button.setImageDrawable(leftOffDrawable);
 			left_button.setEnabled(false);
 			break;
 		case 5:
@@ -1937,6 +1973,7 @@ public class PictureEditor extends Activity {
 		case 9:
 			image = (ImageView) findViewById(R.id.tutorial_adults_tab);
 			image.setVisibility(View.VISIBLE);
+			adults_button.setEnabled(false);
 			toggleEnableGridView(false);
 			pictureBackground.setEnabled(false);
 			pictureBackground.setClickable(false);
@@ -1979,6 +2016,19 @@ public class PictureEditor extends Activity {
 			image = (ImageView) findViewById(R.id.tutorial_skip);
 			image.setVisibility(View.INVISIBLE);
 			toggleEnableEvents(true);
+			
+			Drawable homeDrawable = getResources().getDrawable(R.drawable.pe_home_button);
+			home_button.setImageDrawable(homeDrawable);
+			Drawable libraryDrawable = getResources().getDrawable(R.drawable.pe_library_button);
+			library_button.setImageDrawable(libraryDrawable);
+
+			Drawable right2Drawable = getResources().getDrawable(R.drawable.pe_right_button);
+			right_button.setImageDrawable(right2Drawable);
+			right_button.setEnabled(true);
+			Drawable left2Drawable = getResources().getDrawable(R.drawable.pe_left_button);
+			left_button.setImageDrawable(left2Drawable);
+			left_button.setEnabled(true);
+			
 			break;
 		}
 	}
