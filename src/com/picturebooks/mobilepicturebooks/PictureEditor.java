@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -38,8 +39,13 @@ import android.os.Environment;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.SoundEffectConstants;
@@ -59,6 +65,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import database.DatabaseHelper;
 import database_entities.Background;
 import database_entities.CharacterGoal;
@@ -74,6 +81,9 @@ public class PictureEditor extends Activity {
 	private TextToSpeech tts;
 	ImageView read_button;
 	String currentStoryLine = "";
+	
+	String[] trimSentence;
+    SpannableString span;
 	
 	private static Context context;
 	public static boolean createdStory = false;
@@ -1576,9 +1586,32 @@ public class PictureEditor extends Activity {
 				PictureEditor.createdStory = true;
 			//	view.setEnabled(false);
 			}
+			
+			storyTextView.setText("");
+			
+			trimSentence = textDisplay.split(" ");
+			
+		    for(int i=0;i < trimSentence.length;i++) {
+		    if(trimSentence[i].charAt(trimSentence[i].length() - 1) == '.') {
+		    	String noPeriod = trimSentence[i].substring(0, trimSentence[i].length() - 1);
+		    	span =  new SpannableString(noPeriod + ".");
+		    	span.setSpan(new MyClickableSpan(noPeriod), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+	            storyTextView.append(span); 
+	            storyTextView.append(" "); 
+		    }
+			else {
+				span =  new SpannableString(trimSentence[i]);
+		        span.setSpan(new MyClickableSpan(trimSentence[i]), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+	            storyTextView.append(span); 
+	            storyTextView.append(" "); 
+			}
+					 
+
+		    }
+		    storyTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
 			storyTitle.setText(generatedTitle);
-			storyTextView.setText(textDisplay);
+		//	storyTextView.setText(textDisplay);
 			storyTextView.scrollTo(0, 0);
 			page.setText("Page " + currentPage + " of " + numberOfPages);
 			if (numberOfPages > 1) {
@@ -1618,6 +1651,26 @@ public class PictureEditor extends Activity {
 
 	}
 
+	class MyClickableSpan extends ClickableSpan{ 
+		
+	      String word;
+	      
+	      public MyClickableSpan(String word) {
+	    	  this.word = word;
+	      }
+
+	      public void onClick(View textView) {
+	    	  Toast.makeText(context, word,Toast.LENGTH_SHORT).show();
+	      }
+	      
+	      @Override
+	      public void updateDrawState(TextPaint tp) {
+	    	  tp.setColor(Color.BLUE); 
+	    	  tp.setUnderlineText(false);
+	      }
+	      
+	}
+	
 	class GetTaskRandom extends AsyncTask<Object, Void, String> {
 		Context context;
 
