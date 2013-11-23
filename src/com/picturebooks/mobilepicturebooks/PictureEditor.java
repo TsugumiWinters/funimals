@@ -258,11 +258,6 @@ public class PictureEditor extends Activity {
 			throw sqle;
 		}
 		
-		
-		
-		
-		
-		
 		// text to speech - initialize
 		//CLOSEBUTTON - textDisplay
 		read_button = (ImageView) findViewById(R.id.pe_read_button);
@@ -283,12 +278,6 @@ public class PictureEditor extends Activity {
 			}
 		});
 
-		
-		
-		
-		
-		
-		
 		// InitializeDB();
 		username = getIntent().getStringExtra("username");
 		age = getIntent().getIntExtra("age", 6);
@@ -395,29 +384,7 @@ public class PictureEditor extends Activity {
 		Kids.add("kid_turtlegirlimage_trixie");
 
 		Things = new ArrayList<String>();
-		/*
-		 * Things.add("thing_alarm_clock"); Things.add("thing_apple");
-		 * Things.add("thing_backpack"); Things.add("thing_bananas");
-		 * Things.add("thing_beachball"); Things.add("thing_book");
-		 * Things.add("thing_bread"); Things.add("thing_broccolis");
-		 * Things.add("thing_brush"); Things.add("thing_cake");
-		 * Things.add("thing_candies"); Things.add("thing_carrots");
-		 * Things.add("thing_chair"); Things.add("thing_doll");
-		 * Things.add("thing_fried_chicken");
-		 * Things.add("thing_glass_of_water"); Things.add("thing_lamp");
-		 * Things.add("thing_pillow"); Things.add("thing_ball");
-		 * Things.add("thing_rubber_ducky");
-		 * Things.add("thing_salt_and_pepper"); Things.add("thing_seesaw");
-		 * Things.add("thing_soap"); Things.add("thing_spaghetti");
-		 * Things.add("thing_stethoscope"); Things.add("thing_swing_set");
-		 * Things.add("thing_tea_set"); Things.add("thing_television");
-		 * Things.add("thing_thermometer");
-		 * Things.add("thing_toothbrush_and_toothpaste");
-		 * Things.add("thing_toy_blocks"); Things.add("thing_toy_car");
-		 * Things.add("thing_toy_horse"); Things.add("thing_toy_truck");
-		 * Things.add("thing_tricycle"); Things.add("thing_wallet");
-		 * Things.add("thing_weighing_scale");
-		 */
+
 		Things_Bathroom.add("thing_rubber_ducky");
 		Things_Bathroom.add("thing_soap");
 		Things_Bathroom.add("thing_toothbrush_and_toothpaste");
@@ -644,7 +611,27 @@ public class PictureEditor extends Activity {
 						currentStoryLine += sentences[a] + ". ";
 					}
 
-					storyTextView.setText(textDisplay);
+					
+					storyTextView.setText("");			
+					trimSentence = textDisplay.split(" ");
+					
+				    for(int i=0;i < trimSentence.length;i++) {
+					    if(trimSentence[i].charAt(trimSentence[i].length() - 1) == '.') {
+					    	String noPeriod = trimSentence[i].substring(0, trimSentence[i].length() - 1);
+					    	span =  new SpannableString(noPeriod + ".");
+					    	span.setSpan(new MyClickableSpan(noPeriod), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+				            storyTextView.append(span); 
+				            storyTextView.append(" "); 
+					    }
+						else {
+							span =  new SpannableString(trimSentence[i]);
+					        span.setSpan(new MyClickableSpan(trimSentence[i]), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+				            storyTextView.append(span); 
+				            storyTextView.append(" "); 
+						}					 
+				    }
+				    storyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+	
 					storyTextView.scrollTo(0, 0);
 					page.setText("Page " + currentPage + " of " + numberOfPages);
 					if (currentPage >= numberOfPages) {
@@ -673,7 +660,26 @@ public class PictureEditor extends Activity {
 						currentStoryLine += sentences[a] + ". ";
 					}
 
-					storyTextView.setText(textDisplay);
+					storyTextView.setText("");			
+					trimSentence = textDisplay.split(" ");
+					
+				    for(int i=0;i < trimSentence.length;i++) {
+					    if(trimSentence[i].charAt(trimSentence[i].length() - 1) == '.') {
+					    	String noPeriod = trimSentence[i].substring(0, trimSentence[i].length() - 1);
+					    	span =  new SpannableString(noPeriod + ".");
+					    	span.setSpan(new MyClickableSpan(noPeriod), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+				            storyTextView.append(span); 
+				            storyTextView.append(" "); 
+					    }
+						else {
+							span =  new SpannableString(trimSentence[i]);
+					        span.setSpan(new MyClickableSpan(trimSentence[i]), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+				            storyTextView.append(span); 
+				            storyTextView.append(" "); 
+						}					 
+				    }
+				    storyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+					
 					storyTextView.scrollTo(0, 0);
 					page.setText("Page " + currentPage + " of " + numberOfPages);
 					if (currentPage <= 1) {
@@ -1587,26 +1593,23 @@ public class PictureEditor extends Activity {
 			//	view.setEnabled(false);
 			}
 			
-			storyTextView.setText("");
-			
+			storyTextView.setText("");			
 			trimSentence = textDisplay.split(" ");
 			
 		    for(int i=0;i < trimSentence.length;i++) {
-		    if(trimSentence[i].charAt(trimSentence[i].length() - 1) == '.') {
-		    	String noPeriod = trimSentence[i].substring(0, trimSentence[i].length() - 1);
-		    	span =  new SpannableString(noPeriod + ".");
-		    	span.setSpan(new MyClickableSpan(noPeriod), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-	            storyTextView.append(span); 
-	            storyTextView.append(" "); 
-		    }
-			else {
-				span =  new SpannableString(trimSentence[i]);
-		        span.setSpan(new MyClickableSpan(trimSentence[i]), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-	            storyTextView.append(span); 
-	            storyTextView.append(" "); 
-			}
-					 
-
+			    if(trimSentence[i].charAt(trimSentence[i].length() - 1) == '.') {
+			    	String noPeriod = trimSentence[i].substring(0, trimSentence[i].length() - 1);
+			    	span =  new SpannableString(noPeriod + ".");
+			    	span.setSpan(new MyClickableSpan(noPeriod), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		            storyTextView.append(span); 
+		            storyTextView.append(" "); 
+			    }
+				else {
+					span =  new SpannableString(trimSentence[i]);
+			        span.setSpan(new MyClickableSpan(trimSentence[i]), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		            storyTextView.append(span); 
+		            storyTextView.append(" "); 
+				}					 
 		    }
 		    storyTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -1660,7 +1663,9 @@ public class PictureEditor extends Activity {
 	      }
 
 	      public void onClick(View textView) {
-	    	  Toast.makeText(context, word,Toast.LENGTH_SHORT).show();
+
+	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+	    //	  Toast.makeText(context, word,Toast.LENGTH_SHORT).show();
 	      }
 	      
 	      @Override
@@ -1898,8 +1903,29 @@ public class PictureEditor extends Activity {
 				//view.setEnabled(false);
 			}
 
+			
+			storyTextView.setText("");			
+			trimSentence = textDisplay.split(" ");
+			
+		    for(int i=0;i < trimSentence.length;i++) {
+			    if(trimSentence[i].charAt(trimSentence[i].length() - 1) == '.') {
+			    	String noPeriod = trimSentence[i].substring(0, trimSentence[i].length() - 1);
+			    	span =  new SpannableString(noPeriod + ".");
+			    	span.setSpan(new MyClickableSpan(noPeriod), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		            storyTextView.append(span); 
+		            storyTextView.append(" "); 
+			    }
+				else {
+					span =  new SpannableString(trimSentence[i]);
+			        span.setSpan(new MyClickableSpan(trimSentence[i]), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		            storyTextView.append(span); 
+		            storyTextView.append(" "); 
+				}					 
+		    }
+		    storyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+			
+			
 			storyTitle.setText(generatedTitle);
-			storyTextView.setText(textDisplay);
 			storyTextView.scrollTo(0, 0);
 			page.setText("Page " + currentPage + " of " + numberOfPages);
 			
