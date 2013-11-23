@@ -5,6 +5,7 @@
     <dimen name="button_square">75dp</dimen><dimen name="text_size">40sp</dimen>
     <dimen name="home_space_vertical">50dp</dimen>
     <dimen name="home_space">400dp</dimen>
-    
+    <dimen name="margin_top">100dp</dimen>
+    <dimen name="margin_left">500dp</dimen>
     
 </resources>
