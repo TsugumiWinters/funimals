@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class RegistrationNameActivity extends Activity {
 	
@@ -32,14 +32,14 @@ public class RegistrationNameActivity extends Activity {
 			
 			@Override
 			public void afterTextChanged(Editable s) {
-				Button btnNext = (Button) findViewById(R.id.registrationname_btn_next);
+				ImageView btnNext = (ImageView) findViewById(R.id.registrationname_btn_next);
 				String result = s.toString().trim();
 				
 				if (result.length() > 0) {
-					btnNext.setVisibility(Button.VISIBLE);
+					btnNext.setVisibility(View.VISIBLE);
 				}
 				else {
-					btnNext.setVisibility(Button.GONE);
+					btnNext.setVisibility(View.GONE);
 				}
 			}
 		});
