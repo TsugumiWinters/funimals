@@ -615,7 +615,8 @@ public class PictureEditor extends Activity {
 
 		createstory_button.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v) {			
+				
 				Drawable leftDrawable = getResources().getDrawable(R.drawable.pe_left_button_disabled);
 				pageLeft_button.setImageDrawable(leftDrawable);
 				pageLeft_button.setEnabled(false);	
