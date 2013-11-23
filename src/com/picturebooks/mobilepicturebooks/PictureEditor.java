@@ -632,6 +632,7 @@ public class PictureEditor extends Activity {
 				if (currentPage < numberOfPages) {
 					currentPage++;
 					String textDisplay = new String();
+					currentStoryLine = "";
 					for (int a = (currentPage - 1) * sentenceLimitPerPage; a < currentPage
 							* sentenceLimitPerPage
 							&& a < sentenceCount; a++) {
@@ -660,6 +661,7 @@ public class PictureEditor extends Activity {
 				if (currentPage > 1) {
 					currentPage--;
 					String textDisplay = new String();
+					currentStoryLine = "";
 					for (int a = (currentPage - 1) * sentenceLimitPerPage; a < currentPage
 							* sentenceLimitPerPage
 							&& a < sentenceCount; a++) {
@@ -942,6 +944,7 @@ public class PictureEditor extends Activity {
 			}
 
 			textDisplay = new String();
+			currentStoryLine = "";
 
 			for (int a = 0; a < sentenceLimitPerPage && a < sentenceCount; a++) {
 				textDisplay += sentences[a] + ". ";
@@ -1554,6 +1557,7 @@ public class PictureEditor extends Activity {
 				numberOfPages = 1;
 
 			textDisplay = new String();
+			currentStoryLine = "";
 
 			for (int a = 0; a < sentenceLimitPerPage && a < sentenceCount; a++) {
 				textDisplay += sentences[a] + ". ";
@@ -1822,6 +1826,7 @@ public class PictureEditor extends Activity {
 					/ sentenceLimitPerPage);
 
 			textDisplay = new String();
+			currentStoryLine = "";
 
 			for (int a = 0; a < sentenceLimitPerPage && a < sentenceCount; a++) {
 				textDisplay += sentences[a] + ". ";
