@@ -63,6 +63,13 @@
             android:windowSoftInputMode="adjustNothing" >
         </activity>
 
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.BookActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
+        
         <!-- Android activity for PhoneGap -->
         <activity
             android:name="org.apache.cordova.DroidGap"
