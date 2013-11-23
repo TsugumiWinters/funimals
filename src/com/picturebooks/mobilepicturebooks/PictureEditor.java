@@ -270,7 +270,6 @@ public class PictureEditor extends Activity {
 			public void onClick(View v) {
 				if(!currentStoryLine.equals(""))
 					tts.speak(currentStoryLine, TextToSpeech.QUEUE_FLUSH, null);
-
 			}
 		});
 
