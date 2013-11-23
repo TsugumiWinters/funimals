@@ -84,13 +84,14 @@
                     android:src="@drawable/general_seetutorial" />
             </LinearLayout>
 
-            <include
+            <FrameLayout
                 android:id="@+id/home_usercanvas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/home_linearLayout1"
-                layout="@layout/user_canvas" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignTop="@+id/home_linearLayout1" >
+            </FrameLayout>
 
         </RelativeLayout>
 

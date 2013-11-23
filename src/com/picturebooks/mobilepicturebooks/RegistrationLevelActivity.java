@@ -1,5 +1,10 @@
 package com.picturebooks.mobilepicturebooks;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import com.picturebooks.mobilepicturebooks.R.layout;
 
 import android.app.Activity;
@@ -54,12 +59,38 @@ public class RegistrationLevelActivity extends Activity {
 	}
 	
 	public void clicked_btnNext(View v) {
-        Intent mainIntent = new Intent(RegistrationLevelActivity.this, HomeActivity.class);
+		Intent mainIntent = new Intent(RegistrationLevelActivity.this, HomeActivity.class);
+        mainIntent.putExtra("user_img", getRandomImage());
         mainIntent.putExtra("user_name", getIntent().getStringExtra("user_name"));
         mainIntent.putExtra("user_age", getIntent().getIntExtra("age", 6));
         mainIntent.putExtra("user_level", level);
         startActivity(mainIntent);
         finish();
+	}
+	
+	private int getRandomImage() {
+		Random random = new Random();
+		Field[] fields = R.drawable.class.getFields();
+	    List<Integer> drawables = new ArrayList<Integer>();
+	    
+	    for (Field field : fields) {
+	        /* Take only those with name starting with "users" */
+	        if (field.getName().startsWith("users")) {
+	            try {
+	            	if ( !(field.getName().contains("default") || field.getName().contains("add"))) {
+	            		drawables.add(field.getInt(null));
+	            	}
+				} catch (Exception e) {}
+	        }
+	    }
+		
+	    int id = R.drawable.users0;
+	    try {
+	    	id = random.nextInt(drawables.size());
+	    }
+	    catch (Exception e) {}
+	    
+	    return id;
 	}
 	
 }

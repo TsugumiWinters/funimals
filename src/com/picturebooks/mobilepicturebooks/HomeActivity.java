@@ -1,10 +1,14 @@
 package com.picturebooks.mobilepicturebooks;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /* ORIGINAL
 import org.apache.cordova.*;
@@ -30,8 +34,18 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        
+        FrameLayout frame = (FrameLayout) findViewById(R.id.home_usercanvas);
+		LayoutInflater inflater = getLayoutInflater();
+        View userCanvas = inflater.inflate(R.layout.user_canvas, frame, false);
+        
+        ImageView imgUser = (ImageView) userCanvas.findViewById(R.id.canvas_img_user);
+        TextView txtUser = (TextView) userCanvas.findViewById(R.id.canvas_name);
+        
+        imgUser.setImageResource(getIntent().getIntExtra("user_img", R.drawable.usersdefault));
+        txtUser.setText(getResources().getString(R.string.user_name, getIntent().getStringExtra("user_name")));
 		
-		// TODO
+        frame.addView(userCanvas);
 	}
 	
 	public void clicked_btnSound(View v) {
@@ -62,6 +76,10 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	
 	public void clicked_btnViewLibrary(View v) {
         Intent mainIntent = new Intent(HomeActivity.this, BookActivity.class);
+        mainIntent.putExtra("user_img", getIntent().getIntExtra("user_img", R.drawable.usersdefault));
+        mainIntent.putExtra("user_name", getIntent().getStringExtra("user_name"));
+        mainIntent.putExtra("user_age", getIntent().getIntExtra("user_age", 6));
+        mainIntent.putExtra("user_level", getIntent().getStringExtra("user_level"));
         startActivity(mainIntent);
         finish();
 	}
