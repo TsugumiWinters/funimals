@@ -40,4 +40,14 @@ public class ActiveUser {
 		editor.commit();
 	}
 	
+	public static void clearActiveUser(Context context) {
+		SharedPreferences pref = context.getSharedPreferences(PREFERENCES, MODE);
+		SharedPreferences.Editor editor = pref.edit();
+		editor.remove("user_img");
+		editor.remove("user_name");
+		editor.remove("user_age");
+		editor.remove("user_level");
+		editor.commit();
+	}
+	
 }

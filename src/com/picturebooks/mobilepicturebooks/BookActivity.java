@@ -45,4 +45,10 @@ public class BookActivity extends Activity {
         finish();
 	}
 	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		ActiveUser.clearActiveUser(this);
+	}
+	
 }

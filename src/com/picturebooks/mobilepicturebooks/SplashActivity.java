@@ -30,4 +30,10 @@ public class SplashActivity extends Activity {
             }
         }, SPLASH_DISPLAY_LENGHT);
     }
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		ActiveUser.clearActiveUser(this);
+	}
 }

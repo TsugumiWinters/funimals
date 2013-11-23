@@ -55,4 +55,10 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         finish();
 	}
 	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		ActiveUser.clearActiveUser(this);
+	}
+	
 }

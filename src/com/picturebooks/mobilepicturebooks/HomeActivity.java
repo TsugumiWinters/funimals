@@ -90,5 +90,11 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	public void clicked_btnSeeTutorial(View v) {
 		// TODO
 	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		ActiveUser.clearActiveUser(this);
+	}
     
 }
