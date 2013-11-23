@@ -12,9 +12,9 @@
 	
 	<string name="splash">De La Salle University</string>
 	
-	<string name="user_name">%1s</string>
-	<string name="user_age">%1s years old</string>
-	<string name="user_level">%1s</string>
+	<string name="user_name">%1$s</string>
+	<string name="user_age">%1$d years old</string>
+	<string name="user_level">%1$s</string>
 	<string name="user_img">User Image</string>
 	<string name="account_selection">Account Selection</string>
 	

@@ -76,7 +76,7 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	
 	public void clicked_btnViewLibrary(View v) {
         Intent mainIntent = new Intent(HomeActivity.this, BookActivity.class);
-        mainIntent.putExtra("user_img", getIntent().getIntExtra("user_img", R.drawable.usersdefault));
+        mainIntent.putExtra("user_img", getIntent().getIntExtra("user_img", R.drawable.users0));
         mainIntent.putExtra("user_name", getIntent().getStringExtra("user_name"));
         mainIntent.putExtra("user_age", getIntent().getIntExtra("user_age", 6));
         mainIntent.putExtra("user_level", getIntent().getStringExtra("user_level"));

@@ -25,9 +25,9 @@ public class BookActivity extends Activity {
         txtLevel = (TextView) findViewById(R.id.userbook_level);
         
         imgUser.setImageResource(getIntent().getIntExtra("user_img", R.drawable.users0));
-        txtName.setText(getResources().getString(R.string.user_name, getIntent().getStringExtra("user_name")));
+        txtName.setText(getIntent().getStringExtra("user_name"));
         txtAge.setText(getResources().getString(R.string.user_age, getIntent().getIntExtra("user_age", 6)));
-        txtLevel.setText(getResources().getString(R.string.user_level, getIntent().getStringExtra("user_level")));
+        txtLevel.setText(getIntent().getStringExtra("user_level"));
 	}
 	
 	public void clicked_btnHome(View v) {
