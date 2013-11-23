@@ -1,5 +1,6 @@
 package com.picturebooks.mobilepicturebooks;
 
+import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,10 +25,12 @@ public class BookActivity extends Activity {
         txtAge = (TextView) findViewById(R.id.userbook_age);
         txtLevel = (TextView) findViewById(R.id.userbook_level);
         
-        imgUser.setImageResource(getIntent().getIntExtra("user_img", R.drawable.users0));
-        txtName.setText(getIntent().getStringExtra("user_name"));
-        txtAge.setText(getResources().getString(R.string.user_age, getIntent().getIntExtra("user_age", 6)));
-        txtLevel.setText(getIntent().getStringExtra("user_level"));
+        UserInformation user = ActiveUser.getActiveUser(this);
+        
+        imgUser.setImageResource(user.getImage());
+        txtName.setText(user.getName());
+        txtAge.setText(getResources().getString(R.string.user_age, user.getAge()));
+        txtLevel.setText(user.getLevel());
 	}
 	
 	public void clicked_btnHome(View v) {

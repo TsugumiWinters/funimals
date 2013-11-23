@@ -22,11 +22,9 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
+                ActiveUser.setActiveUser(SplashActivity.this, R.drawable.users0, "User1", 6, "Prep");
+                
                 Intent mainIntent = new Intent(SplashActivity.this, HomeActivity.class); /* ORIGINAL MenuActivity.class */
-                mainIntent.putExtra("user_img", R.drawable.users0);
-                mainIntent.putExtra("user_name", "User1");
-                mainIntent.putExtra("user_age", 6);
-                mainIntent.putExtra("user_level", "Prep");
                 SplashActivity.this.startActivity(mainIntent);
                 SplashActivity.this.finish();
             }

@@ -59,11 +59,15 @@ public class RegistrationLevelActivity extends Activity {
 	}
 	
 	public void clicked_btnNext(View v) {
+		/* TODO: Save user to db */
+		
+		ActiveUser.setActiveUser(this,
+				getRandomImage(),
+				getIntent().getStringExtra("user_name"),
+				getIntent().getIntExtra("age", 6),
+				level);
+		
 		Intent mainIntent = new Intent(RegistrationLevelActivity.this, HomeActivity.class);
-        mainIntent.putExtra("user_img", getRandomImage());
-        mainIntent.putExtra("user_name", getIntent().getStringExtra("user_name"));
-        mainIntent.putExtra("user_age", getIntent().getIntExtra("age", 6));
-        mainIntent.putExtra("user_level", level);
         startActivity(mainIntent);
         finish();
 	}

@@ -1,5 +1,7 @@
 package com.picturebooks.mobilepicturebooks;
 
+import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,8 +43,10 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
         ImageView imgUser = (ImageView) userCanvas.findViewById(R.id.canvas_img_user);
         TextView txtUser = (TextView) userCanvas.findViewById(R.id.canvas_name);
         
-        imgUser.setImageResource(getIntent().getIntExtra("user_img", R.drawable.usersdefault));
-        txtUser.setText(getResources().getString(R.string.user_name, getIntent().getStringExtra("user_name")));
+        UserInformation user = ActiveUser.getActiveUser(this);
+        
+        imgUser.setImageResource(user.getImage());
+        txtUser.setText(user.getName());
 		
         frame.addView(userCanvas);
 	}
