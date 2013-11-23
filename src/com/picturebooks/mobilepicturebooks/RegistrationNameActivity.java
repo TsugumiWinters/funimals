@@ -33,11 +33,13 @@ public class RegistrationNameActivity extends Activity {
 			@Override
 			public void afterTextChanged(Editable s) {
 				Button btnNext = (Button) findViewById(R.id.registrationname_btn_next);
-				if (s.length() > 0) {
+				String result = s.toString().trim();
+				
+				if (result.length() > 0) {
 					btnNext.setVisibility(Button.VISIBLE);
 				}
 				else {
-					btnNext.setVisibility(Button.INVISIBLE);
+					btnNext.setVisibility(Button.GONE);
 				}
 			}
 		});
