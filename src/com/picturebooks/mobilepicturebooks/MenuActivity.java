@@ -34,6 +34,8 @@ public class MenuActivity extends /* ORIGIN DroidGap */ Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_accounts);
 		
+        Log.d("MenuActivity", "Activity created.");
+		
 		/* TODO ArrayAdapter<UserInformation> users = new ArrayAdapter<UserInformation>(this, R.layout.user_canvas); */
 		
 		ActiveUser.setActiveUser(this, R.drawable.users0, "User1", 6, "Prep");

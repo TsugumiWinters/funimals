@@ -60,11 +60,13 @@ public class ActiveUser {
 	public static void clearActiveUser(Context context) {
 		SharedPreferences pref = context.getSharedPreferences(PREFERENCES, MODE);
 		SharedPreferences.Editor editor = pref.edit();
+		Log.d("Clearing", "Clearing preferences...");
 		editor.remove("user_img");
 		editor.remove("user_name");
 		editor.remove("user_age");
 		editor.remove("user_level");
 		editor.commit();
+		Log.d("Clearing", "Cleared preferences.");
 	}
 	
 }
