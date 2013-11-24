@@ -10,6 +10,7 @@ import org.apache.cordova.*;
 import database.DatabaseHelper;*/
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
@@ -38,15 +39,23 @@ public class MenuActivity extends /* ORIGIN DroidGap */ Activity {
 		ActiveUser.setActiveUser(this, R.drawable.users0, "User1", 6, "Prep");
         
         /* TODO: Remove this eventually */
-        new Handler().postDelayed(new Runnable(){
+		try {
+		new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
+            	Log.d("MenuActivity", "Initializing Intent...");
                 Intent mainIntent = new Intent(MenuActivity.this, HomeActivity.class);
+            	Log.d("MenuActivity", "Starting HomeActivity...");
                 MenuActivity.this.startActivity(mainIntent);
+            	Log.d("MenuActivity", "Finishing MenuActivity...");
                 MenuActivity.this.finish();
             }
         }, 3000);
+		}
+		catch (Exception e) {
+			Log.d("MenuActivity", "Exception: " + e.getMessage());
+		}
 	}
 	
 	public void clicked_addAccount(View v) {
