@@ -7,4 +7,5 @@
     <dimen name="home_space">350dp</dimen>
     <dimen name="margin_top">20dp</dimen>
     <dimen name="margin_left">320dp</dimen>
+    <dimen name="layout_width">550dp</dimen>
 </resources>

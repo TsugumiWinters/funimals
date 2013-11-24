@@ -6,6 +6,6 @@
     <dimen name="home_space_vertical">50dp</dimen>
     <dimen name="home_space">300dp</dimen>
     <dimen name="margin_top">100dp</dimen>
-    <dimen name="margin_left">500dp</dimen>
-    
+    <dimen name="margin_left">450dp</dimen>
+    <dimen name="layout_width">650dp</dimen>
 </resources>
