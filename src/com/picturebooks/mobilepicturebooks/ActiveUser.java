@@ -3,16 +3,20 @@ package com.picturebooks.mobilepicturebooks;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
 import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
 
 public class ActiveUser {
 	
-	private static String PREFERENCES = "funimals_active";
-	private static int MODE = Activity.MODE_PRIVATE;
-	private static UserInformation ACTIVE_USER;
+	private static final String PREFERENCES = "funimals_active";
+	private static final int MODE = Activity.MODE_PRIVATE;
+	private static UserInformation ACTIVE_USER = null;
 	
 	public static UserInformation getActiveUser(Context context) {
 		if (ACTIVE_USER == null) {
+			Log.d("Retrieving", "ACTIVE_USER is null");
+			
 			SharedPreferences pref = context.getSharedPreferences(PREFERENCES, MODE);
 			
 			ACTIVE_USER = new UserInformation();
@@ -22,9 +26,14 @@ public class ActiveUser {
 			ACTIVE_USER.setAge(pref.getInt("user_age", 0));
 			ACTIVE_USER.setLevel(pref.getString("user_level", null));
 		}
+		Log.d("Retrieving", "ACTIVE_USER is " + ACTIVE_USER.getName());
+		Log.d("Retrieving", "ACTIVE_USER image is " + ACTIVE_USER.getImage());
+		Log.d("Retrieving", "ACTIVE_USER is " + ACTIVE_USER.getAge() + " years old");
+		Log.d("Retrieving", "ACTIVE_USER is in " + ACTIVE_USER.getLevel());
 		
 		if (ACTIVE_USER.getName() == null) {
 			ACTIVE_USER = null;
+			Log.d("Retrieving", "Retrieved ACTIVE_USER is null");
 		}
 		
 		return ACTIVE_USER;
@@ -34,12 +43,18 @@ public class ActiveUser {
 		SharedPreferences pref = context.getSharedPreferences(PREFERENCES, MODE);
 		SharedPreferences.Editor editor = pref.edit();
 		
+		Log.d("Saving", "user_img: " + img);
 		editor.putInt("user_img", img);
+		Log.d("Saving", "user_name: " + name);
 		editor.putString("user_name", name);
+		Log.d("Saving", "user_age: " + age);
 		editor.putInt("user_age", age);
+		Log.d("Saving", "user_level: " + level);
 		editor.putString("user_level", level);
 		
+		Log.d("Saving", "committing...");
 		editor.commit();
+		Log.d("Saving", "committed.");
 	}
 	
 	public static void clearActiveUser(Context context) {
