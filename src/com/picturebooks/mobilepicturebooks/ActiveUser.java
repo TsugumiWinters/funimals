@@ -15,6 +15,8 @@ public class ActiveUser {
 		if (ACTIVE_USER == null) {
 			SharedPreferences pref = context.getSharedPreferences(PREFERENCES, MODE);
 			
+			ACTIVE_USER = new UserInformation();
+			
 			ACTIVE_USER.setImage(pref.getInt("user_img", 0));
 			ACTIVE_USER.setName(pref.getString("user_name", null));
 			ACTIVE_USER.setAge(pref.getInt("user_age", 0));
