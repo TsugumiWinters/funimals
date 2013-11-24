@@ -27,6 +27,12 @@ public class BookActivity extends Activity {
         
         UserInformation user = ActiveUser.getActiveUser(this);
         
+        if (user == null) {
+            Intent mainIntent = new Intent(BookActivity.this, MenuActivity.class);
+            startActivity(mainIntent);
+            finish();
+        }
+        
         imgUser.setImageResource(user.getImage());
         txtName.setText(user.getName());
         txtAge.setText(getResources().getString(R.string.user_age, user.getAge()));

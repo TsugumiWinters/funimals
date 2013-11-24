@@ -45,6 +45,12 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
         
         UserInformation user = ActiveUser.getActiveUser(this);
         
+        if (user == null) {
+            Intent mainIntent = new Intent(HomeActivity.this, MenuActivity.class);
+            startActivity(mainIntent);
+            finish();
+        }
+        
         imgUser.setImageResource(user.getImage());
         txtUser.setText(user.getName());
 		
