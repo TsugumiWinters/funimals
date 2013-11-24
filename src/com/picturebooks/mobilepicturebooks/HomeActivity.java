@@ -1,7 +1,5 @@
 package com.picturebooks.mobilepicturebooks;
 
-import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +10,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
+
 /* ORIGINAL
 import org.apache.cordova.*;
 import database.DatabaseHelper; */
 
 public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
-
 	/* ORIGINAL
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,10 +32,10 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	}*/
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        
+           
         Log.d("HomeActivity", "Activity created.");
         
         FrameLayout frame = (FrameLayout) findViewById(R.id.home_usercanvas);
@@ -51,13 +50,14 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
         if (user == null) {
             Intent mainIntent = new Intent(HomeActivity.this, MenuActivity.class);
             startActivity(mainIntent);
-            finish();
+            HomeActivity.this.finish();
         }
-        
+
         imgUser.setImageResource(user.getImage());
         txtUser.setText(user.getName());
 		
         frame.addView(userCanvas);
+       
 	}
 	
 	public void clicked_btnSound(View v) {
