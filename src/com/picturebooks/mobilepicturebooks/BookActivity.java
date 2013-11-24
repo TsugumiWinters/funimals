@@ -4,6 +4,7 @@ import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class BookActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userbook);
+        
+        Log.d("BookActivity", "Activity created.");
         
         imgUser = (ImageView) findViewById(R.id.userbook_img_user);
         txtName = (TextView) findViewById(R.id.userbook_name);

@@ -5,6 +5,7 @@ import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -35,6 +36,8 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        
+        Log.d("HomeActivity", "Activity created.");
         
         FrameLayout frame = (FrameLayout) findViewById(R.id.home_usercanvas);
 		LayoutInflater inflater = getLayoutInflater();
@@ -85,10 +88,6 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	
 	public void clicked_btnViewLibrary(View v) {
         Intent mainIntent = new Intent(HomeActivity.this, BookActivity.class);
-        mainIntent.putExtra("user_img", getIntent().getIntExtra("user_img", R.drawable.users0));
-        mainIntent.putExtra("user_name", getIntent().getStringExtra("user_name"));
-        mainIntent.putExtra("user_age", getIntent().getIntExtra("user_age", 6));
-        mainIntent.putExtra("user_level", getIntent().getStringExtra("user_level"));
         startActivity(mainIntent);
         finish();
 	}
