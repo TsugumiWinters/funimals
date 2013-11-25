@@ -24,6 +24,7 @@ import storyplanner.title.TitleMaker;
 import storyplanner.title.TitleMakerException;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -51,14 +52,13 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.Display;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.View.OnDragListener;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
-
-import android.view.WindowManager.LayoutParams;
-
 import android.widget.AbsoluteLayout;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -69,7 +69,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import database.DatabaseHelper;
 import database_entities.Background;
 import database_entities.CharacterGoal;
@@ -81,6 +80,9 @@ import database_entities.StoryFile;
 
 public class PictureEditor extends Activity {
 
+
+	Dialog dialog;
+	
 	// text to speech
 	private TextToSpeech tts;
 	ImageView read_button;
@@ -249,6 +251,9 @@ public class PictureEditor extends Activity {
 		super.onCreate(savedInstanceState);
 		this.context = this;
 		setContentView(R.layout.picture_editor);
+		
+		dialog = new Dialog(context);
+		
 		dbHelper = new DatabaseHelper(this);
 		try {
 			dbHelper.createDataBase();
@@ -600,7 +605,7 @@ public class PictureEditor extends Activity {
 				new GetTask(PictureEditor.context).execute();
 			}
 		});
-
+/*
 		pageRight_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -649,6 +654,58 @@ public class PictureEditor extends Activity {
 				}
 			}
 		});
+		*/
+		pageRight_button.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View arg0, MotionEvent arg1) {
+				if (arg1.getAction()== MotionEvent.ACTION_DOWN) {
+					if (currentPage < numberOfPages) {
+						currentPage++;
+						String textDisplay = new String();
+						currentStoryLine = "";
+						for (int a = (currentPage - 1) * sentenceLimitPerPage; a < currentPage
+								* sentenceLimitPerPage
+								&& a < sentenceCount; a++) {
+							textDisplay += sentences[a] + ". ";
+							currentStoryLine += sentences[a] + ". ";
+						}
+
+						
+						storyTextView.setText("");			
+						trimSentence = textDisplay.split(" ");
+						
+					    for(int i=0;i < trimSentence.length;i++) {
+						    if(trimSentence[i].charAt(trimSentence[i].length() - 1) == '.') {
+						    	String noPeriod = trimSentence[i].substring(0, trimSentence[i].length() - 1);
+						    	span =  new SpannableString(noPeriod + ".");
+						    	span.setSpan(new MyClickableSpan(noPeriod), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					            storyTextView.append(span); 
+					            storyTextView.append(" "); 
+						    }
+							else {
+								span =  new SpannableString(trimSentence[i]);
+						        span.setSpan(new MyClickableSpan(trimSentence[i]), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					            storyTextView.append(span); 
+					            storyTextView.append(" "); 
+							}					 
+					    }
+					    storyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+		
+						storyTextView.scrollTo(0, 0);
+						page.setText("Page " + currentPage + " of " + numberOfPages);
+						if (currentPage >= numberOfPages) {
+							Drawable rightDrawable = getResources().getDrawable(R.drawable.pe_right_button_disabled);
+							pageRight_button.setImageDrawable(rightDrawable);
+							pageRight_button.setEnabled(false);
+						}
+						Drawable leftDrawable = getResources().getDrawable(R.drawable.pe_left_button);
+						pageLeft_button.setImageDrawable(leftDrawable);
+						pageLeft_button.setEnabled(true);
+					}
+                }
+				return false;
+			}
+        }); 
 
 		pageLeft_button.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -1351,19 +1408,8 @@ public class PictureEditor extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 
-			mDialog = new ProgressDialog(context);
-			mDialog.setMessage("Generating story...");
-			mDialog.show();
-			Display display =((WindowManager)getSystemService(context.WINDOW_SERVICE)).getDefaultDisplay();
-		    int width = display.getWidth();
-		    int height=display.getHeight();
-		    
-		    mDialog.getWindow().setLayout((6*width)/7,(6*height)/7);
             /*setContentView(R.layout.dialog);
-           
-           
-           
-           
+  
             ImageView imageView=(ImageView) findViewById(R.id.imageView1);
            
             Animation a = AnimationUtils.loadAnimation(PictureEditor.this, R.layout.progress_anim);
@@ -1387,8 +1433,16 @@ public class PictureEditor extends Activity {
 			mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			//mDialog.setMessage("Some Text");
 			mDialog.show();
-			mDialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-*/
+
+			
+			mDialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);*/
+			
+			
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			dialog.setContentView(getLayoutInflater().inflate(R.layout.activity_dialog, null));
+			dialog.show();
+
 		}
 
 		@Override
@@ -1659,7 +1713,7 @@ public class PictureEditor extends Activity {
 			storyTextView.setVisibility(View.VISIBLE);
 			page.setVisibility(View.VISIBLE);
 
-			mDialog.dismiss();
+			dialog.dismiss();
 		}
 
 	}
