@@ -24,6 +24,7 @@ import storyplanner.title.TitleMaker;
 import storyplanner.title.TitleMakerException;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -54,6 +55,7 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.View.OnDragListener;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import android.view.WindowManager.LayoutParams;
 
@@ -79,6 +81,9 @@ import database_entities.StoryFile;
 
 public class PictureEditor extends Activity {
 
+
+	final Dialog dialog = new Dialog(context);
+	
 	// text to speech
 	private TextToSpeech tts;
 	ImageView read_button;
@@ -1371,7 +1376,7 @@ public class PictureEditor extends Activity {
                     return (float)Math.floor(input*frameCount)/frameCount;
                 }
             });*/
-			
+			/*
 			mDialog = new ProgressDialog(context);
 			mDialog.setIndeterminate(true);
 			mDialog.setIndeterminateDrawable(getResources().getDrawable(R.layout.progress_dialog_icon_drawable_animation));
@@ -1379,7 +1384,13 @@ public class PictureEditor extends Activity {
 			//mDialog.setMessage("Some Text");
 			mDialog.show();
 			
-			mDialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			mDialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);*/
+			
+			
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			dialog.setContentView(getLayoutInflater().inflate(R.layout.activity_dialog, null));
+			dialog.show();
 
 		}
 
@@ -1652,6 +1663,7 @@ public class PictureEditor extends Activity {
 			page.setVisibility(View.VISIBLE);
 
 			mDialog.dismiss();
+			dialog.dismiss();
 		}
 
 	}
