@@ -86,8 +86,6 @@ public class PictureEditor extends Activity {
 	ImageView read_button;
 	String currentStoryLine = "";
 	
-	Toast toast;
-	
 	String[] trimSentence;
     SpannableString span;
 	
@@ -1020,7 +1018,6 @@ public class PictureEditor extends Activity {
 			left_button.setImageDrawable(leftDrawable);
 
 		}
-		toast = Toast.makeText(context, null, Toast.LENGTH_SHORT);
 	}
 	
 	@Override
@@ -1676,31 +1673,24 @@ public class PictureEditor extends Activity {
 	      }
 
 	      @SuppressWarnings("deprecation")
-		public void onClick(View textView) {
-	    	  
-	    	  
+		  public void onClick(View textView) {
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
 	    	  String definition = dbHelper.findDefinitionByWord(word);
-	    	/*  
+	    	  
 	    	  if(!definition.equals("")) {
-	    		  toast.setText(definition);
-		    	  toast.show();
-	    	  }
-	    	  else
-	    		  toast.cancel();
-	    	  */
-	    	  AlertDialog dialog = new AlertDialog.Builder(
-	    			                        context).create();
-            dialog.setTitle("Did you know that?");
-            dialog.setMessage(word+" means "+definition);
-            dialog.setIcon(R.drawable.pe_dictionary_button);
-            dialog.setButton("OK", new DialogInterface.OnClickListener() {
-		                    public void onClick(DialogInterface dialog, int which) {
-		                   }
-		            });
-		           dialog.show();
-  
-	    	//  Toast.makeText(context, definition,Toast.LENGTH_LONG).show();
+	    		  
+	    		  definition = removeBr(definition);
+	    		  
+		    	  AlertDialog dialog = new AlertDialog.Builder(context).create();
+			      dialog.setTitle("Did you know that?");
+			      dialog.setMessage(definition);
+			      dialog.setIcon(R.drawable.pe_dictionary_button);
+			      dialog.setButton("OK", new DialogInterface.OnClickListener() {
+			              public void onClick(DialogInterface dialog, int which) {
+			              }
+			      });
+			      dialog.show();
+	    	  }  	 
 	      }
 	      
 	      @Override
@@ -1709,6 +1699,10 @@ public class PictureEditor extends Activity {
 	    	  tp.setUnderlineText(false);
 	      }
 	      
+	}
+	
+	private String removeBr(String string){
+		  return string.replaceAll("<br>", "\n");
 	}
 	
 	class GetTaskRandom extends AsyncTask<Object, Void, String> {
