@@ -47,11 +47,13 @@ import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.Display;
 import android.view.DragEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.View.OnDragListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import android.view.WindowManager.LayoutParams;
 
@@ -1346,12 +1348,19 @@ public class PictureEditor extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-/*
+
 			mDialog = new ProgressDialog(context);
 			mDialog.setMessage("Generating story...");
 			mDialog.show();
-			*/
+			Display display =((WindowManager)getSystemService(context.WINDOW_SERVICE)).getDefaultDisplay();
+		    int width = display.getWidth();
+		    int height=display.getHeight();
+		    
+		    mDialog.getWindow().setLayout((6*width)/7,(6*height)/7);
             /*setContentView(R.layout.dialog);
+           
+           
+           
            
             ImageView imageView=(ImageView) findViewById(R.id.imageView1);
            
@@ -1369,16 +1378,15 @@ public class PictureEditor extends Activity {
                     return (float)Math.floor(input*frameCount)/frameCount;
                 }
             });*/
-			
+			/*
 			mDialog = new ProgressDialog(context);
 			mDialog.setIndeterminate(true);
 			mDialog.setIndeterminateDrawable(getResources().getDrawable(R.layout.progress_dialog_icon_drawable_animation));
 			mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			//mDialog.setMessage("Some Text");
 			mDialog.show();
-			
 			mDialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
+*/
 		}
 
 		@Override
@@ -2045,6 +2053,8 @@ public class PictureEditor extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 
