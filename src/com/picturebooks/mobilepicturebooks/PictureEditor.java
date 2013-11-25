@@ -1673,7 +1673,8 @@ public class PictureEditor extends Activity {
 	      public void onClick(View textView) {
 
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
-	    //	  Toast.makeText(context, word,Toast.LENGTH_SHORT).show();
+	    	  String definition = dbHelper.findDefinitionByWord(word);
+	    	  Toast.makeText(context, definition,Toast.LENGTH_LONG).show();
 	      }
 	      
 	      @Override
