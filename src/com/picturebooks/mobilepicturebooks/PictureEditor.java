@@ -23,8 +23,10 @@ import storyplanner.plot.ThemeExtractor;
 import storyplanner.title.TitleMaker;
 import storyplanner.title.TitleMakerException;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.graphics.Bitmap;
@@ -83,6 +85,8 @@ public class PictureEditor extends Activity {
 	private TextToSpeech tts;
 	ImageView read_button;
 	String currentStoryLine = "";
+	
+	Toast toast;
 	
 	String[] trimSentence;
     SpannableString span;
@@ -1016,6 +1020,7 @@ public class PictureEditor extends Activity {
 			left_button.setImageDrawable(leftDrawable);
 
 		}
+		toast = Toast.makeText(context, null, Toast.LENGTH_SHORT);
 	}
 	
 	@Override
@@ -1670,11 +1675,32 @@ public class PictureEditor extends Activity {
 	    	  this.word = word;
 	      }
 
-	      public void onClick(View textView) {
-
+	      @SuppressWarnings("deprecation")
+		public void onClick(View textView) {
+	    	  
+	    	  
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
 	    	  String definition = dbHelper.findDefinitionByWord(word);
-	    	  Toast.makeText(context, definition,Toast.LENGTH_LONG).show();
+	    	/*  
+	    	  if(!definition.equals("")) {
+	    		  toast.setText(definition);
+		    	  toast.show();
+	    	  }
+	    	  else
+	    		  toast.cancel();
+	    	  */
+	    	  AlertDialog dialog = new AlertDialog.Builder(
+	    			                        context).create();
+            dialog.setTitle("Did you know that?");
+            dialog.setMessage(word+" means "+definition);
+            dialog.setIcon(R.drawable.pe_dictionary_button);
+            dialog.setButton("OK", new DialogInterface.OnClickListener() {
+		                    public void onClick(DialogInterface dialog, int which) {
+		                   }
+		            });
+		           dialog.show();
+  
+	    	//  Toast.makeText(context, definition,Toast.LENGTH_LONG).show();
 	      }
 	      
 	      @Override
@@ -2057,7 +2083,6 @@ public class PictureEditor extends Activity {
 		
 		
 	}
-
 
 	public void tutorialNext(View v) {
 		Log.d("Next Tutorial", "Next Tutorial");
