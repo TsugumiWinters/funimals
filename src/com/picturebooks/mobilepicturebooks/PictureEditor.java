@@ -301,6 +301,7 @@ public class PictureEditor extends Activity {
 		home_button = (ImageView) findViewById(R.id.pe_home_button);
 		library_button = (ImageView) findViewById(R.id.pe_library_button);
 		restart_button = (ImageView) findViewById(R.id.pe_restart_button);
+		restart_button.setEnabled(false);
 		createstory_button = (ImageView) findViewById(R.id.pe_createstory_button);
 		createstory_button.setEnabled(false);
 		editstory_button = (ImageView) findViewById(R.id.pe_editstory_button);
@@ -944,9 +945,28 @@ public class PictureEditor extends Activity {
 				textDisplay += sentences[a] + ". ";
 				currentStoryLine += sentences[a] + ". ";
 			}
-
+			
+			storyTextView.setText("");			
+			trimSentence = textDisplay.split(" ");
+			
+		    for(int i=0;i < trimSentence.length;i++) {
+			    if(trimSentence[i].charAt(trimSentence[i].length() - 1) == '.') {
+			    	String noPeriod = trimSentence[i].substring(0, trimSentence[i].length() - 1);
+			    	span = new SpannableString(noPeriod + ".");
+			    	span.setSpan(new MyClickableSpan(noPeriod), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		            storyTextView.append(span); 
+		            storyTextView.append(" "); 
+			    }
+				else {
+					span = new SpannableString(trimSentence[i]);
+			        span.setSpan(new MyClickableSpan(trimSentence[i]), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		            storyTextView.append(span); 
+		            storyTextView.append(" "); 
+				}					 
+		    }
+		    storyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+		
 			storyTitle.setText(generatedTitle);
-			storyTextView.setText(textDisplay);
 			storyTextView.scrollTo(0, 0);
 			page.setText("Page " + currentPage + " of " + numberOfPages);
 			if (numberOfPages > 1) {
@@ -964,12 +984,14 @@ public class PictureEditor extends Activity {
 			stickersLayout.setVisibility(View.INVISIBLE);
 			storyLayout.setVisibility(View.VISIBLE);
 			
-			if (isUserAuthor == 0) {
+		//	if (isUserAuthor == 0) {
 				editstory_button.setEnabled(false);
 				retry_button.setEnabled(false);
 				save_button.setEnabled(false);			
-			}
+		//	}
 		}
+		
+		
 		if (tutorialMode == 1) {
 			toggleEnableEvents(false);
 			ImageView image = (ImageView) findViewById(R.id.tutorial_home);
@@ -1118,15 +1140,18 @@ public class PictureEditor extends Activity {
 		switch (choice) {
 		case 1:
 			gridView.setAdapter(new ImageAdapter(this, Adults));
-			stickersBG.setImageResource(R.drawable.pe_adults_bg);
+			//stickersBG.setImageResource(R.drawable.pe_adults_bg);
+			stickersBG.setBackgroundResource(R.drawable.pe_adults_bg);
 			break;
 		case 2:
 			gridView.setAdapter(new ImageAdapter(this, Kids));
-			stickersBG.setImageResource(R.drawable.pe_kids_bg);
+		//	stickersBG.setImageResource(R.drawable.pe_kids_bg);
+			stickersBG.setBackgroundResource(R.drawable.pe_kids_bg);
 			break;
 		case 3:
 			gridView.setAdapter(new ImageAdapter(this, Things));
-			stickersBG.setImageResource(R.drawable.pe_things_bg);
+		//	stickersBG.setImageResource(R.drawable.pe_things_bg);
+			stickersBG.setBackgroundResource(R.drawable.pe_things_bg);
 			break;
 		}
 	}
@@ -1225,7 +1250,7 @@ public class PictureEditor extends Activity {
 					String stickerCategory = strTok.nextToken();
 					
 					if (stickerCategory.equals("adult")) {
-						
+						restart_button.setEnabled(true);
 						if(SelectedAdults.size() > 0)
 							clearImage(2);
 						
@@ -1234,7 +1259,7 @@ public class PictureEditor extends Activity {
 						gridView.setAdapter(new ImageAdapter(context, Adults));
 						
 					} else if (stickerCategory.equals("kid")) {
-						
+						restart_button.setEnabled(true);
 						if(SelectedKids.size() > 0)
 							clearImage(1);
 						
@@ -1243,7 +1268,7 @@ public class PictureEditor extends Activity {
 						gridView.setAdapter(new ImageAdapter(context, Kids));
 						
 					} else if (stickerCategory.equals("thing")) {
-						
+						restart_button.setEnabled(true);
 						if(SelectedThings.size() > 0)
 							clearImage(3);
 						
@@ -1659,10 +1684,6 @@ public class PictureEditor extends Activity {
 		protected String doInBackground(Object... params) {
 			charsInPic.removeAllElements();
 			objectsInPic.removeAllElements();
-			
-			//new
-		//	IGCharacter adultChar = new IGCharacter();
-
 
 			for (int a = 0; a < SelectedAdults.size(); a++) {
 				StringTokenizer strTok = new StringTokenizer(
@@ -1673,9 +1694,7 @@ public class PictureEditor extends Activity {
 				characterName = Character.toUpperCase(characterName.charAt(0))
 						+ (String) characterName.subSequence(1,
 								characterName.length());
-				
-				//new
-			//	adultChar = new IGCharacter();
+
 				adultChar = dbHelper.getCharacter(characterName);
 				
 				Log.d("PictureStickers", "SelectedAdult " + characterName);
@@ -1863,9 +1882,7 @@ public class PictureEditor extends Activity {
 			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 				View view = pictureBackground.getChildAt(i);
 				PictureEditor.createdStory = true;
-				//view.setEnabled(false);
 			}
-
 			
 			storyTextView.setText("");			
 			trimSentence = textDisplay.split(" ");
@@ -2004,8 +2021,7 @@ public class PictureEditor extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+			
 	}
 
 	public void tutorialNext(View v) {
