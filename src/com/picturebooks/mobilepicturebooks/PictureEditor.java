@@ -28,11 +28,13 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnShowListener;
 import android.content.Intent;
 import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -80,9 +82,7 @@ import database_entities.SavedSticker;
 import database_entities.StoryFile;
 
 public class PictureEditor extends Activity {
-
-
-	final Dialog dialog = new Dialog(context);
+	Dialog dialog;
 	
 	// text to speech
 	private TextToSpeech tts;
@@ -264,7 +264,9 @@ public class PictureEditor extends Activity {
 		} catch (SQLException sqle) {
 			throw sqle;
 		}
-		
+
+
+		dialog = new Dialog(context);
 		// text to speech - initialize
 		//CLOSEBUTTON - textDisplay
 		read_button = (ImageView) findViewById(R.id.pe_read_button);
@@ -1358,39 +1360,28 @@ public class PictureEditor extends Activity {
 			mDialog.setMessage("Generating story...");
 			mDialog.show();
 			*/
-            /*setContentView(R.layout.dialog);
-           
-            ImageView imageView=(ImageView) findViewById(R.id.imageView1);
-           
-            Animation a = AnimationUtils.loadAnimation(PictureEditor.this, R.layout.progress_anim);
-            a.setDuration(2000);
-            imageView.startAnimation(a);
-           
-            a.setInterpolator(new Interpolator()
-            {
-                private final int frameCount = 50;
-
-                @Override
-                public float getInterpolation(float input)
-                {
-                    return (float)Math.floor(input*frameCount)/frameCount;
-                }
-            });*/
+			
 			/*
-			mDialog = new ProgressDialog(context);
-			mDialog.setIndeterminate(true);
-			mDialog.setIndeterminateDrawable(getResources().getDrawable(R.layout.progress_dialog_icon_drawable_animation));
-			mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-			//mDialog.setMessage("Some Text");
-			mDialog.show();
-			
-			mDialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);*/
-			
-			
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			dialog.setContentView(getLayoutInflater().inflate(R.layout.activity_dialog, null));
-			dialog.show();
+			dialog.show();*/
+
+			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            RelativeLayout contentView = (RelativeLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
+            dialog.setContentView(contentView);
+
+            ImageView image = (ImageView) contentView.findViewById(R.id.loading);
+            final AnimationDrawable animation = (AnimationDrawable) image.getDrawable();
+            dialog.setCancelable(false);
+            dialog.setOnShowListener(new OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                animation.start();
+                }
+                });
+            dialog.show();
 
 		}
 
