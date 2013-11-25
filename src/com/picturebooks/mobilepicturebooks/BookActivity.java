@@ -15,11 +15,13 @@ public class BookActivity extends Activity {
 	private TextView txtName;
 	private TextView txtAge;
 	private TextView txtLevel;
+	private boolean openingActivity;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userbook);
+        openingActivity = false;
         
         Log.d("BookActivity", "Activity created.");
         
@@ -33,6 +35,7 @@ public class BookActivity extends Activity {
         if (user == null) {
             Intent mainIntent = new Intent(BookActivity.this, MenuActivity.class);
             startActivity(mainIntent);
+            openingActivity = true;
             finish();
         }
         
@@ -45,19 +48,23 @@ public class BookActivity extends Activity {
 	public void clicked_btnHome(View v) {
         Intent mainIntent = new Intent(BookActivity.this, HomeActivity.class);
         startActivity(mainIntent);
+        openingActivity = true;
         finish();
 	}
 	
 	public void clicked_btnLibrary(View v) {
         Intent mainIntent = new Intent(BookActivity.this, StoriesActivity.class);
         startActivity(mainIntent);
+        openingActivity = true;
         finish();
 	}
 	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		ActiveUser.clearActiveUser(this);
+		if (!openingActivity) {
+			ActiveUser.clearActiveUser(this);
+		}
 	}
 	
 }

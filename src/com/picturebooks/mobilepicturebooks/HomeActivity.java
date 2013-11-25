@@ -17,6 +17,9 @@ import org.apache.cordova.*;
 import database.DatabaseHelper; */
 
 public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
+	
+	private boolean openingActivity;
+	
 	/* ORIGINAL
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,8 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	public void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-           
+        openingActivity = false;
+        
         Log.d("HomeActivity", "Activity created.");
         
         FrameLayout frame = (FrameLayout) findViewById(R.id.home_usercanvas);
@@ -50,6 +54,7 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
         if (user == null) {
             Intent mainIntent = new Intent(HomeActivity.this, MenuActivity.class);
             startActivity(mainIntent);
+            openingActivity = true;
             HomeActivity.this.finish();
         }
 
@@ -83,12 +88,14 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	public void clicked_btnNewPicture(View v) {
         Intent mainIntent = new Intent(HomeActivity.this, PictureEditor.class);
         startActivity(mainIntent);
+        openingActivity = true;
         finish();
 	}
 	
 	public void clicked_btnViewLibrary(View v) {
         Intent mainIntent = new Intent(HomeActivity.this, BookActivity.class);
         startActivity(mainIntent);
+        openingActivity = true;
         finish();
 	}
 	

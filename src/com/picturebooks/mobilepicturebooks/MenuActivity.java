@@ -16,6 +16,8 @@ import android.widget.ArrayAdapter;
 
 public class MenuActivity extends /* ORIGIN DroidGap */ Activity {
 	
+	private boolean openingActivity;
+	
 	/* ORIGIN
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MenuActivity extends /* ORIGIN DroidGap */ Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_accounts);
+		openingActivity = false;
 		
         Log.d("MenuActivity", "Activity created.");
 		
@@ -51,7 +54,8 @@ public class MenuActivity extends /* ORIGIN DroidGap */ Activity {
             	Log.d("MenuActivity", "Starting HomeActivity...");
                 MenuActivity.this.startActivity(mainIntent);
             	Log.d("MenuActivity", "Finishing MenuActivity...");
-                MenuActivity.this.finish();
+                openingActivity = true;
+            	MenuActivity.this.finish();
             }
         }, 3000);
 		}
@@ -63,10 +67,19 @@ public class MenuActivity extends /* ORIGIN DroidGap */ Activity {
 	public void clicked_addAccount(View v) {
         Intent mainIntent = new Intent(MenuActivity.this, RegistrationNameActivity.class);
         startActivity(mainIntent);
+        openingActivity = true;
         finish();
 	}
 	
 	public void clicked_openAccount(View v) {
 		// TODO
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (!openingActivity) {
+			ActiveUser.clearActiveUser(this);
+		}
 	}
 }

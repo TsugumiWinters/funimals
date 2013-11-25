@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/home_linearLayout1"
         android:contentDescription="@string/app_name"
-        android:scaleType="centerInside"
+        android:scaleType="fitXY"
         android:src="@drawable/general_title" />
 
     <LinearLayout

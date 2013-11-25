@@ -8,14 +8,16 @@ import android.os.Handler;
 import android.util.Log;
 
 public class SplashActivity extends Activity {
-
+	
     private final int SPLASH_DISPLAY_LENGHT = 3000;
-
+    private boolean openingActivity;
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.activity_splashscreen);
+        openingActivity = false;
         
         Log.d("SplashActivity", "Activity created.");
 
@@ -27,6 +29,7 @@ public class SplashActivity extends Activity {
                 /* Create an Intent that will start the Menu-Activity. */
                 Intent mainIntent = new Intent(SplashActivity.this, MenuActivity.class);
                 SplashActivity.this.startActivity(mainIntent);
+                openingActivity = true;
                 SplashActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGHT);
@@ -35,6 +38,8 @@ public class SplashActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		ActiveUser.clearActiveUser(this);
+		if (!openingActivity) {
+			ActiveUser.clearActiveUser(this);
+		}
 	}
 }
