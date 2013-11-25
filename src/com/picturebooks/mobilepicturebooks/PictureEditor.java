@@ -23,8 +23,10 @@ import storyplanner.plot.ThemeExtractor;
 import storyplanner.title.TitleMaker;
 import storyplanner.title.TitleMakerException;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.graphics.Bitmap;
@@ -1662,11 +1664,23 @@ public class PictureEditor extends Activity {
 	    	  this.word = word;
 	      }
 
-	      public void onClick(View textView) {
+	      @SuppressWarnings("deprecation")
+		public void onClick(View textView) {
 
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
 	    	  String definition = dbHelper.findDefinitionByWord(word);
-	    	  Toast.makeText(context, definition,Toast.LENGTH_LONG).show();
+	    	  //Toast.makeText(context, definition,Toast.LENGTH_LONG).show();
+	    	  
+	    	  AlertDialog dialog = new AlertDialog.Builder(
+                      context).create();
+		      dialog.setTitle("Did you know that?");
+		      dialog.setMessage(word+" means "+definition);
+		      dialog.setIcon(R.drawable.pe_dictionary_button);
+		      dialog.setButton("OK", new DialogInterface.OnClickListener() {
+		              public void onClick(DialogInterface dialog, int which) {
+		              }
+		      });
+		      dialog.show();
 	      }
 	      
 	      @Override
