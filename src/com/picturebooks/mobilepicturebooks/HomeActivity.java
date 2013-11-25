@@ -106,7 +106,9 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		ActiveUser.clearActiveUser(this);
+		if (!openingActivity) {
+			ActiveUser.clearActiveUser(this);
+		}
 	}
     
 }
