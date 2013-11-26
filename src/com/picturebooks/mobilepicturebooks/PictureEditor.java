@@ -28,11 +28,13 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnShowListener;
 import android.content.Intent;
 import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -62,6 +64,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -77,7 +80,9 @@ import database_entities.StoryFile;
 public class PictureEditor extends Activity {
 
 	Dialog dialog;
-	
+	LinearLayout contentView;
+    ImageView image;
+    AnimationDrawable animation;
 	// text to speech
 	private TextToSpeech tts;
 	ImageView read_button;
@@ -246,9 +251,20 @@ public class PictureEditor extends Activity {
 		super.onCreate(savedInstanceState);
 		this.context = this;
 		setContentView(R.layout.picture_editor);
-		
+
 		dialog = new Dialog(context);
-		
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        
+		contentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
+		dialog.setContentView(contentView);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        
+		image = (ImageView) contentView.findViewById(R.id.loading);
+		animation = (AnimationDrawable) image.getDrawable();
+			
 		dbHelper = new DatabaseHelper(this);
 		try {
 			dbHelper.createDataBase();
@@ -262,13 +278,10 @@ public class PictureEditor extends Activity {
 			throw sqle;
 		}
 
-
-		dialog = new Dialog(context);
 		// text to speech - initialize
 		//CLOSEBUTTON - textDisplay
 		read_button = (ImageView) findViewById(R.id.pe_read_button);
-		tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
-			
+		tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {			
 			@Override
 			public void onInit(int status) {
 				if(status != TextToSpeech.ERROR){
@@ -538,6 +551,7 @@ public class PictureEditor extends Activity {
 				changeGridView(1);
 
 				createstory_button.setEnabled(false);
+				restart_button.setEnabled(false);
 			}
 		});
 
@@ -975,9 +989,15 @@ public class PictureEditor extends Activity {
 			
 			restart_button.setEnabled(false);
 			
-			createstory_button.setVisibility(View.INVISIBLE);
+			retry_button.setEnabled(false);
+			save_button.setEnabled(false);	
+			
+		//	createstory_button.setVisibility(View.INVISIBLE);
 			editstory_button.setVisibility(View.VISIBLE);
-
+			editstory_button.setEnabled(false);
+			
+			createstory_button.setVisibility(View.INVISIBLE);
+			
 			bgTitleLayout.setVisibility(View.INVISIBLE);
 			storyTitle.setVisibility(View.VISIBLE);
 
@@ -985,9 +1005,7 @@ public class PictureEditor extends Activity {
 			storyLayout.setVisibility(View.VISIBLE);
 			
 		//	if (isUserAuthor == 0) {
-				editstory_button.setEnabled(false);
-				retry_button.setEnabled(false);
-				save_button.setEnabled(false);			
+		
 		//	}
 		}
 		
@@ -1140,18 +1158,15 @@ public class PictureEditor extends Activity {
 		switch (choice) {
 		case 1:
 			gridView.setAdapter(new ImageAdapter(this, Adults));
-			//stickersBG.setImageResource(R.drawable.pe_adults_bg);
-			stickersBG.setBackgroundResource(R.drawable.pe_adults_bg);
+			stickersBG.setImageResource(R.drawable.pe_adults_bg);
 			break;
 		case 2:
 			gridView.setAdapter(new ImageAdapter(this, Kids));
-		//	stickersBG.setImageResource(R.drawable.pe_kids_bg);
-			stickersBG.setBackgroundResource(R.drawable.pe_kids_bg);
+			stickersBG.setImageResource(R.drawable.pe_kids_bg);
 			break;
 		case 3:
 			gridView.setAdapter(new ImageAdapter(this, Things));
-		//	stickersBG.setImageResource(R.drawable.pe_things_bg);
-			stickersBG.setBackgroundResource(R.drawable.pe_things_bg);
+			stickersBG.setImageResource(R.drawable.pe_things_bg);
 			break;
 		}
 	}
@@ -1337,28 +1352,28 @@ public class PictureEditor extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();			
-			
+			/*
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			dialog.setContentView(getLayoutInflater().inflate(R.layout.activity_dialog, null));
 			dialog.show();
-/*
-			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-			dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-            RelativeLayout contentView = (RelativeLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
-            dialog.setContentView(contentView);
+*/
+	//		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+	//		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-            ImageView image = (ImageView) contentView.findViewById(R.id.loading);
-            final AnimationDrawable animation = (AnimationDrawable) image.getDrawable();
-            dialog.setCancelable(false);
+    //        LinearLayout contentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
+     //       dialog.setContentView(contentView);
+
+     //       ImageView image = (ImageView) contentView.findViewById(R.id.loading);
+     //        AnimationDrawable animation = (AnimationDrawable) image.getDrawable();
+
             dialog.setOnShowListener(new OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialog) {
-                animation.start();
+                	animation.start();
                 }
                 });
             dialog.show();
-*/
 		}
 
 		@Override
@@ -1617,8 +1632,9 @@ public class PictureEditor extends Activity {
 
 			storyTextView.setVisibility(View.VISIBLE);
 			page.setVisibility(View.VISIBLE);
-
+			
 			dialog.dismiss();
+            
 		}
 
 	}
@@ -2099,6 +2115,7 @@ public class PictureEditor extends Activity {
 		case 11:
 			image = (ImageView) findViewById(R.id.tutorial_create_story);
 			image.setVisibility(View.VISIBLE);
+			restart_button.setEnabled(false);
 			createstory_button.setEnabled(true);
 			break;
 		default:
