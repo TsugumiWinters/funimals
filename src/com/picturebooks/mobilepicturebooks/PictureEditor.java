@@ -430,7 +430,7 @@ public class PictureEditor extends Activity {
 		Things_Classroom.add("thing_toy_horse");
 
 		Things_Clinic.add("thing_stethoscope");
-		Things_Clinic.add("thing_thermometer");
+		//Things_Clinic.add("thing_thermometer");
 
 		Things_DiningRoom.add("thing_apple");
 		Things_DiningRoom.add("thing_bananas");
@@ -744,8 +744,8 @@ public class PictureEditor extends Activity {
 			@Override
 			public void onClick(View v) {	
 				backgroundID++;
-				changeBackground(backgroundID);
 				clearThings();
+				changeBackground(backgroundID);				
 				changeGridView(1);
 				createstory_button.setEnabled(false);
 			}
@@ -1051,15 +1051,17 @@ public class PictureEditor extends Activity {
 			if (view.getContentDescription().toString().startsWith("thing_") == true)
 				pictureBackground.removeViewAt(a);
 		}
-		if(SelectedThings.size() != 0)
-			SelectedThings.remove(0);
-
+		if(SelectedThings.size() != 0){
+			Things.add(SelectedThings.remove(0));		
+		}
+/*
 		int ctr = 0;
 		while(SelectedThings.size() != 0){
 			Log.e("hello", SelectedThings.get(ctr).toString());
 			SelectedThings.remove(ctr);
 			ctr++;
 		}
+		*/
 	}
 
 	public void clearImage(int i) {
@@ -1103,6 +1105,7 @@ public class PictureEditor extends Activity {
 			bgTitle.setText("Bathroom");
 			break;
 		case 1:
+			pictureBackground.setBackgroundResource(0);
 			pictureBackground.setBackgroundResource(R.drawable.bg_bedroom);
 			pictureBackground.setContentDescription("bg_bedroom");
 			Things = Things_Bedroom;
