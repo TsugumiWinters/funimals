@@ -43,6 +43,13 @@ public class PlotMaker {
 
 	private DatabaseHelper dbHelper = new DatabaseHelper(ApplicationContextProvider.getContext());
 	private InputContentRepresentation ICR;
+	
+	//new
+	private IGCharacter adultChar;
+
+	public PlotMaker(IGCharacter adultChar) {
+		this.adultChar = adultChar;
+	}
 
 	/**
 	 * Creates a story tree which contains the elements of the story
@@ -257,11 +264,17 @@ public class PlotMaker {
 			throw new StoryPlannerException(e);
 		}
 		String characterRole = character.getRole();
-		if(!characterRole.equalsIgnoreCase(childRole)){
+		if(!characterRole.equalsIgnoreCase(childRole)){/*
 			if(!characterRole.equalsIgnoreCase(ICR.getBackground().getRequiredRole())){
 				if(character.getGender().equalsIgnoreCase("f"))
 					character.setString("Mommy " + character.getString());
 				else character.setString("Daddy " + character.getString());
+			}*/
+			// new
+			if(!characterRole.equalsIgnoreCase(ICR.getBackground().getRequiredRole())){
+				if(adultChar.getGender().equalsIgnoreCase("f"))
+					character.setString("Mommy " + adultChar.getString());
+				else character.setString("Daddy " + adultChar.getString());
 			}
 			else{
 				try{

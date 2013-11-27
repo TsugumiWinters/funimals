@@ -7,6 +7,7 @@ import android.content.Context;
 public class ApplicationContextProvider extends Application {
  
     /**
+     * 
      * Keeps a reference of the application context
      */
     private static Context sContext;

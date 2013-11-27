@@ -1,20 +1,43 @@
 <resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-    </style>
+	<!--
+		Base application theme, dependent on API level. This theme is replaced
+		by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+	-->
+	<style name="AppBaseTheme" parent="android:Theme.Light">
+		<!--
+			Theme customizations available in newer API levels can go in
+			res/values-vXX/styles.xml, while customizations related to
+			backward-compatibility can go here.
+		-->
+	</style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
+	<!-- Application theme. -->
+	<style name="AppTheme" parent="AppBaseTheme">
+		<!-- All customizations that are NOT specific to a particular API-level can go here. -->
+	</style>
+	
+	<style name="pe_scrollbar_adults">
+		<item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+		<item name="android:scrollbarStyle">outsideOverlay</item>
+		<item name="android:scrollbars">vertical</item>
+		<item name="android:fadeScrollbars">false</item>
+		<item name="android:scrollbarThumbVertical">@drawable/pe_scrollbar_adults</item>
+	</style>
+	
+	<style name="pe_scrollbar_kids">
+		<item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+		<item name="android:scrollbarStyle">outsideOverlay</item>
+		<item name="android:scrollbars">vertical</item>
+		<item name="android:fadeScrollbars">false</item>
+		<item name="android:scrollbarThumbVertical">@drawable/pe_scrollbar_kids</item>
+	</style>
+	
+	<style name="pe_scrollbar_things">
+		<item name="android:fastScrollEnabled">true</item>
+		<item name="android:fastScrollAlwaysVisible">true</item>
+		<item name="android:fastScrollThumbDrawable">@drawable/pe_scrollbar_things</item>
+		<item name="android:fastScrollTrackDrawable">@drawable/pe_scrollbar_track</item>
+	</style>
 
 </resources>
