@@ -12,5 +12,7 @@
     <dimen name="layout_height">400dp</dimen>
     <dimen name="margin_bottom">20dp</dimen>
     <dimen name="margin_leftname">15dp</dimen>
-    <dimen name="layout_widthname">100dp</dimen>    
+    <dimen name="layout_widthname">850dp</dimen>    
+    <dimen name="grade_width">300dp</dimen>    
+    <dimen name="layoutgrade_height">450dp</dimen>       
 </resources>
