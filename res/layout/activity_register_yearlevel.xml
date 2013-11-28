@@ -14,7 +14,7 @@
         android:contentDescription="@string/button_back"
         android:scaleType="fitXY"
         android:onClick="clicked_btnBack"
-        android:src="@drawable/general_back" />
+        android:src="@drawable/general_back_button_selector" />
 
     <ImageView
         android:id="@+id/registrationlevel_btn_next"
@@ -27,7 +27,7 @@
         android:scaleType="fitXY"
         android:onClick="clicked_btnNext"
         android:visibility="gone"
-        android:src="@drawable/general_next" />
+        android:src="@drawable/general_next_button_selector" />
 
     <LinearLayout
         android:layout_width="wrap_content"
