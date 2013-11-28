@@ -83,6 +83,15 @@ public class PictureEditor extends Activity {
 	LinearLayout contentView;
     ImageView image;
     AnimationDrawable animation;
+    
+    // save dialog
+
+	Dialog savedialog;
+	LinearLayout saveContentView;
+    ImageView saveimage;
+    AnimationDrawable saveanimation;
+    
+    
 	// text to speech
 	private TextToSpeech tts;
 	ImageView read_button;
@@ -244,7 +253,6 @@ public class PictureEditor extends Activity {
 	private int currentPage, numberOfPages;
 	private int sentenceLimitPerPage = 4;
 
-	ProgressDialog mDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -264,6 +272,19 @@ public class PictureEditor extends Activity {
         
 		image = (ImageView) contentView.findViewById(R.id.loading);
 		animation = (AnimationDrawable) image.getDrawable();
+		
+		
+		// save dialog
+		savedialog = new Dialog(context);
+		savedialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		savedialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		saveContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog_save, null);
+		savedialog.setContentView(contentView);
+        savedialog.setCancelable(false);
+        savedialog.setCanceledOnTouchOutside(false);
+		saveimage = (ImageView) contentView.findViewById(R.id.saving);
+		saveanimation = (AnimationDrawable) saveimage.getDrawable();
+		
 			
 		dbHelper = new DatabaseHelper(this);
 		try {
@@ -1405,21 +1426,6 @@ public class PictureEditor extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();			
-			/*
-			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-			dialog.setContentView(getLayoutInflater().inflate(R.layout.activity_dialog, null));
-			dialog.show();
-*/
-	//		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-	//		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-    //        LinearLayout contentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
-     //       dialog.setContentView(contentView);
-
-     //       ImageView image = (ImageView) contentView.findViewById(R.id.loading);
-     //        AnimationDrawable animation = (AnimationDrawable) image.getDrawable();
-
             dialog.setOnShowListener(new OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialog) {
@@ -1711,15 +1717,15 @@ public class PictureEditor extends Activity {
 	    		  
 	    		  definition = removeBr(definition);
 	    		  
-		    	  AlertDialog dialog = new AlertDialog.Builder(context).create();
-			      dialog.setTitle("Did you know that?");
-			      dialog.setMessage(definition);
-			      dialog.setIcon(R.drawable.pe_dictionary_button);
-			      dialog.setButton("OK", new DialogInterface.OnClickListener() {
+		    	  AlertDialog alertdialog = new AlertDialog.Builder(context).create();
+			      alertdialog.setTitle("Did you know that?");
+			      alertdialog.setMessage(definition);
+			      alertdialog.setIcon(R.drawable.pe_dictionary_button);
+			      alertdialog.setButton("OK", new DialogInterface.OnClickListener() {
 			              public void onClick(DialogInterface dialog, int which) {
 			              }
 			      });
-			      dialog.show();
+			      alertdialog.show();
 	    	  }  	 
 	      }
 	      
@@ -1746,9 +1752,13 @@ public class PictureEditor extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 
-			mDialog = new ProgressDialog(context);
-			mDialog.setMessage("Generating story...");
-			mDialog.show();
+			dialog.setOnShowListener(new OnShowListener() {
+	                @Override
+	                public void onShow(DialogInterface dialog) {
+	                	animation.start();
+	                }
+	                });
+	        dialog.show();
 		}
 
 		@Override
@@ -1996,7 +2006,7 @@ public class PictureEditor extends Activity {
 			stickersLayout.setVisibility(View.INVISIBLE);
 			storyLayout.setVisibility(View.VISIBLE);
 
-			mDialog.dismiss();
+			dialog.dismiss();
 		}
 
 	}
@@ -2012,9 +2022,14 @@ public class PictureEditor extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 
-			mDialog = new ProgressDialog(context);
-			mDialog.setMessage("Saving story...");
-			mDialog.show();
+
+            savedialog.setOnShowListener(new OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                	saveanimation.start();
+                }
+                });
+            savedialog.show();
 		}
 
 		@Override
@@ -2061,7 +2076,7 @@ public class PictureEditor extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			mDialog.dismiss();
+			savedialog.dismiss();
 
 			Intent mainIntent = new Intent(PictureEditor.this,
 					StoriesActivity.class);
