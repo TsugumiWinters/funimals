@@ -47,23 +47,24 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="80dp"
             android:layout_weight="1" />
 
         <ImageView
        		android:id="@+id/registrationlevel_btn_prep"
-            android:layout_width="@dimen/grade_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:src="@drawable/general_prep"
             android:contentDescription="@string/registration_prep"
             android:onClick="clicked_btnLevel"
             android:tag="general_prep"
+     
             android:layout_weight="1" />
 
         <ImageView
        		android:id="@+id/registrationlevel_btn_grade1"
-            android:layout_width="@dimen/grade_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:src="@drawable/general_grade1"
@@ -74,7 +75,7 @@
 
         <ImageView
        		android:id="@+id/registrationlevel_btn_grade2"
-            android:layout_width="@dimen/grade_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:src="@drawable/general_grade2"
@@ -85,7 +86,7 @@
 
         <ImageView
        		android:id="@+id/registrationlevel_btn_grade3"
-            android:layout_width="@dimen/grade_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:src="@drawable/general_grade3"
