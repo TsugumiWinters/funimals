@@ -901,24 +901,42 @@ public class PictureEditor extends Activity {
 			StoryFile sf = dbHelper.findStoryFileById(storyId);
 			String sfBackground = sf.getBackground();
 
-			if (sfBackground.equals("bg_bathroom"))
+			if (sfBackground.equals("bg_bathroom")){
+				selectedBackground = dbHelper.getBackground("bg_bathroom");
 				backgroundID = 0;
-			else if (sfBackground.equals("bg_bedroom"))
+			}
+			else if (sfBackground.equals("bg_bedroom")){
+				selectedBackground = dbHelper.getBackground("bg_bedroom");
 				backgroundID = 1;
-			else if (sfBackground.equals("bg_classroom"))
+			}
+			else if (sfBackground.equals("bg_classroom")){
+				selectedBackground = dbHelper.getBackground("bg_classroom");
 				backgroundID = 2;
-			else if (sfBackground.equals("bg_clinic"))
+			}
+			else if (sfBackground.equals("bg_clinic")){
+				selectedBackground = dbHelper.getBackground("bg_clinic");
 				backgroundID = 3;
-			else if (sfBackground.equals("bg_diningroom"))
+			}
+			else if (sfBackground.equals("bg_diningroom")){
+				selectedBackground = dbHelper.getBackground("bg_diningroom");
 				backgroundID = 4;
-			else if (sfBackground.equals("bg_mall"))
+			}
+			else if (sfBackground.equals("bg_mall")){
+				selectedBackground = dbHelper.getBackground("bg_mall");
 				backgroundID = 5;
-			else if (sfBackground.equals("bg_market"))
+			}
+			else if (sfBackground.equals("bg_market")){
+				selectedBackground = dbHelper.getBackground("bg_market");
 				backgroundID = 6;
-			else if (sfBackground.equals("bg_outdoors"))
+			}
+			else if (sfBackground.equals("bg_outdoors")){
+				selectedBackground = dbHelper.getBackground("bg_outdoors");
 				backgroundID = 7;
-			else if (sfBackground.equals("bg_playground"))
+			}
+			else if (sfBackground.equals("bg_playground")){
+				selectedBackground = dbHelper.getBackground("bg_playground");
 				backgroundID = 8;
+			}
 
 			changeBackground(backgroundID);
 
