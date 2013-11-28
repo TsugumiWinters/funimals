@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_width">300dp</dimen>
+    <dimen name="button_width">500dp</dimen>
     <dimen name="button_height">100dp</dimen>
     <dimen name="button_square">100dp</dimen><dimen name="text_size">40sp</dimen>
     <dimen name="home_space_vertical">0dp</dimen>
-    <dimen name="home_space">400dp</dimen>
+    <dimen name="home_space">350dp</dimen>
     <dimen name="margin_top">100dp</dimen>
     <dimen name="margin_left">450dp</dimen>
     <dimen name="layout_width">600dp</dimen>
