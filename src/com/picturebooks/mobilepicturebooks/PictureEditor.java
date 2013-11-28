@@ -279,7 +279,7 @@ public class PictureEditor extends Activity {
 		savedialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		savedialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 		saveContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog_save, null);
-		savedialog.setContentView(contentView);
+		savedialog.setContentView(saveContentView);
         savedialog.setCancelable(false);
         savedialog.setCanceledOnTouchOutside(false);
 		saveimage = (ImageView) contentView.findViewById(R.id.saving);
