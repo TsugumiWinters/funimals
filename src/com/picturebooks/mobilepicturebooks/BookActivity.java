@@ -1,6 +1,6 @@
 package com.picturebooks.mobilepicturebooks;
 
-import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
+import android.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
 
 public class BookActivity extends Activity {
 	

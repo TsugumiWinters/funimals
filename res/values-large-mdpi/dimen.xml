@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_width">350dp</dimen>
-    <dimen name="button_height">150dp</dimen>
+    <dimen name="button_width">250dp</dimen>
+    <dimen name="button_height">100dp</dimen>
     <dimen name="button_square">75dp</dimen><dimen name="text_size">40sp</dimen>
     <dimen name="home_space_vertical">0dp</dimen>
     <dimen name="home_space">350dp</dimen>
     <dimen name="margin_top">20dp</dimen>
     <dimen name="margin_left">320dp</dimen>
     <dimen name="layout_width">550dp</dimen>
+    <dimen name="space_height">75dp</dimen>
+    <dimen name="layout_height">300dp</dimen>
+    <dimen name="margin_bottom">0dp</dimen>
+    <dimen name="margin_leftname">0dp</dimen>
+    <dimen name="layout_widthname">100dp</dimen>    
 </resources>

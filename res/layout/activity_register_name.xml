@@ -48,13 +48,14 @@
 
         <EditText
             android:id="@+id/registration_txt_name"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/layout_widthname"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:textSize="@dimen/text_size"
             android:inputType="textPersonName"
             android:hint="@string/registration_hint_name"
             android:gravity="center"
+            android:layout_marginLeft="@dimen/margin_leftname"
             android:background="@drawable/general_textboxname" >
 
             <requestFocus />
