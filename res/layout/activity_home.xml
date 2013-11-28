@@ -35,7 +35,7 @@
     <ImageView
         android:id="@+id/home_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_below="@+id/home_linearLayout1"
         android:contentDescription="@string/app_name"
         android:scaleType="fitXY"
@@ -61,7 +61,7 @@
 
             <ImageView
                 android:id="@+id/home_btn_newpicture"
-                android:layout_width="@dimen/button_width"
+                android:layout_width="@dimen/buttonhome_width"
                 android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
                 android:contentDescription="@string/button_newpicture"
@@ -71,7 +71,7 @@
 
             <ImageView
                 android:id="@+id/home_btn_viewlibrary"
-                android:layout_width="@dimen/button_width"
+                android:layout_width="@dimen/buttonhome_width"
                 android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
                 android:contentDescription="@string/button_viewlibrary"
@@ -81,7 +81,7 @@
 
             <ImageView
                 android:id="@+id/home_btn_seetutorial"
-                android:layout_width="@dimen/button_width"
+                android:layout_width="@dimen/buttonhome_width"
                 android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
                 android:contentDescription="@string/button_seetutorial"
@@ -89,9 +89,7 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/general_seetutorial" />
         </LinearLayout>
-		
-
-        
+		        
         <FrameLayout
             android:id="@+id/home_usercanvas"
             android:minWidth="200dp"

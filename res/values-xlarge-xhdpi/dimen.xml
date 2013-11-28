@@ -15,5 +15,6 @@
     <dimen name="margin_leftname">10dp</dimen>
     <dimen name="layout_widthname">850dp</dimen>    
     <dimen name="grade_width">300dp</dimen>    
-    <dimen name="layoutgrade_height">450dp</dimen>       
+    <dimen name="layoutgrade_height">450dp</dimen>     
+    <dimen name="buttonhome_width">450dp</dimen>
 </resources>
