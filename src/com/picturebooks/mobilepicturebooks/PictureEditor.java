@@ -902,39 +902,39 @@ public class PictureEditor extends Activity {
 			String sfBackground = sf.getBackground();
 
 			if (sfBackground.equals("bg_bathroom")){
-				selectedBackground = dbHelper.getBackground("bg_bathroom");
+				selectedBackground = dbHelper.getBackground("Bathroom");
 				backgroundID = 0;
 			}
 			else if (sfBackground.equals("bg_bedroom")){
-				selectedBackground = dbHelper.getBackground("bg_bedroom");
+				selectedBackground = dbHelper.getBackground("Bedroom");
 				backgroundID = 1;
 			}
 			else if (sfBackground.equals("bg_classroom")){
-				selectedBackground = dbHelper.getBackground("bg_classroom");
+				selectedBackground = dbHelper.getBackground("Classroom");
 				backgroundID = 2;
 			}
 			else if (sfBackground.equals("bg_clinic")){
-				selectedBackground = dbHelper.getBackground("bg_clinic");
+				selectedBackground = dbHelper.getBackground("Clinic");
 				backgroundID = 3;
 			}
 			else if (sfBackground.equals("bg_diningroom")){
-				selectedBackground = dbHelper.getBackground("bg_diningroom");
+				selectedBackground = dbHelper.getBackground("Dining Room");
 				backgroundID = 4;
 			}
 			else if (sfBackground.equals("bg_mall")){
-				selectedBackground = dbHelper.getBackground("bg_mall");
+				selectedBackground = dbHelper.getBackground("Mall");
 				backgroundID = 5;
 			}
 			else if (sfBackground.equals("bg_market")){
-				selectedBackground = dbHelper.getBackground("bg_market");
+				selectedBackground = dbHelper.getBackground("Market");
 				backgroundID = 6;
 			}
 			else if (sfBackground.equals("bg_outdoors")){
-				selectedBackground = dbHelper.getBackground("bg_outdoors");
+				selectedBackground = dbHelper.getBackground("Outdoors");
 				backgroundID = 7;
 			}
 			else if (sfBackground.equals("bg_playground")){
-				selectedBackground = dbHelper.getBackground("bg_playground");
+				selectedBackground = dbHelper.getBackground("Playground");
 				backgroundID = 8;
 			}
 
@@ -999,7 +999,7 @@ public class PictureEditor extends Activity {
 				textDisplay += sentences[a] + ". ";
 				currentStoryLine += sentences[a] + ". ";
 			}
-			
+
 			textDisplay = correctPlace(textDisplay);
 			storyTextView.setText("");			
 			trimSentence = textDisplay.split(" ");
@@ -1088,7 +1088,7 @@ public class PictureEditor extends Activity {
 	
 	public String correctPlace(String currentStoryLine){
 		String result = currentStoryLine;
-		String bg = getAlias(selectedBackground.getBackgroundWord().toString());
+		String bg = getAlias(selectedBackground.getBackgroundWord());
 		ArrayList<String> bgList = new ArrayList<String>();
 		bgList.add("bathroom");
 		bgList.add("bedroom");
