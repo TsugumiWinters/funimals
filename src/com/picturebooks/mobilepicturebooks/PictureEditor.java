@@ -282,7 +282,7 @@ public class PictureEditor extends Activity {
 		savedialog.setContentView(saveContentView);
         savedialog.setCancelable(false);
         savedialog.setCanceledOnTouchOutside(false);
-		saveimage = (ImageView) contentView.findViewById(R.id.saving);
+		saveimage = (ImageView) saveContentView.findViewById(R.id.saving);
 		saveanimation = (AnimationDrawable) saveimage.getDrawable();
 		
 			
