@@ -626,7 +626,7 @@ public class PictureEditor extends Activity {
 						currentStoryLine += sentences[a] + ". ";
 					}
 
-					
+					textDisplay = correctPlace(textDisplay);
 					storyTextView.setText("");			
 					trimSentence = textDisplay.split(" ");
 					
@@ -672,6 +672,7 @@ public class PictureEditor extends Activity {
 						currentStoryLine += sentences[a] + ". ";
 					}
 
+					textDisplay = correctPlace(textDisplay);
 					storyTextView.setText("");			
 					trimSentence = textDisplay.split(" ");
 					
@@ -960,6 +961,7 @@ public class PictureEditor extends Activity {
 				currentStoryLine += sentences[a] + ". ";
 			}
 			
+			textDisplay = correctPlace(textDisplay);
 			storyTextView.setText("");			
 			trimSentence = textDisplay.split(" ");
 			
@@ -1043,6 +1045,54 @@ public class PictureEditor extends Activity {
 			tts.stop();
 			tts.shutdown();	
 		}
+	}
+	
+	public String correctPlace(String currentStoryLine){
+		String result = currentStoryLine;
+		String bg = getAlias(selectedBackground.getBackgroundWord().toString());
+		ArrayList<String> bgList = new ArrayList<String>();
+		bgList.add("bathroom");
+		bgList.add("bedroom");
+		bgList.add("school");
+		bgList.add("clinic");
+		bgList.add("dining room");
+		bgList.add("mall");
+		bgList.add("market");
+		bgList.add("garden");
+		bgList.add("playground");
+		bgList.add("living room");
+		
+		for(String background:bgList)
+			if(result.contains(background)){
+				result = result.replaceAll(background, bg);
+				Log.e("ok", "background "+background+"   bg:   "+bg);
+			}
+
+		return result;
+	}
+	
+	public String getAlias(String currBg){
+
+		
+		if (currBg.equalsIgnoreCase("bathroom"))
+			return "bathroom";
+		else if (currBg.equalsIgnoreCase("bedroom"))
+			return "bedroom";
+		else if (currBg.equalsIgnoreCase("classroom"))
+			return "school";
+		else if (currBg.equalsIgnoreCase("clinic"))
+			return "clinic";
+		else if (currBg.equalsIgnoreCase("diningroom"))
+			return "dining room";
+		else if (currBg.equalsIgnoreCase("mall"))
+			return "mall";
+		else if (currBg.equalsIgnoreCase("market"))
+			return "market";
+		else if (currBg.equalsIgnoreCase("outdoors"))
+			return "garden";
+		else if (currBg.equalsIgnoreCase("playground"))
+			return "playground";
+		return currBg;
 	}
 
 	public void clearThings() {
@@ -1573,6 +1623,8 @@ public class PictureEditor extends Activity {
 				textDisplay += sentences[a] + ". ";
 				currentStoryLine += sentences[a] + ". ";
 			}
+			
+			textDisplay = correctPlace(textDisplay);
 
 			return background;
 		}
@@ -1891,6 +1943,8 @@ public class PictureEditor extends Activity {
 				textDisplay += sentences[a] + ". ";
 				currentStoryLine += sentences[a] + ". ";
 			}
+			
+			textDisplay = correctPlace(textDisplay);
 
 			return background;
 		}
