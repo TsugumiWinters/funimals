@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
+import com.picturebooks.mobilepicturebooks.models.UserInformation;
 
 /* ORIGINAL
 import org.apache.cordova.*;

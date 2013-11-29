@@ -1,24 +1,30 @@
 package com.picturebooks.mobilepicturebooks;
 
+import com.picturebooks.mobilepicturebooks.models.UserListAdapter;
+
 import database_entities.UserInformation;
+
 import android.app.Activity;
 import android.content.Intent;
-/* ORIGIN
+/* ORIGINAL
 import android.os.Bundle;
 import org.apache.cordova.*;
 
 import database.DatabaseHelper;*/
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
-public class MenuActivity extends /* ORIGIN DroidGap */ Activity {
+public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 	
 	private boolean openingActivity;
+	private ListView accountList;
+	private UserListAdapter adapter;
 	
-	/* ORIGIN
+	/* ORIGINAL
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,30 +44,11 @@ public class MenuActivity extends /* ORIGIN DroidGap */ Activity {
 		openingActivity = false;
 		
         Log.d("MenuActivity", "Activity created.");
-		
-		/* TODO ArrayAdapter<UserInformation> users = new ArrayAdapter<UserInformation>(this, R.layout.user_canvas); */
-		
-		ActiveUser.setActiveUser(this, R.drawable.users0, "User1", 6, "Prep");
         
-        /* TODO: Remove this eventually */
-		try {
-		new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                /* Create an Intent that will start the Menu-Activity. */
-            	Log.d("MenuActivity", "Initializing Intent...");
-                Intent mainIntent = new Intent(MenuActivity.this, HomeActivity.class);
-            	Log.d("MenuActivity", "Starting HomeActivity...");
-                MenuActivity.this.startActivity(mainIntent);
-            	Log.d("MenuActivity", "Finishing MenuActivity...");
-                openingActivity = true;
-            	MenuActivity.this.finish();
-            }
-        }, 3000);
-		}
-		catch (Exception e) {
-			Log.d("MenuActivity", "Exception: " + e.getMessage());
-		}
+		accountList = (ListView) findViewById(R.id.accounts_list);
+		
+		adapter = new UserListAdapter(this);
+		accountList.setAdapter(adapter);
 	}
 	
 	public void clicked_addAccount(View v) {
@@ -72,7 +59,29 @@ public class MenuActivity extends /* ORIGIN DroidGap */ Activity {
 	}
 	
 	public void clicked_openAccount(View v) {
-		// TODO
+		ImageView viewImage = (ImageView) v.findViewById(R.id.canvas_img_user);
+		TextView txtName = (TextView) v.findViewById(R.id.canvas_name);
+		
+		/* Get Selected User */
+		UserInformation user = adapter.getUser(txtName.getText().toString());
+		
+		int img = getResources().getIdentifier(viewImage.getContentDescription().toString(), "drawable", this.getPackageName());
+		String username = user.getUsername();
+		int age = user.getAge();
+		String level = "Grade ";
+		if (user.getGrade() > 0) {
+			level.concat("" + user.getGrade());
+		}
+		else {
+			level = "Prep";
+		}
+		ActiveUser.setActiveUser(this, img, username, age, level);
+		
+		/* Open HomeActivity */
+		Intent mainIntent = new Intent(MenuActivity.this, HomeActivity.class);
+        MenuActivity.this.startActivity(mainIntent);
+        openingActivity = true;
+        finish();
 	}
 	
 	@Override

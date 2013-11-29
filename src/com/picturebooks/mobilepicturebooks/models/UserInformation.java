@@ -1,4 +1,4 @@
-package com.picturebooks.mobilepicturebooks.database_entities;
+package com.picturebooks.mobilepicturebooks.models;
 
 public class UserInformation {
 	

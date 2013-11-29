@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.picturebooks.mobilepicturebooks.database_entities.UserInformation;
+import com.picturebooks.mobilepicturebooks.models.UserInformation;
 
 public class ActiveUser {
 	
