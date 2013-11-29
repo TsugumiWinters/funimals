@@ -1,5 +1,6 @@
 package com.picturebooks.mobilepicturebooks;
 
+import com.devsmart.android.ui.HorizontalListView;
 import com.picturebooks.mobilepicturebooks.models.AccountListAdapter;
 
 import database_entities.UserInformation;
@@ -24,7 +25,7 @@ import android.widget.TextView;
 public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 	
 	private boolean openingActivity;
-	private ListView accountList;
+	private HorizontalListView accountList;
 	private AccountListAdapter adapter;
 	
 	/* ORIGINAL
@@ -48,7 +49,7 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		
         Log.d("MenuActivity", "Activity created.");
         
-		accountList = (ListView) findViewById(R.id.accounts_list);
+		accountList = (HorizontalListView) findViewById(R.id.accounts_list);
 		
 		/* Create "Add Account" user_canvas */
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
