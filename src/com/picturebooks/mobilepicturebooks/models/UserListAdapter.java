@@ -3,6 +3,7 @@ package com.picturebooks.mobilepicturebooks.models;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import com.picturebooks.mobilepicturebooks.MenuActivity;
 import com.picturebooks.mobilepicturebooks.R;
 
 import database.DatabaseHelper;
@@ -12,6 +13,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -77,6 +79,13 @@ public class UserListAdapter extends BaseAdapter {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(R.layout.user_canvas, parentView, false);
+			view.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					((MenuActivity) UserListAdapter.this.context).clicked_openAccount(v);
+				}
+			});
 		}
 		
 		ImageView img = (ImageView) view.findViewById(R.id.canvas_img_user);

@@ -5,6 +5,7 @@ import com.picturebooks.mobilepicturebooks.models.UserListAdapter;
 import database_entities.UserInformation;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 /* ORIGINAL
 import android.os.Bundle;
@@ -13,7 +14,9 @@ import org.apache.cordova.*;
 import database.DatabaseHelper;*/
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,6 +49,22 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
         Log.d("MenuActivity", "Activity created.");
         
 		accountList = (ListView) findViewById(R.id.accounts_list);
+		
+		/* Create "Add Account" user_canvas */
+		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View view = inflater.inflate(R.layout.user_canvas, accountList, false);
+		view.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				MenuActivity.this.clicked_addAccount(v);
+			}
+		});
+		
+		ImageView img = (ImageView) view.findViewById(R.id.canvas_img_user);
+		TextView name = (TextView) view.findViewById(R.id.canvas_name);
+		img.setImageResource(R.drawable.usersadduser);
+		img.setContentDescription("usersadduser");
+		name.setText("Add Account");
 		
 		adapter = new UserListAdapter(this);
 		accountList.setAdapter(adapter);
