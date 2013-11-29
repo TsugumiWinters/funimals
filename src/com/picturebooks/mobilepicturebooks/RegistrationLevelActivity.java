@@ -7,6 +7,9 @@ import java.util.Random;
 
 import com.picturebooks.mobilepicturebooks.R.layout;
 
+import database.DatabaseHelper;
+import database_entities.UserInformation;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -59,12 +62,20 @@ public class RegistrationLevelActivity extends Activity {
 	}
 	
 	public void clicked_btnNext(View v) {
-		/* TODO: Save user to db */
+		UserInformation user = new UserInformation();
+		user.setUsername(getIntent().getStringExtra("user_name"));
+		user.setAge(getIntent().getIntExtra("user_age", 6));
+		user.setGrade((level.equals("Prep")) ? 0 : level.charAt(level.length() - 1));
+		
+		DatabaseHelper dbHelper = new DatabaseHelper(this);
+		dbHelper.openDataBase();
+		dbHelper.addUserInformation(user);
+		dbHelper.close();
 		
 		ActiveUser.setActiveUser(this,
 				getRandomImage(),
 				getIntent().getStringExtra("user_name"),
-				getIntent().getIntExtra("age", 6),
+				getIntent().getIntExtra("user_age", 6),
 				level);
 		
 		Intent mainIntent = new Intent(RegistrationLevelActivity.this, HomeActivity.class);

@@ -28,9 +28,11 @@ public class StoryListAdapter extends BaseAdapter {
 		currentPosition = 0;
 		
 		DatabaseHelper dbHelper = new DatabaseHelper(context);
+		dbHelper.openDataBase();
 		UserInformation user = ActiveUser.getActiveUser(context);
 		
 		list = new ArrayList<StoryFile>(dbHelper.getStoryFilesById(user.getName()));
+		dbHelper.close();
 	}
 	
 	@Override

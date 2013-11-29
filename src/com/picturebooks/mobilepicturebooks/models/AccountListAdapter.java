@@ -28,8 +28,9 @@ public class AccountListAdapter extends BaseAdapter{
     	this.context = context;
  
 		DatabaseHelper dbHelper = new DatabaseHelper(context);
-		
+		dbHelper.openDataBase();
 		list = new ArrayList<UserInformation>(dbHelper.getUserInformation());
+		dbHelper.close();
 		
 	    drawables = new ArrayList<Field>();
 	    Field[] fields = R.drawable.class.getFields();
@@ -115,7 +116,9 @@ public class AccountListAdapter extends BaseAdapter{
 		user.setGrade(grade);
 		
 		DatabaseHelper dbHelper = new DatabaseHelper(context);
+		dbHelper.openDataBase();
 		dbHelper.addUserInformation(user);
+		dbHelper.close();
 		list.add(user);
 	}
 
