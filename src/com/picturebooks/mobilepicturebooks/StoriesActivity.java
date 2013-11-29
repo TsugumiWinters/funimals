@@ -1,6 +1,11 @@
 package com.picturebooks.mobilepicturebooks;
 
+import java.util.ArrayList;
+
+import com.picturebooks.mobilepicturebooks.models.StoryListAdapter;
 import com.picturebooks.mobilepicturebooks.models.UserInformation;
+
+import database.DatabaseHelper;
 import database_entities.StoryFile;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,6 +56,15 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         imgStory = (ImageView) findViewById(R.id.userstories_img_story);
         txtStory = (TextView) findViewById(R.id.userstories_txt_storytitle);
         lstStories = (ListView) findViewById(R.id.userstories_titles);
+        
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        dbHelper.openDataBase();
+        ArrayList<StoryFile> stories = new ArrayList<StoryFile>(dbHelper
+        		.getStoryFilesById(ActiveUser.getActiveUser(this).getName()));
+        dbHelper.close();
+        
+        ArrayAdapter<StoryFile> adapter = new ArrayAdapter<StoryFile>(this, R.layout.story_title, stories);
+        lstStories.setAdapter(adapter);
 	}
 	
 	public void clicked_btnBack(View v) {
@@ -66,10 +81,14 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         finish();
 	}
 	
-	public void clicked_lstStories(View v, int position) {
+	public void clicked_lstStories(View v) {
 		String title = ((TextView) v).getText().toString();
-		StoryFile story = (StoryFile) lstStories.getAdapter().getItem(position);
-		String filePath = story.getUsername() + "_" + story.getStoryID() + ".png";
+		StoryFile story = null;
+		String filePath = null;
+		
+		DatabaseHelper dbHelper = new DatabaseHelper(this);
+		story = dbHelper.findStoryFileByTitle(ActiveUser.getActiveUser(this).getName(), title);
+		filePath = story.getUsername() + "_" + story.getStoryID() + ".png";
 		
 		selectedStory = story.getStoryID();
 		txtStory.setText(title);

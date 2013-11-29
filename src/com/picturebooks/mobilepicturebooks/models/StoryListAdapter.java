@@ -21,11 +21,9 @@ public class StoryListAdapter extends BaseAdapter {
 	
 	private Context context;
 	private ArrayList<StoryFile> list;
-	private int currentPosition;
 	
 	public StoryListAdapter(Context context) {
 		this.context = context;
-		currentPosition = 0;
 		
 		DatabaseHelper dbHelper = new DatabaseHelper(context);
 		dbHelper.openDataBase();
@@ -52,7 +50,6 @@ public class StoryListAdapter extends BaseAdapter {
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parentView) {
-		currentPosition = position;
 		View view = convertView;
 		
 		if (view == null) {
@@ -63,7 +60,7 @@ public class StoryListAdapter extends BaseAdapter {
 				
 				@Override
 				public void onClick(View v) {
-					((StoriesActivity) context).clicked_lstStories(v, currentPosition);
+					((StoriesActivity) context).clicked_lstStories(v);
 				}
 			});
 		}

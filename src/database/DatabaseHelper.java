@@ -245,6 +245,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return sf;
 	}
 	
+	public StoryFile findStoryFileByTitle(String username, String title) {
+		SQLiteDatabase database = this.getWritableDatabase();
+		StoryFile sf = new StoryFile();
+		
+		String selectQuery =
+				"SELECT * FROM " + TableCreator.TABLE_STORY_FILES +
+				" WHERE Username = '" + username + "' AND Title = '" + title + "'";
+		Cursor cursor = database.rawQuery(selectQuery, null);
+		
+		if(cursor.moveToFirst()){
+			do{
+				sf.setStoryID(cursor.getInt(0));
+				sf.setUsername(cursor.getString(1));
+				sf.setTitle(cursor.getString(2));
+				sf.setStory(cursor.getString(3));
+				sf.setBackground(cursor.getString(4));
+			}while(cursor.moveToNext());			
+		}
+		
+		cursor.close();
+		database.close();		
+		return sf;
+	}
+	
 	public int getMaxStoryId()
 	{
 		SQLiteDatabase database = this.getWritableDatabase();
@@ -3528,7 +3552,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				try {
 					object = parse(cursor.getString(2));
 				} catch (ParserException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} //Theme
 			}while(cursor.moveToNext());		
@@ -3539,7 +3562,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					t = instantiateTheme(object.elementAt(i));
 					themes.add(t);
 				} catch (StoryPlannerException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
         		
@@ -3599,7 +3621,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				try {
 					spt = new StoryPlotTracker(cursor.getString(0), cursor.getString(1), cursor.getString(2), parse(cursor.getString(3)));
 				} catch (ParserException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}while(cursor.moveToNext());						
@@ -3779,7 +3800,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					try {
 						objIDs = parse(cursor.getString(index));
 					} catch (ParserException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				
