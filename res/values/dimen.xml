@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_width">300dp</dimen>
+    <dimen name="button_height">100dp</dimen>
+    <dimen name="button_square">75dp</dimen><dimen name="text_size">40sp</dimen>
+    <dimen name="home_space_vertical">0dp</dimen>
+    <dimen name="home_space">300dp</dimen>
+</resources>

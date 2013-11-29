@@ -1,86 +1,89 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.picturebooks.mobilepicturebooks"
-android:versionCode="1"
-android:versionName="1.0" >
+    package="com.picturebooks.mobilepicturebooks"
+    android:versionCode="2"
+    android:versionName="2.0" >
 
-<uses-sdk
-android:minSdkVersion="11"
-android:targetSdkVersion="16" />
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="16" />
 
-<!-- PhoneGap Permissions -->
-<supports-screens
-android:largeScreens="true"
-android:normalScreens="true"
-android:smallScreens="true"
-android:resizeable="true"
-android:anyDensity="true" />
+    <!-- PhoneGap Permissions -->
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="false"
+        android:smallScreens="false"
+        android:resizeable="true" />
 
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.GET_ACCOUNTS" />
-<uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
 
-<application
-android:name="ApplicationContextProvider"
-android:allowBackup="true"
-android:icon="@drawable/ic_launcher"
-android:label="@string/app_name"
-android:theme="@style/AppTheme" >
+    <application
+        android:name="ApplicationContextProvider"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.SplashActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<activity
-android:name="com.picturebooks.mobilepicturebooks.SplashActivity"
-android:screenOrientation="sensorLandscape"
-android:configChanges="keyboardHidden|orientation|screenSize" >
-<intent-filter>
-<action android:name="android.intent.action.MAIN" />
-<category android:name="android.intent.category.LAUNCHER" />
-</intent-filter>
-</activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.MenuActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.HomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.StoriesActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.LibraryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
 
-<activity
-android:name="com.picturebooks.mobilepicturebooks.MenuActivity"
-android:screenOrientation="sensorLandscape"
-android:configChanges="keyboardHidden|orientation|screenSize"
-android:windowSoftInputMode="adjustNothing" >
-</activity>
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.BookActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
+        
+        <!-- Android activity for PhoneGap -->
+        <activity
+            android:name="org.apache.cordova.DroidGap"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name" >
+            <intent-filter>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.PictureEditor"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
+        </activity>
+    </application>
 
-<activity
-android:name="com.picturebooks.mobilepicturebooks.HomeActivity"
-android:screenOrientation="sensorLandscape"
-android:configChanges="keyboardHidden|orientation|screenSize"
-android:windowSoftInputMode="adjustNothing" >
-</activity>
-
-<activity
-android:name="com.picturebooks.mobilepicturebooks.StoriesActivity"
-android:screenOrientation="sensorLandscape"
-android:configChanges="keyboardHidden|orientation|screenSize"
-android:windowSoftInputMode="adjustNothing" >
-</activity>
-
-<activity
-android:name="com.picturebooks.mobilepicturebooks.LibraryActivity"
-android:screenOrientation="sensorLandscape"
-android:configChanges="keyboardHidden|orientation|screenSize"
-android:windowSoftInputMode="adjustNothing" >
-</activity>
-
-<!-- Android activity for PhoneGap -->
-<activity
-android:name="org.apache.cordova.DroidGap"
-android:label="@string/app_name"
-android:configChanges = "orientation|keyboardHidden" >
-<intent-filter></intent-filter>
-</activity>
-
-	<activity
-         android:name="com.picturebooks.mobilepicturebooks.PictureEditor"
-         android:label="@string/app_name"
-         android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
-         android:screenOrientation="sensorLandscape">
-     </activity>
-
-</application>
 </manifest>
