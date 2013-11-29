@@ -34,7 +34,6 @@
             android:screenOrientation="sensorLandscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -78,6 +77,7 @@
             <intent-filter>
             </intent-filter>
         </activity>
+        
         <activity
             android:name="com.picturebooks.mobilepicturebooks.PictureEditor"
             android:label="@string/app_name"
