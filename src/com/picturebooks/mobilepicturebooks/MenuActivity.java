@@ -1,6 +1,6 @@
 package com.picturebooks.mobilepicturebooks;
 
-import com.picturebooks.mobilepicturebooks.models.UserListAdapter;
+import com.picturebooks.mobilepicturebooks.models.AccountListAdapter;
 
 import database_entities.UserInformation;
 
@@ -25,7 +25,7 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 	
 	private boolean openingActivity;
 	private ListView accountList;
-	private UserListAdapter adapter;
+	private AccountListAdapter adapter;
 	
 	/* ORIGINAL
 	@Override
@@ -66,7 +66,7 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		img.setContentDescription("usersadduser");
 		name.setText("Add Account");
 		
-		adapter = new UserListAdapter(this);
+		adapter = new AccountListAdapter(this);
 		accountList.setAdapter(adapter);
 	}
 	
