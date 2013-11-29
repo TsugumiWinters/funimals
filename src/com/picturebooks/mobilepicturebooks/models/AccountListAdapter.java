@@ -8,26 +8,25 @@ import com.picturebooks.mobilepicturebooks.R;
 
 import database.DatabaseHelper;
 import database_entities.UserInformation;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class UserListAdapter extends BaseAdapter {
-	
+public class AccountListAdapter extends BaseAdapter{
+
 	private Context context;
 	private ArrayList<UserInformation> list;
 	private ArrayList<Field> drawables;
-	
-	public UserListAdapter(Context context) {
-		this.context = context;
-		
+
+    public AccountListAdapter(Context context) {
+    	this.context = context;
+ 
 		DatabaseHelper dbHelper = new DatabaseHelper(context);
 		
 		list = new ArrayList<UserInformation>(dbHelper.getUserInformation());
@@ -44,33 +43,23 @@ public class UserListAdapter extends BaseAdapter {
 				} catch (Exception e) {}
 	        }
 	    }
-	}
-	
-	public int getImage(int index) {
-		try {
-			return drawables.get(index).getInt(null);
-		} catch (Exception e) {
-			Log.d("UserListAdapter", "Error: " + e.getMessage());
-		}
-		
-		return R.drawable.users0;
-	}
+    }
 	
 	@Override
 	public int getCount() {
 		return list.size();
 	}
-	
+
 	@Override
 	public Object getItem(int index) {
 		return list.get(index);
 	}
-	
+
 	@Override
 	public long getItemId(int index) {
 		return index;
 	}
-	
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parentView) {
 		View view = convertView;
@@ -83,7 +72,7 @@ public class UserListAdapter extends BaseAdapter {
 				
 				@Override
 				public void onClick(View v) {
-					((MenuActivity) UserListAdapter.this.context).clicked_openAccount(v);
+					((MenuActivity) AccountListAdapter.this.context).clicked_openAccount(v);
 				}
 			});
 		}
@@ -129,5 +118,5 @@ public class UserListAdapter extends BaseAdapter {
 		dbHelper.addUserInformation(user);
 		list.add(user);
 	}
-	
+
 }
