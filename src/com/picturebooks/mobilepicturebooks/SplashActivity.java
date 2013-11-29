@@ -1,6 +1,10 @@
 package com.picturebooks.mobilepicturebooks;
 
+import java.io.IOException;
+
 import com.picturebooks.mobilepicturebooks.R;
+import database.DatabaseHelper;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +24,12 @@ public class SplashActivity extends Activity {
         openingActivity = false;
         
         Log.d("SplashActivity", "Activity created.");
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        try {
+			dbHelper.createDataBase();
+		} catch (IOException e) {
+			Log.d("SplashActivity", "Error: " + e.getMessage());
+		}
 
         /* New Handler to start the Menu-Activity 
          * and close this Splash-Screen after some seconds.*/

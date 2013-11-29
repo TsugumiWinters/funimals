@@ -1,32 +1,31 @@
 package com.picturebooks.mobilepicturebooks;
 
+import com.picturebooks.mobilepicturebooks.models.UserListAdapter;
+
+import database_entities.UserInformation;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+/* ORIGINAL
+import android.os.Bundle;
+import org.apache.cordova.*;
+
+import database.DatabaseHelper;*/
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
-
-import com.devsmart.android.ui.HorizontalListView;
-import com.picturebooks.mobilepicturebooks.models.AccountListAdapter;
-
-import database_entities.UserInformation;
-/* ORIGINAL
-import android.os.Bundle;
-import org.apache.cordova.*;
-
-import database.DatabaseHelper;*/
 
 public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 	
 	private boolean openingActivity;
-
-	private HorizontalListView accountList;
-	private AccountListAdapter accountAdapter;
+	private ListView accountList;
+	private UserListAdapter adapter;
 	
 	/* ORIGINAL
 	@Override
@@ -49,7 +48,7 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		
         Log.d("MenuActivity", "Activity created.");
         
-		accountList = (HorizontalListView) findViewById(R.id.accounts_list);
+		accountList = (ListView) findViewById(R.id.accounts_list);
 		
 		/* Create "Add Account" user_canvas */
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -67,8 +66,8 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		img.setContentDescription("usersadduser");
 		name.setText("Add Account");
 		
-		accountAdapter = new AccountListAdapter(this);
-		accountList.setAdapter(accountAdapter);
+		adapter = new UserListAdapter(this);
+		accountList.setAdapter(adapter);
 	}
 	
 	public void clicked_addAccount(View v) {
@@ -83,7 +82,7 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		TextView txtName = (TextView) v.findViewById(R.id.canvas_name);
 		
 		/* Get Selected User */
-		UserInformation user = accountAdapter.getUser(txtName.getText().toString());
+		UserInformation user = adapter.getUser(txtName.getText().toString());
 		
 		int img = getResources().getIdentifier(viewImage.getContentDescription().toString(), "drawable", this.getPackageName());
 		String username = user.getUsername();
