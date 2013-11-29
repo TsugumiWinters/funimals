@@ -29,13 +29,13 @@
             android:contentDescription="@string/button_info"
             android:onClick="clicked_btnInfo"
             android:scaleType="fitXY"
-            android:src="@drawable/general_info" />
+            android:src="@drawable/general_info_button_selector" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/home_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_below="@+id/home_linearLayout1"
         android:contentDescription="@string/app_name"
         android:scaleType="fitXY"
@@ -52,50 +52,49 @@
 
         <LinearLayout
             android:id="@+id/home_linearLayout2"
-            android:layout_width="0dp"
+            android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:weightSum="3" >
 
             <ImageView
                 android:id="@+id/home_btn_newpicture"
-                android:layout_width="@dimen/button_width"
+                android:layout_width="@dimen/buttonhome_width"
                 android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
                 android:contentDescription="@string/button_newpicture"
                 android:onClick="clicked_btnNewPicture"
                 android:scaleType="centerInside"
-                android:src="@drawable/general_newpicture" />
+                android:src="@drawable/general_newpicture_button_selector" />
 
             <ImageView
                 android:id="@+id/home_btn_viewlibrary"
-                android:layout_width="@dimen/button_width"
+                android:layout_width="@dimen/buttonhome_width"
                 android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
                 android:contentDescription="@string/button_viewlibrary"
                 android:onClick="clicked_btnViewLibrary"
                 android:scaleType="centerInside"
-                android:src="@drawable/general_viewlibrary" />
+                android:src="@drawable/general_viewlibrary_button_selector" />
 
             <ImageView
                 android:id="@+id/home_btn_seetutorial"
-                android:layout_width="@dimen/button_width"
+                android:layout_width="@dimen/buttonhome_width"
                 android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
                 android:contentDescription="@string/button_seetutorial"
                 android:onClick="clicked_btnSeeTutorial"
                 android:scaleType="centerInside"
-                android:src="@drawable/general_seetutorial" />
+                android:src="@drawable/general_seetutorial_button_selector" />
         </LinearLayout>
-		
-        <Space
-            android:layout_width="@dimen/home_space"
-            android:layout_height="match_parent" />
-        
+		        
         <FrameLayout
             android:id="@+id/home_usercanvas"
             android:minWidth="200dp"
+            android:layout_weight="0.5"
+            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
         </FrameLayout>

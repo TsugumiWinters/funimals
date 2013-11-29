@@ -9,11 +9,12 @@
         android:layout_width="630dp"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentTop="true"
         android:layout_marginRight="90dp"
-        android:orientation="vertical" >
+        android:layout_toRightOf="@+id/userstories_left"
+        android:orientation="vertical"
+        android:weightSum="3" >
 
         <ImageView
             android:id="@+id/userstories_img_story"
@@ -22,7 +23,10 @@
             android:layout_gravity="center"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
+            android:layout_weight="2.07"
             android:contentDescription="@string/img_story"
+            android:paddingBottom="35dp"
+            android:paddingTop="50dp"
             android:scaleType="fitXY"
             android:src="@drawable/library_preview_default" />
 
@@ -30,10 +34,11 @@
             android:id="@+id/userstories_txt_storytitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
+            android:layout_weight="0.3"
             android:background="@drawable/library_title"
             android:gravity="center"
             android:text="@string/story_title"
@@ -42,46 +47,53 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/userstories_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="20dp"
-        android:layout_toLeftOf="@+id/userstories_container_main"
         android:orientation="vertical"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:weightSum="10" >
+        android:paddingRight="50dp"
+        android:weightSum="3" >
 
-        <ImageView
-            android:id="@+id/userstories_btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:contentDescription="@string/button_back"
-            android:src="@drawable/general_back"
-            android:layout_weight="1" />
-
-        <ListView
-            android:id="@+id/userstories_titles"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="9" >
-        </ListView>
+            android:layout_height="match_parent" >
 
-        <ImageView
-            android:id="@+id/userstories_btn_addstory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/button_newpicture"
-            android:src="@drawable/library_addstory"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/userstories_btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/userstories_btn_addstory"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/button_back"
+                android:src="@drawable/general_back_button_selector" />
+
+            <ImageView
+                android:id="@+id/userstories_btn_addstory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/button_newpicture"
+                android:src="@drawable/library_addstory_button_selector" />
+
+            <ListView
+                android:id="@+id/userstories_titles"
+                android:layout_width="299dp"
+                android:layout_height="514dp"
+                android:layout_above="@+id/userstories_btn_addstory"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/userstories_btn_back" >
+
+            </ListView>
+
+        </RelativeLayout>
+	    
     </LinearLayout>
 
 </RelativeLayout>

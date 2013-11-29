@@ -2,11 +2,12 @@
 <resources>
     <dimen name="button_width">250dp</dimen>
     <dimen name="button_height">100dp</dimen>
-    <dimen name="button_square">75dp</dimen><dimen name="text_size">40sp</dimen>
+    <dimen name="button_square">75dp</dimen>
+    <dimen name="text_size">40sp</dimen>
     <dimen name="home_space_vertical">0dp</dimen>
     <dimen name="home_space">350dp</dimen>
-    <dimen name="margin_top">20dp</dimen>
-    <dimen name="margin_left">320dp</dimen>
+    <dimen name="margin_top">10dp</dimen>
+    <dimen name="margin_left">340dp</dimen>
     <dimen name="layout_width">550dp</dimen>
     <dimen name="space_height">75dp</dimen>
     <dimen name="layout_height">320dp</dimen>
@@ -14,5 +15,6 @@
     <dimen name="margin_leftname">0dp</dimen>
     <dimen name="layout_widthname">620dp</dimen>    
     <dimen name="grade_width">300dp</dimen>  
-    <dimen name="layoutgrade_height">300dp</dimen>         
+    <dimen name="layoutgrade_height">300dp</dimen>       
+    <dimen name="buttonhome_width">450dp</dimen>  
 </resources>

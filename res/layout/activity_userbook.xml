@@ -24,7 +24,7 @@
                 android:layout_weight="1"
                 android:contentDescription="@string/button_home"
                 android:onClick="clicked_btnHome"
-                android:src="@drawable/general_home" />
+                android:src="@drawable/general_home_button_selector" />
 
             <ImageView
                 android:id="@+id/userbook_btn_library"
@@ -33,7 +33,7 @@
                 android:layout_weight="1"
                 android:contentDescription="@string/button_library"
                 android:onClick="clicked_btnLibrary"
-                android:src="@drawable/general_library" />
+                android:src="@drawable/general_library_button_selector" />
 
         </LinearLayout>
 
