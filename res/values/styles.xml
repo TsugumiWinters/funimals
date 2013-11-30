@@ -38,6 +38,7 @@
 		<item name="android:fastScrollAlwaysVisible">true</item>
 		<item name="android:fastScrollThumbDrawable">@drawable/pe_scrollbar_things</item>
 		<item name="android:fastScrollTrackDrawable">@drawable/pe_scrollbar_track</item>
+		
 	</style>
 
 </resources>
