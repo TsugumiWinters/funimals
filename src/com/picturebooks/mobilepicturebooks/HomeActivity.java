@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.picturebooks.mobilepicturebooks.models.Preferences;
 import com.picturebooks.mobilepicturebooks.models.UserInformation;
 
 /* ORIGINAL
@@ -43,6 +44,13 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
         
         Log.d("HomeActivity", "Activity created.");
         
+        boolean musicOn = Preferences.getMusicOn(this);
+        setMusic(musicOn);
+        
+        if (!musicOn) {
+        	clicked_btnSound(findViewById(R.id.home_btn_sound));
+        }
+        
         FrameLayout frame = (FrameLayout) findViewById(R.id.home_usercanvas);
 		LayoutInflater inflater = getLayoutInflater();
         View userCanvas = inflater.inflate(R.layout.user_canvas, frame, false);
@@ -68,18 +76,19 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	
 	public void clicked_btnSound(View v) {
 		ImageView img = (ImageView) v;
-		if (img.getContentDescription().equals(this.getResources().getString(R.string.button_sound_on))) {
+		boolean musicOn = img.getContentDescription().equals(this.getResources().getString(R.string.button_sound_on));
+		
+		if (musicOn) {
 			img.setImageResource(R.drawable.general_soundoff);
 			img.setContentDescription(this.getResources().getString(R.string.button_sound_off));
-			
-			/* TODO: Logic for closing sounds */
 		}
 		else {
 			img.setImageResource(R.drawable.general_soundon);
 			img.setContentDescription(this.getResources().getString(R.string.button_sound_on));
-			
-			/* TODO: Logic for adding sounds */
 		}
+		
+		setMusic(!musicOn);
+		Preferences.setMusicOn(this, !musicOn);
 	}
 	
 	public void clicked_btnInfo(View v) {
@@ -109,6 +118,15 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 		super.onDestroy();
 		if (!openingActivity) {
 			ActiveUser.clearActiveUser(this);
+		}
+	}
+	
+	private void setMusic(boolean musicOn) {
+		if (musicOn) {
+			// TODO logic for opening music
+		}
+		else {
+			// TODO logic for closing music
 		}
 	}
     
