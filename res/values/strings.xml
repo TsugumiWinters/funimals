@@ -18,6 +18,8 @@
 	<string name="user_img">User Image</string>
 	<string name="account_selection">Account Selection</string>
 	
+	<string name="button_addaccount">Add New Account</string>
+	
 	<string name="button_home">Home</string>
 	<string name="button_library">Library</string>
 	<string name="button_sound_on">Sound: On</string>

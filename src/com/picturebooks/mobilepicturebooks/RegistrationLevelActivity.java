@@ -34,23 +34,15 @@ public class RegistrationLevelActivity extends Activity {
 		ImageView btnGrade2 = (ImageView) findViewById(R.id.registrationlevel_btn_grade2);
 		ImageView btnGrade3 = (ImageView) findViewById(R.id.registrationlevel_btn_grade3);
 		
+		btnPrep.setImageResource(R.drawable.general_prep);
+		btnGrade1.setImageResource(R.drawable.general_grade1);
+		btnGrade2.setImageResource(R.drawable.general_grade2);
+		btnGrade3.setImageResource(R.drawable.general_grade3);
+		
 		level = v.getContentDescription().toString();
 		String resource = v.getTag().toString() + "tapped";
 		((ImageView) v).setImageResource(getResources().getIdentifier(resource, "drawable", this.getPackageName()));
-		
-		if (btnPrep != v) {
-			btnPrep.setImageResource(R.id.registrationlevel_btn_prep);
-		}
-		if (btnGrade1 != v) {
-			btnGrade1.setImageResource(R.id.registrationlevel_btn_grade1);
-		}
-		if (btnGrade2 != v) {
-			btnGrade2.setImageResource(R.id.registrationlevel_btn_grade2);
-		}
-		if (btnGrade3 != v) {
-			btnGrade3.setImageResource(R.id.registrationlevel_btn_grade3);
-		}
-		
+
 		ImageView btnNext = (ImageView) findViewById(R.id.registrationlevel_btn_next);
 		btnNext.setVisibility(View.VISIBLE);
 	}
