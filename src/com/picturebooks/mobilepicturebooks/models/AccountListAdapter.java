@@ -25,13 +25,13 @@ public class AccountListAdapter extends BaseAdapter{
 	private ArrayList<Field> drawables;
 
     public AccountListAdapter(Context context) {
-    	this.context = context;
- 
+    	this.context = context;	
 		DatabaseHelper dbHelper = new DatabaseHelper(context);
 		dbHelper.openDataBase();
 		list = new ArrayList<UserInformation>(dbHelper.getUserInformation());
-		dbHelper.close();
 		
+		dbHelper.close();
+	
 	    drawables = new ArrayList<Field>();
 	    Field[] fields = R.drawable.class.getFields();
 	    for (Field field : fields) {
@@ -65,10 +65,13 @@ public class AccountListAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parentView) {
 		View view = convertView;
 		
+		ViewHolder holder = null;
+		
 		if (view == null) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(R.layout.user_canvas, parentView, false);
+			holder = new ViewHolder();
 			view.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -78,21 +81,29 @@ public class AccountListAdapter extends BaseAdapter{
 			});
 		}
 		
-		ImageView img = (ImageView) view.findViewById(R.id.canvas_img_user);
-		TextView name = (TextView) view.findViewById(R.id.canvas_name);
+		holder.img = (ImageView) view.findViewById(R.id.canvas_img_user);
+		holder.name = (TextView) view.findViewById(R.id.canvas_name);
+		view.setTag(holder);
 		
 		UserInformation user = list.get(position);
 		
 		try {
-			img.setImageResource(drawables.get(position).getInt(null));
+			holder.img.setImageResource(drawables.get(position).getInt(null));
+
 		} catch (Exception e) {
 			Log.d("UserListAdapter", "Error: " + e.getMessage());
 		}
-		img.setContentDescription(drawables.get(position).getName());
-		name.setText(user.getUsername());
-		
+		holder.img.setContentDescription(drawables.get(position).getName());
+		holder.name.setText(user.getUsername());
+		Log.e("dagain", "againgadddddd");
 		return view;
 	}
+	
+	class ViewHolder {
+        TextView name;
+        ImageView img;
+
+    }
 	
 	public UserInformation getUser(String name) {
 		for (UserInformation user : list) {

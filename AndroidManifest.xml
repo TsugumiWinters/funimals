@@ -68,6 +68,27 @@
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
+             
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.RegistrationNameActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
+        
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.RegistrationAgeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
+        
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.RegistrationLevelActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
         
         <!-- Android activity for PhoneGap -->
         <activity
