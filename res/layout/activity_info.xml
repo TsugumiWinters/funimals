@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/general_background" >
+
+    <ImageView
+        android:id="@+id/info_btn_back"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="15dp"
+        android:contentDescription="@string/button_back"
+        android:scaleType="fitXY"
+        android:onClick="clicked_btnBack"
+        android:src="@drawable/general_back_button_selector" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/info_container_background"
+        android:padding="10dp"
+        android:text="@string/info"
+        android:textSize="@dimen/text_size" />
+
+</RelativeLayout>
