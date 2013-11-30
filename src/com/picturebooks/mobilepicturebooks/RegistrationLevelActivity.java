@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.picturebooks.mobilepicturebooks.R.layout;
+import com.picturebooks.mobilepicturebooks.models.ActiveUser;
 
 import database.DatabaseHelper;
 import database_entities.UserInformation;

@@ -3,6 +3,7 @@ package com.picturebooks.mobilepicturebooks;
 import java.io.IOException;
 
 import com.picturebooks.mobilepicturebooks.R;
+import com.picturebooks.mobilepicturebooks.models.ActiveUser;
 
 import database.DatabaseHelper;
 

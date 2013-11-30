@@ -1,11 +1,11 @@
-package com.picturebooks.mobilepicturebooks;
+package com.picturebooks.mobilepicturebooks.models;
+
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.picturebooks.mobilepicturebooks.models.UserInformation;
 
 public class ActiveUser {
 	

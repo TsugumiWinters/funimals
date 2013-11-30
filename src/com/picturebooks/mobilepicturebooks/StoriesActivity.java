@@ -2,6 +2,7 @@ package com.picturebooks.mobilepicturebooks;
 
 import java.util.ArrayList;
 
+import com.picturebooks.mobilepicturebooks.models.ActiveUser;
 import com.picturebooks.mobilepicturebooks.models.StoryListAdapter;
 import com.picturebooks.mobilepicturebooks.models.UserInformation;
 

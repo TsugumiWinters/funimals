@@ -2,6 +2,7 @@ package com.picturebooks.mobilepicturebooks;
 
 import com.devsmart.android.ui.HorizontalListView;
 import com.picturebooks.mobilepicturebooks.models.AccountListAdapter;
+import com.picturebooks.mobilepicturebooks.models.ActiveUser;
 
 import database_entities.UserInformation;
 

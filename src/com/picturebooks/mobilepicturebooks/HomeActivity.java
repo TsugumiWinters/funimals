@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.picturebooks.mobilepicturebooks.models.ActiveUser;
 import com.picturebooks.mobilepicturebooks.models.UserInformation;
 
 /* ORIGINAL
