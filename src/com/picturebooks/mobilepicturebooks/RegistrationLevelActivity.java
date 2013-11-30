@@ -3,7 +3,6 @@ package com.picturebooks.mobilepicturebooks;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import com.picturebooks.mobilepicturebooks.R.layout;
 import com.picturebooks.mobilepicturebooks.models.ActiveUser;
@@ -66,7 +65,7 @@ public class RegistrationLevelActivity extends Activity {
 		dbHelper.close();
 		
 		ActiveUser.setActiveUser(this,
-				getRandomImage(),
+				getNewImage(),
 				getIntent().getStringExtra("user_name"),
 				getIntent().getIntExtra("user_age", 6),
 				level);
@@ -76,8 +75,7 @@ public class RegistrationLevelActivity extends Activity {
         finish();
 	}
 	
-	private int getRandomImage() {
-		Random random = new Random();
+	private int getNewImage() {
 		Field[] fields = R.drawable.class.getFields();
 	    List<Integer> drawables = new ArrayList<Integer>();
 	    
@@ -94,7 +92,10 @@ public class RegistrationLevelActivity extends Activity {
 		
 	    int id = R.drawable.users0;
 	    try {
-	    	id = random.nextInt(drawables.size());
+	    	DatabaseHelper dbHelper = new DatabaseHelper(this);
+	    	dbHelper.openDataBase();
+	    	int index = dbHelper.getUserInformation().size();
+	    	id = drawables.get(index);
 	    }
 	    catch (Exception e) {}
 	    
