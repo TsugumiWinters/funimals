@@ -23,22 +23,13 @@ public class RegistrationAgeActivity extends Activity {
 		ImageView btnAge6 = (ImageView) findViewById(R.id.registrationage_btn_6yrs);
 		ImageView btnAge7 = (ImageView) findViewById(R.id.registrationage_btn_7yrs);
 		ImageView btnAge8 = (ImageView) findViewById(R.id.registrationage_btn_8yrs);
+		btnAge6.setImageResource(R.drawable.general_six);
+		btnAge7.setImageResource(R.drawable.general_seven);
+		btnAge8.setImageResource(R.drawable.general_eight);
 		
 		age = Integer.parseInt("" + v.getContentDescription().charAt(0));
 		String resource = v.getTag().toString() + "tapped";
 		((ImageView) v).setImageResource(getResources().getIdentifier(resource, "drawable", this.getPackageName()));
-		
-		if (btnAge6 != v) {
-			btnAge6.setImageResource(R.id.registrationage_btn_6yrs);
-		}
-		
-		if (btnAge7 != v) {
-			btnAge7.setImageResource(R.id.registrationage_btn_7yrs);
-		}
-		
-		if (btnAge8 != v) {
-			btnAge8.setImageResource(R.id.registrationage_btn_8yrs);
-		}
 		
 		ImageView btnNext = (ImageView) findViewById(R.id.registrationage_btn_next);
 		btnNext.setVisibility(View.VISIBLE);
