@@ -868,25 +868,24 @@ public class PictureEditor extends Activity {
 					SelectedKids.add(ssName);
 				} else if (ssType.equals("thing")) {
 					Things.remove(ssName);
-					SelectedThings.add(ssName);
+					SelectedThings.add(ssName);	
 				}
 
-				int imageID = context.getResources().getIdentifier(ssName,
-						"drawable", context.getPackageName());
+				int imageID = context.getResources().getIdentifier(ssName,"drawable", context.getPackageName());
 				ImageView stickerImageView = new ImageView(this);
-				stickerImageView.setImageDrawable(context.getResources()
-						.getDrawable(imageID));
+				stickerImageView.setImageDrawable(context.getResources().getDrawable(imageID));
 				stickerImageView.setContentDescription(ssName);
 				stickerImageView.setX(ssX);
 				stickerImageView.setY(ssY);
-				pictureBackground.addView(stickerImageView);
+				pictureBackground.addView(stickerImageView);	
+				
 			}
 
-			gridView.setAdapter(new ImageAdapter(context, Adults));
-			
+			gridView.setAdapter(new ImageAdapter(context, Adults));		
+		
 			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 				View view = pictureBackground.getChildAt(i);
-				view.setEnabled(false);
+				view.setEnabled(true);
 			}
 
 			generatedTitle = sf.getTitle();
@@ -900,11 +899,6 @@ public class PictureEditor extends Activity {
 				numberOfPages = 1;
 			currentPage = 1;
 
-			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
-				View view = pictureBackground.getChildAt(i);
-				view.setEnabled(false);
-			}
-
 			textDisplay = new String();
 			currentStoryLine = "";
 
@@ -914,6 +908,8 @@ public class PictureEditor extends Activity {
 			}
 
 			textDisplay = correctPlace(textDisplay);
+			currentStoryLine = correctPlace(textDisplay);
+			
 			storyTextView.setText("");			
 			trimSentence = textDisplay.split(" ");
 			
@@ -944,7 +940,7 @@ public class PictureEditor extends Activity {
 			restart_button.setEnabled(false);
 			read_button.setEnabled(true);
 			retry_button.setEnabled(false);
-			save_button.setEnabled(false);	
+			save_button.setEnabled(false);				
 			
 		/*	editstory_button.setVisibility(View.VISIBLE);
 			editstory_button.setEnabled(false);
@@ -1104,7 +1100,6 @@ public class PictureEditor extends Activity {
 			bgTitle.setText("Bathroom");
 			break;
 		case 1:
-			pictureBackground.setBackgroundResource(0);
 			pictureBackground.setBackgroundResource(R.drawable.bg_bedroom);
 			pictureBackground.setContentDescription("bg_bedroom");
 			Things = Things_Bedroom;
@@ -1559,7 +1554,8 @@ public class PictureEditor extends Activity {
 			}
 			
 			textDisplay = correctPlace(textDisplay);
-
+			currentStoryLine = correctPlace(textDisplay);
+			
 			return background;
 		}
 
@@ -1884,7 +1880,8 @@ public class PictureEditor extends Activity {
 			}
 			
 			textDisplay = correctPlace(textDisplay);
-
+			currentStoryLine = correctPlace(textDisplay);
+			
 			return background;
 		}
 
