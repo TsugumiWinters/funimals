@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.picturebooks.mobilepicturebooks.models.StoryAdapter;
+import com.picturebooks.mobilepicturebooks.models.StoryListAdapter;
 import com.picturebooks.mobilepicturebooks.models.UserInformation;
 
 import database.DatabaseHelper;
@@ -67,8 +69,8 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         ArrayList<StoryFile> stories = new ArrayList<StoryFile>(dbHelper
         		.getStoryFilesById(ActiveUser.getActiveUser(this).getName()));
         dbHelper.close();
-        
-        final ArrayAdapter<StoryFile> adapter = new ArrayAdapter<StoryFile>(this, R.layout.story_title, stories);
+        lstStories.setDividerHeight(3);
+        final StoryAdapter<StoryFile> adapter = new StoryAdapter<StoryFile>(this, R.layout.story_title, stories);
         lstStories.setAdapter(adapter);       
              
         lstStories.setOnItemClickListener(new OnItemClickListener() {
@@ -79,6 +81,7 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
 				
 			}
         });
+        
 	}
 	
 	public void clicked_btnBack(View v) {
