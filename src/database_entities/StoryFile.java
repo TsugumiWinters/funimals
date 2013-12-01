@@ -58,6 +58,8 @@ public class StoryFile {
 		Background = background;
 	}
 	
-	
+	public String toString(){
+		return Title;
+	}
 	
 }

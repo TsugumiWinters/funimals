@@ -9,12 +9,16 @@ import com.picturebooks.mobilepicturebooks.models.UserInformation;
 import database.DatabaseHelper;
 import database_entities.StoryFile;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -66,6 +70,15 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         
         ArrayAdapter<StoryFile> adapter = new ArrayAdapter<StoryFile>(this, R.layout.story_title, stories);
         lstStories.setAdapter(adapter);
+        
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View view = inflater.inflate(R.layout.activity_userstories, lstStories, false);
+		view.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				StoriesActivity.this.clicked_lstStories(v);
+			}
+		});
 	}
 	
 	public void clicked_btnBack(View v) {
@@ -86,6 +99,8 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
 		String title = ((TextView) v).getText().toString();
 		StoryFile story = null;
 		String filePath = null;
+		
+		Log.e("log", title);
 		
 		DatabaseHelper dbHelper = new DatabaseHelper(this);
 		story = dbHelper.findStoryFileByTitle(ActiveUser.getActiveUser(this).getName(), title);

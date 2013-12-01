@@ -54,7 +54,7 @@ public class StoryListAdapter extends BaseAdapter {
 		if (view == null) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(R.layout.story_title, parentView, false);
+			view = inflater.inflate(R.layout.activity_userstories, parentView, false);
 			view.setOnClickListener(new OnClickListener() {
 				
 				@Override
