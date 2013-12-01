@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/library_openbook" >
-
+    >
+<!-- android:background="@drawable/library_openbook" -->
     <LinearLayout
         android:id="@+id/userstories_container_main"
         android:layout_width="630dp"
@@ -27,10 +27,11 @@
             android:contentDescription="@string/img_story"
             android:paddingBottom="35dp"
             android:paddingTop="50dp"
-            android:scaleType="fitXY"
-            android:onClick="clicked_selectedStory"
-            android:src="@drawable/library_preview_default" />
-
+            android:scaleType="fitXY"           
+            android:onClick="clicked_selectedStory" 
+           />
+			<!-- android:src="@drawable/library_preview_default" -->
+			
         <TextView
             android:id="@+id/userstories_txt_storytitle"
             android:layout_width="match_parent"

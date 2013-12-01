@@ -2,27 +2,26 @@ package com.picturebooks.mobilepicturebooks;
 
 import java.util.ArrayList;
 
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
-import com.picturebooks.mobilepicturebooks.models.StoryListAdapter;
-import com.picturebooks.mobilepicturebooks.models.UserInformation;
-
-import database.DatabaseHelper;
-import database_entities.StoryFile;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.picturebooks.mobilepicturebooks.models.UserInformation;
+
+import database.DatabaseHelper;
+import database_entities.StoryFile;
 
 /* ORIGINAL
 import android.os.Bundle;
@@ -50,6 +49,7 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
 	private ListView lstStories;
 	private int selectedStory;
 	private boolean openingActivity;
+	Bitmap bm;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,17 +68,17 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         		.getStoryFilesById(ActiveUser.getActiveUser(this).getName()));
         dbHelper.close();
         
-        ArrayAdapter<StoryFile> adapter = new ArrayAdapter<StoryFile>(this, R.layout.story_title, stories);
-        lstStories.setAdapter(adapter);
-        
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.activity_userstories, lstStories, false);
-		view.setOnClickListener(new OnClickListener() {
+        final ArrayAdapter<StoryFile> adapter = new ArrayAdapter<StoryFile>(this, R.layout.story_title, stories);
+        lstStories.setAdapter(adapter);       
+             
+        lstStories.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onClick(View v) {
-				StoriesActivity.this.clicked_lstStories(v);
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
+				adapter.getItem(arg2);
+				clicked_lstStories(adapter.getItem(arg2).getTitle());
+				
 			}
-		});
+        });
 	}
 	
 	public void clicked_btnBack(View v) {
@@ -95,8 +95,8 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         finish();
 	}
 	
-	public void clicked_lstStories(View v) {
-		String title = ((TextView) v).getText().toString();
+	public void clicked_lstStories(String titled) {
+		String title = titled;
 		StoryFile story = null;
 		String filePath = null;
 		
@@ -106,13 +106,17 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
 		story = dbHelper.findStoryFileByTitle(ActiveUser.getActiveUser(this).getName(), title);
 		filePath = story.getUsername() + "_" + story.getStoryID() + ".png";
 		
+		Log.e("selectedstory", selectedStory + "");
+		Log.e("txtstory", title);
+		Log.e("imgstory", filePath);
+		
 		selectedStory = story.getStoryID();
 		txtStory.setText(title);
 		imgStory.setImageBitmap(getImageFromFile(filePath));
 	}
 	
 	public void clicked_selectedStory(View v) {
-        if (selectedStory != -1) {
+        if (selectedStory == -1) {
         	return;
         }
 		

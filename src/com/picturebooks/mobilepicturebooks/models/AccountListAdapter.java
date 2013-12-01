@@ -79,7 +79,7 @@ public class AccountListAdapter extends BaseAdapter{
 		else {
             holder = (ViewHolder) view.getTag();
         }	
-		
+
 		view.setOnClickListener(new OnClickListener() {
 			
 			@Override

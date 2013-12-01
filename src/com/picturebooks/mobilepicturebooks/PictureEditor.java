@@ -2043,6 +2043,7 @@ public class PictureEditor extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		image.recycle();
 		
 	}
 
