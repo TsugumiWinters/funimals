@@ -23,9 +23,12 @@ public class AccountListAdapter extends BaseAdapter{
 	private Context context;
 	private ArrayList<UserInformation> list;
 	private ArrayList<Field> drawables;
+	private LayoutInflater inflater;
 
     public AccountListAdapter(Context context) {
     	this.context = context;	
+    	inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	
 		DatabaseHelper dbHelper = new DatabaseHelper(context);
 		dbHelper.openDataBase();
 		list = new ArrayList<UserInformation>(dbHelper.getUserInformation());
@@ -63,39 +66,38 @@ public class AccountListAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parentView) {
-		View view = convertView;
-		
+		View view = convertView;		
 		ViewHolder holder = null;
 		
 		if (view == null) {
-			LayoutInflater inflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(R.layout.user_canvas, parentView, false);
+			view = inflater.inflate(R.layout.user_canvas, parentView, false);	
 			holder = new ViewHolder();
-			view.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					((MenuActivity) AccountListAdapter.this.context).clicked_openAccount(v);
-				}
-			});
+			holder.img = (ImageView) view.findViewById(R.id.canvas_img_user);
+			holder.name = (TextView) view.findViewById(R.id.canvas_name);
+			view.setTag(holder);
 		}
+		else {
+            holder = (ViewHolder) view.getTag();
+        }	
 		
-		holder.img = (ImageView) view.findViewById(R.id.canvas_img_user);
-		holder.name = (TextView) view.findViewById(R.id.canvas_name);
-		view.setTag(holder);
-		
+		view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				((MenuActivity) AccountListAdapter.this.context).clicked_openAccount(v);
+			}
+		});
+			
 		UserInformation user = list.get(position);
 		
 		try {
 			holder.img.setImageResource(drawables.get(position).getInt(null));
-
 		} catch (Exception e) {
 			Log.d("UserListAdapter", "Error: " + e.getMessage());
 		}
 		holder.img.setContentDescription(drawables.get(position).getName());
 		holder.name.setText(user.getUsername());
-		Log.e("dagain", "againgadddddd");
+		
 		return view;
 	}
 	

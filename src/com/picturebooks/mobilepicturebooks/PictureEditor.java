@@ -10,6 +10,8 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+
 import pictureeditor.component.InputContentRepresentation;
 import sentencegenerator.LASGenerator;
 import sentencegenerator.ReferringExpressionGenerator;
@@ -1968,6 +1970,7 @@ public class PictureEditor extends Activity {
 			
 			captureView(pictureBackground.getId(), username + "_" + storyId
 					+ ".png");
+			
 			if (loadStory == false) {
 				dbHelper.addStoryFile(new StoryFile(storyId, username,
 						generatedTitle, generatedStory, pictureBackground
@@ -2040,7 +2043,7 @@ public class PictureEditor extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			
+		
 	}
 
 	public void tutorialNext(View v) {
