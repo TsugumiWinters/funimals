@@ -20,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
@@ -70,6 +69,7 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		
 		adapter = new AccountListAdapter(this);
 		accountList.setAdapter(adapter);
+		ActiveUser.clearActiveUser(this);
 	}
 	
 	public void clicked_addAccount(View v) {

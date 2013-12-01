@@ -48,6 +48,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
+        </activity>>
+        <activity
+            android:name="com.picturebooks.mobilepicturebooks.InfoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustNothing" >
         </activity>
         <activity
             android:name="com.picturebooks.mobilepicturebooks.StoriesActivity"

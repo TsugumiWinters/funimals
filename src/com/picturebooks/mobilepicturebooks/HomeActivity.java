@@ -92,7 +92,10 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	}
 	
 	public void clicked_btnInfo(View v) {
-		// TODO
+		Intent mainIntent = new Intent(HomeActivity.this, InfoActivity.class);
+        startActivity(mainIntent);
+        openingActivity = true;
+        finish();
 	}
 	
 	public void clicked_btnNewPicture(View v) {

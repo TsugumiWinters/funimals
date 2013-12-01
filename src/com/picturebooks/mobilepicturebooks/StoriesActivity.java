@@ -12,14 +12,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.picturebooks.mobilepicturebooks.models.ActiveUser;
 import com.picturebooks.mobilepicturebooks.models.StoryAdapter;
-import com.picturebooks.mobilepicturebooks.models.StoryListAdapter;
 import com.picturebooks.mobilepicturebooks.models.UserInformation;
 
 import database.DatabaseHelper;
