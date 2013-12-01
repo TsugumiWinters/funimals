@@ -75,7 +75,7 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
 				adapter.getItem(arg2);
-				clicked_lstStories(adapter.getItem(arg2).getTitle());
+				copy_lstStories(adapter.getItem(arg2).getTitle());
 				
 			}
         });
@@ -95,8 +95,28 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         finish();
 	}
 	
-	public void clicked_lstStories(String titled) {
+	public void copy_lstStories(String titled) {
 		String title = titled;
+		StoryFile story = null;
+		String filePath = null;
+		
+		Log.e("log", title);
+		
+		DatabaseHelper dbHelper = new DatabaseHelper(this);
+		story = dbHelper.findStoryFileByTitle(ActiveUser.getActiveUser(this).getName(), title);
+		filePath = story.getUsername() + "_" + story.getStoryID() + ".png";
+		
+		Log.e("selectedstory", selectedStory + "");
+		Log.e("txtstory", title);
+		Log.e("imgstory", filePath);
+		
+		selectedStory = story.getStoryID();
+		txtStory.setText(title);
+		imgStory.setImageBitmap(getImageFromFile(filePath));
+	}
+	
+	public void clicked_lstStories(View v) {
+		String title = ((TextView) v).getText().toString();
 		StoryFile story = null;
 		String filePath = null;
 		
