@@ -300,8 +300,8 @@ public class PictureEditor extends Activity {
 		});
 
 		// InitializeDB();
-		username = getIntent().getStringExtra("username");
-		age = getIntent().getIntExtra("age", 6);
+		username = ActiveUser.getActiveUser(context).getName();
+		age = ActiveUser.getActiveUser(context).getAge();
 		tutorialMode = getIntent().getIntExtra("tutorial", 0);
 		loadStory = getIntent().getBooleanExtra("loadStory", false);
 		storyId = dbHelper.getMaxStoryId() + 1;

@@ -39,6 +39,7 @@
             android:layout_marginTop="90dp"
             android:layout_marginRight="50dp"
             android:orientation="horizontal"
+            android:descendantFocusability="blocksDescendants"
              >
         </com.devsmart.android.ui.HorizontalListView>
     </LinearLayout>
