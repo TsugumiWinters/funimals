@@ -48,14 +48,12 @@ public class RegistrationNameActivity extends Activity {
 	public void clicked_btnBack(View v) {
         Intent mainIntent = new Intent(RegistrationNameActivity.this, MenuActivity.class);
         startActivity(mainIntent);
-    //    finish();
 	}
 	
 	public void clicked_btnNext(View v) {
         Intent mainIntent = new Intent(RegistrationNameActivity.this, RegistrationAgeActivity.class);
         mainIntent.putExtra("user_name", txtName.getText().toString());
         startActivity(mainIntent);
-     //   finish();
 	}
 	
 }

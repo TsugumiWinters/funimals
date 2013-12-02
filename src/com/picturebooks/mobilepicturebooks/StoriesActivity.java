@@ -23,33 +23,13 @@ import com.picturebooks.mobilepicturebooks.models.UserInformation;
 import database.DatabaseHelper;
 import database_entities.StoryFile;
 
-/* ORIGINAL
-import android.os.Bundle;
-import org.apache.cordova.*;
-
-import database.DatabaseHelper;*/
-
-public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
-
-	/* ORIGINAL
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		super.init();
-		DatabaseHelper dbHelper = new DatabaseHelper(this);
-		HTMLConnector mc = new HTMLConnector(this, appView, dbHelper, this, 3);
-		appView.addJavascriptInterface(mc, "Connector");
-		
-		super.loadUrl("file:///android_asset/www/main.html");
-	}*/
+public class StoriesActivity extends Activity {
     
 	private ImageView imgStory;
 	private TextView txtStory;
 	private ListView lstStories;
 	private int selectedStory;
 	private boolean openingActivity;
-	Bitmap bm;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +55,7 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
 				adapter.getItem(arg2);
-				copy_lstStories(adapter.getItem(arg2).getTitle());
-				
+				showStories(adapter.getItem(arg2).getTitle());	
 			}
         });
         
@@ -85,18 +64,14 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
 	public void clicked_btnBack(View v) {
         Intent mainIntent = new Intent(StoriesActivity.this, BookActivity.class);
         startActivity(mainIntent);
-      //  openingActivity = true;
-     //   finish();
 	}
 	
 	public void clicked_btnAdd(View v) {
         Intent mainIntent = new Intent(StoriesActivity.this, PictureEditor.class);
         startActivity(mainIntent);
-     //   openingActivity = true;
-     //   finish();
 	}
 	
-	public void copy_lstStories(String titled) {
+	public void showStories(String titled) {
 		String title = titled;
 		StoryFile story = null;
 		String filePath = null;
@@ -152,8 +127,6 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         mainIntent.putExtra("isUserAuthor", 1);
         
         startActivity(mainIntent);
-        //openingActivity = true;
-      //  finish();
 	}
 	
 	private Bitmap getImageFromFile(String fileName) {

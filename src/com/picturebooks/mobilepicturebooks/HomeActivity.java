@@ -14,27 +14,9 @@ import com.picturebooks.mobilepicturebooks.models.ActiveUser;
 import com.picturebooks.mobilepicturebooks.models.Preferences;
 import com.picturebooks.mobilepicturebooks.models.UserInformation;
 
-/* ORIGINAL
-import org.apache.cordova.*;
-import database.DatabaseHelper; */
-
-public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
+public class HomeActivity extends Activity {
 	
 	private boolean openingActivity;
-	
-	/* ORIGINAL
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		super.init();
-		DatabaseHelper dbHelper = new DatabaseHelper(this);
-		HTMLConnector mc = new HTMLConnector(this, appView, dbHelper, this, 1);
-		appView.addJavascriptInterface(mc, "Connector");
-		
-		super.loadUrl("file:///android_asset/www/main.html");
-		
-	}*/
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {		
@@ -63,8 +45,6 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
         if (user == null) {
             Intent mainIntent = new Intent(HomeActivity.this, MenuActivity.class);
             startActivity(mainIntent);
-            //openingActivity = true;
-          //  HomeActivity.this.finish();
         }
 
         imgUser.setImageResource(user.getImage());
@@ -94,22 +74,16 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	public void clicked_btnInfo(View v) {
 		Intent mainIntent = new Intent(HomeActivity.this, InfoActivity.class);
         startActivity(mainIntent);
-        //openingActivity = true;
-        //finish();
 	}
 	
 	public void clicked_btnNewPicture(View v) {
         Intent mainIntent = new Intent(HomeActivity.this, PictureEditor.class);
         startActivity(mainIntent);
-        //openingActivity = true;
-        //finish();
 	}
 	
 	public void clicked_btnViewLibrary(View v) {
         Intent mainIntent = new Intent(HomeActivity.this, BookActivity.class);
         startActivity(mainIntent);
-      //  openingActivity = true;
-      //  finish();
 	}
 	
 	public void clicked_btnSeeTutorial(View v) {

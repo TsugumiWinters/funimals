@@ -21,8 +21,6 @@ public class InfoActivity extends Activity {
 	public void clicked_btnBack(View v) {
 		Intent mainIntent = new Intent(this, HomeActivity.class);
 		startActivity(mainIntent);
-		openingActivity = true;
-		finish();
 	}
 	
 	@Override

@@ -207,28 +207,6 @@ public class PictureEditor extends Activity {
 		super.onCreate(savedInstanceState);
 		this.context = this;
 		setContentView(R.layout.picture_editor);
-
-		// generate story dialog
-		generate_dialog = new Dialog(context);
-		generate_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		generate_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));     
-		generateContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
-		generate_dialog.setContentView(generateContentView);
-		generate_dialog.setCancelable(false);
-		generate_dialog.setCanceledOnTouchOutside(false);       
-		generate_image = (ImageView) generateContentView.findViewById(R.id.loading);
-		generate_animation = (AnimationDrawable) generate_image.getDrawable();
-			
-		// save dialog
-		save_dialog = new Dialog(context);
-		save_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		save_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-		saveContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog_save, null);
-		save_dialog.setContentView(saveContentView);
-        save_dialog.setCancelable(false);
-        save_dialog.setCanceledOnTouchOutside(false);
-		save_image = (ImageView) saveContentView.findViewById(R.id.saving);
-		save_animation = (AnimationDrawable) save_image.getDrawable();
 				
 		dbHelper = new DatabaseHelper(this);
 		try {
@@ -261,7 +239,29 @@ public class PictureEditor extends Activity {
 					tts.speak(currentStoryLine, TextToSpeech.QUEUE_FLUSH, null);
 			}
 		});
-
+		
+		// generate story dialog
+		generate_dialog = new Dialog(context);
+		generate_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		generate_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));     
+		generateContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
+		generate_dialog.setContentView(generateContentView);
+		generate_dialog.setCancelable(false);
+		generate_dialog.setCanceledOnTouchOutside(false);       
+		generate_image = (ImageView) generateContentView.findViewById(R.id.loading);
+		generate_animation = (AnimationDrawable) generate_image.getDrawable();
+			
+		// save dialog
+		save_dialog = new Dialog(context);
+		save_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		save_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		saveContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog_save, null);
+		save_dialog.setContentView(saveContentView);
+        save_dialog.setCancelable(false);
+        save_dialog.setCanceledOnTouchOutside(false);
+		save_image = (ImageView) saveContentView.findViewById(R.id.saving);
+		save_animation = (AnimationDrawable) save_image.getDrawable();
+		
 		// InitializeDB();
 		username = ActiveUser.getActiveUser(context).getName();
 		age = ActiveUser.getActiveUser(context).getAge();
@@ -896,8 +896,7 @@ public class PictureEditor extends Activity {
 
 			sentences = generatedStory.split("\\.");
 			sentenceCount = sentences.length;
-			numberOfPages = (int) Math.ceil(sentenceCount
-					/ sentenceLimitPerPage);
+			numberOfPages = (int) Math.ceil(sentenceCount / sentenceLimitPerPage);
 			if (numberOfPages == 0)
 				numberOfPages = 1;
 			currentPage = 1;
@@ -944,12 +943,7 @@ public class PictureEditor extends Activity {
 			read_button.setEnabled(true);
 			retry_button.setEnabled(false);
 			save_button.setEnabled(false);				
-			
-		/*	editstory_button.setVisibility(View.VISIBLE);
-			editstory_button.setEnabled(false);
-
-			createstory_button.setVisibility(View.INVISIBLE);
-			*/
+		
 			createstory_button.setEnabled(false);
 			
 			bgTitleLayout.setVisibility(View.INVISIBLE);
@@ -1013,15 +1007,12 @@ public class PictureEditor extends Activity {
 		for(String background:bgList)
 			if(result.contains(background)){
 				result = result.replaceAll(background, bg);
-				Log.e("ok", "background "+background+"   bg:   "+bg);
 			}
 
 		return result;
 	}
 	
-	public String getAlias(String currBg){
-
-		
+	public String getAlias(String currBg){	
 		if (currBg.equalsIgnoreCase("bathroom"))
 			return "bathroom";
 		else if (currBg.equalsIgnoreCase("bedroom"))
@@ -1052,14 +1043,6 @@ public class PictureEditor extends Activity {
 		if(SelectedThings.size() != 0){
 			Things.add(SelectedThings.remove(0));		
 		}
-/*
-		int ctr = 0;
-		while(SelectedThings.size() != 0){
-			Log.e("hello", SelectedThings.get(ctr).toString());
-			SelectedThings.remove(ctr);
-			ctr++;
-		}
-		*/
 	}
 
 	public void clearImage(int i) {
@@ -1175,7 +1158,6 @@ public class PictureEditor extends Activity {
 
 		@Override
 		public boolean onDrag(View v, DragEvent event) {
-
 			int action = event.getAction();
 
 			Log.d("MyCoordinates",
@@ -1622,10 +1604,8 @@ public class PictureEditor extends Activity {
 			storyTextView.setVisibility(View.VISIBLE);
 			page.setVisibility(View.VISIBLE);
 			
-			generate_dialog.dismiss();
-            
+			generate_dialog.dismiss();          
 		}
-
 	}
 
 	class MyClickableSpan extends ClickableSpan{ 
@@ -1640,8 +1620,7 @@ public class PictureEditor extends Activity {
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
 	    	  String definition = dbHelper.findDefinitionByWord(word);
 	    	  
-	    	  if(!definition.equals("")) {
-	    		  
+	    	  if(!definition.equals("")) {	    		  
 	    		  definition = removeBr(definition);
 	    		  
 		    	  AlertDialog alertdialog = new AlertDialog.Builder(context).create();
@@ -1678,7 +1657,6 @@ public class PictureEditor extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-
 			generate_dialog.setOnShowListener(new OnShowListener() {
 	                @Override
 	                public void onShow(DialogInterface dialog) {
@@ -1920,9 +1898,9 @@ public class PictureEditor extends Activity {
 			storyTextView.scrollTo(0, 0);
 			page.setText("Page " + currentPage + " of " + numberOfPages);
 			
-			if (numberOfPages > 1) {
+			if (numberOfPages > 1) 
 				pageRight_button.setEnabled(true);
-			}
+
 			restart_button.setEnabled(false);
 			read_button.setEnabled(true);
 			createstory_button.setVisibility(View.INVISIBLE);
@@ -1949,8 +1927,6 @@ public class PictureEditor extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-
-
             save_dialog.setOnShowListener(new OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialog) {
@@ -2007,12 +1983,9 @@ public class PictureEditor extends Activity {
 		protected void onPostExecute(String result) {
 			save_dialog.dismiss();
 
-			Intent mainIntent = new Intent(PictureEditor.this,
-					StoriesActivity.class);
-			PictureEditor.this.startActivity(mainIntent);
-			PictureEditor.this.finish();
+			Intent mainIntent = new Intent(PictureEditor.this, StoriesActivity.class);
+			startActivity(mainIntent);
 			PictureEditor.createdStory = false;
-
 		}
 	}
 	
@@ -2184,8 +2157,7 @@ public class PictureEditor extends Activity {
 		for (int i = 0; i < gridView.getChildCount(); i++) {
 			View view = gridView.getChildAt(i);
 			view.setEnabled(enabled);
-		}
-		
+		}	
 	}
 
 }

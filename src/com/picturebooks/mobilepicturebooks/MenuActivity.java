@@ -22,25 +22,12 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
+public class MenuActivity extends Activity {
 	
 	private boolean openingActivity;
 	private HorizontalListView accountList;
 	private AccountListAdapter adapter;
 	
-	/* ORIGINAL
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		super.init();
-		DatabaseHelper dbHelper = new DatabaseHelper(this);
-		HTMLConnector mc = new HTMLConnector(this, appView, dbHelper, this);
-		appView.addJavascriptInterface(mc, "Connector");
-		
-		super.loadUrl("file:///android_asset/www/main.html");
-	}*/
-    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -75,8 +62,6 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 	public void clicked_addAccount(View v) {
         Intent mainIntent = new Intent(MenuActivity.this, RegistrationNameActivity.class);
         startActivity(mainIntent);
-      //  openingActivity = true;
-      //  finish();
 	}
 	
 	public void clicked_openAccount(View v) {
@@ -99,8 +84,7 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		/* Open HomeActivity */
 		Intent mainIntent = new Intent(MenuActivity.this, HomeActivity.class);
         MenuActivity.this.startActivity(mainIntent);
-        //openingActivity = true;
-      //  finish();
+
 	}
 	
 	@Override
