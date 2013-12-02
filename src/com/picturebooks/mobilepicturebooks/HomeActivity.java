@@ -87,7 +87,9 @@ public class HomeActivity extends Activity {
 	}
 	
 	public void clicked_btnSeeTutorial(View v) {
-		// TODO
+		Intent mainIntent = new Intent(HomeActivity.this, PictureEditor.class);
+		mainIntent.putExtra("tutorial", 1);
+        startActivity(mainIntent);
 	}
 	
 	@Override

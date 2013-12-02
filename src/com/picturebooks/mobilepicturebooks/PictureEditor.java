@@ -253,14 +253,7 @@ public class PictureEditor extends Activity {
 			
 		// save dialog
 		save_dialog = new Dialog(context);
-		save_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		save_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-		saveContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog_save, null);
-		save_dialog.setContentView(saveContentView);
-        save_dialog.setCancelable(false);
-        save_dialog.setCanceledOnTouchOutside(false);
-		save_image = (ImageView) saveContentView.findViewById(R.id.saving);
-		save_animation = (AnimationDrawable) save_image.getDrawable();
+		
 		
 		// InitializeDB();
 		username = ActiveUser.getActiveUser(context).getName();
@@ -1927,6 +1920,15 @@ public class PictureEditor extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+			save_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			save_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			saveContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog_save, null);
+			save_dialog.setContentView(saveContentView);
+	        save_dialog.setCancelable(false);
+	        save_dialog.setCanceledOnTouchOutside(false);
+			save_image = (ImageView) saveContentView.findViewById(R.id.saving);
+			save_animation = (AnimationDrawable) save_image.getDrawable();
+			
             save_dialog.setOnShowListener(new OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialog) {
