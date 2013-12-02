@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+@SuppressWarnings("hiding")
 public class StoryAdapter<StoryFile> extends ArrayAdapter<StoryFile> {
 
 	public StoryAdapter(Context context, int textViewResourceId,

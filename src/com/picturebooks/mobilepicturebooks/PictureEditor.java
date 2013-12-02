@@ -10,8 +10,6 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
-
 import pictureeditor.component.InputContentRepresentation;
 import sentencegenerator.LASGenerator;
 import sentencegenerator.ReferringExpressionGenerator;
@@ -27,7 +25,6 @@ import storyplanner.title.TitleMakerException;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnShowListener;
@@ -58,8 +55,8 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.View.OnDragListener;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AbsoluteLayout;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -70,6 +67,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+
 import database.DatabaseHelper;
 import database_entities.Background;
 import database_entities.CharacterGoal;
@@ -79,6 +79,7 @@ import database_entities.IGTheme;
 import database_entities.SavedSticker;
 import database_entities.StoryFile;
 
+@SuppressWarnings("deprecation")
 public class PictureEditor extends Activity {
 
 	// generate dialog
@@ -543,7 +544,7 @@ public class PictureEditor extends Activity {
 			public void onClick(View v) {
 				PictureEditor.createdStory = false;
 				Intent mainIntent = new Intent(PictureEditor.this,
-						LibraryActivity.class);
+						StoriesActivity.class);
 				PictureEditor.this.startActivity(mainIntent);
 				PictureEditor.this.finish();
 			}
@@ -1635,7 +1636,6 @@ public class PictureEditor extends Activity {
 	    	  this.word = word;
 	      }
 
-	      @SuppressWarnings("deprecation")
 		  public void onClick(View textView) {
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
 	    	  String definition = dbHelper.findDefinitionByWord(word);
