@@ -50,10 +50,10 @@
 		android:contentDescription="bg_bedroom"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		
+		android:background="@drawable/bg_bedroom"
 		android:layout_below="@+id/pe_home_button">
 	</AbsoluteLayout>
-	<!-- android:background="@drawable/bg_bedroom"  -->
+
 	<RelativeLayout
 	  	android:id="@+id/pe_bgTitleLayout"
 		android:layout_width="wrap_content"

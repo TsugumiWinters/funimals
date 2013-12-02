@@ -51,7 +51,7 @@ public class RegistrationLevelActivity extends Activity {
         Intent mainIntent = new Intent(RegistrationLevelActivity.this, RegistrationAgeActivity.class);
         mainIntent.putExtra("user_name", getIntent().getStringExtra("user_name"));
         startActivity(mainIntent);
-        finish();
+     //   finish();
 	}
 	
 	public void clicked_btnNext(View v) {
@@ -73,7 +73,7 @@ public class RegistrationLevelActivity extends Activity {
 		
 		Intent mainIntent = new Intent(RegistrationLevelActivity.this, HomeActivity.class);
         startActivity(mainIntent);
-        finish();
+      //  finish();
 	}
 	
 	private int getNewImage() {

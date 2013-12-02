@@ -38,7 +38,7 @@ public class RegistrationAgeActivity extends Activity {
 	public void clicked_btnBack(View v) {
         Intent mainIntent = new Intent(RegistrationAgeActivity.this, RegistrationNameActivity.class);
         startActivity(mainIntent);
-        finish();
+     //   finish();
 	}
 	
 	public void clicked_btnNext(View v) {
@@ -46,7 +46,7 @@ public class RegistrationAgeActivity extends Activity {
         mainIntent.putExtra("user_name", getIntent().getStringExtra("user_name"));
         mainIntent.putExtra("user_age", age);
         startActivity(mainIntent);
-        finish();
+     //   finish();
 	}
 	
 }

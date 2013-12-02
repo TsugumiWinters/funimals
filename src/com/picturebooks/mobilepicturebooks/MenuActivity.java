@@ -75,8 +75,8 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 	public void clicked_addAccount(View v) {
         Intent mainIntent = new Intent(MenuActivity.this, RegistrationNameActivity.class);
         startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+      //  openingActivity = true;
+      //  finish();
 	}
 	
 	public void clicked_openAccount(View v) {
@@ -99,8 +99,8 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		/* Open HomeActivity */
 		Intent mainIntent = new Intent(MenuActivity.this, HomeActivity.class);
         MenuActivity.this.startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+        //openingActivity = true;
+      //  finish();
 	}
 	
 	@Override

@@ -85,15 +85,15 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
 	public void clicked_btnBack(View v) {
         Intent mainIntent = new Intent(StoriesActivity.this, BookActivity.class);
         startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+      //  openingActivity = true;
+     //   finish();
 	}
 	
 	public void clicked_btnAdd(View v) {
         Intent mainIntent = new Intent(StoriesActivity.this, PictureEditor.class);
         startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+     //   openingActivity = true;
+     //   finish();
 	}
 	
 	public void copy_lstStories(String titled) {
@@ -152,8 +152,8 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
         mainIntent.putExtra("isUserAuthor", 1);
         
         startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+        //openingActivity = true;
+      //  finish();
 	}
 	
 	private Bitmap getImageFromFile(String fileName) {

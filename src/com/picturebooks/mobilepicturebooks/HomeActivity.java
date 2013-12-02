@@ -63,8 +63,8 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
         if (user == null) {
             Intent mainIntent = new Intent(HomeActivity.this, MenuActivity.class);
             startActivity(mainIntent);
-            openingActivity = true;
-            HomeActivity.this.finish();
+            //openingActivity = true;
+          //  HomeActivity.this.finish();
         }
 
         imgUser.setImageResource(user.getImage());
@@ -94,22 +94,22 @@ public class HomeActivity extends /* ORIGIN DroidGap */ Activity {
 	public void clicked_btnInfo(View v) {
 		Intent mainIntent = new Intent(HomeActivity.this, InfoActivity.class);
         startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+        //openingActivity = true;
+        //finish();
 	}
 	
 	public void clicked_btnNewPicture(View v) {
         Intent mainIntent = new Intent(HomeActivity.this, PictureEditor.class);
         startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+        //openingActivity = true;
+        //finish();
 	}
 	
 	public void clicked_btnViewLibrary(View v) {
         Intent mainIntent = new Intent(HomeActivity.this, BookActivity.class);
         startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+      //  openingActivity = true;
+      //  finish();
 	}
 	
 	public void clicked_btnSeeTutorial(View v) {

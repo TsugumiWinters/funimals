@@ -38,8 +38,8 @@ public class BookActivity extends Activity {
         if (user == null) {
             Intent mainIntent = new Intent(BookActivity.this, MenuActivity.class);
             startActivity(mainIntent);
-            openingActivity = true;
-            finish();
+            //openingActivity = true;
+           // finish();
         }
         
         imgUser.setImageResource(user.getImage());
@@ -51,15 +51,15 @@ public class BookActivity extends Activity {
 	public void clicked_btnHome(View v) {
         Intent mainIntent = new Intent(BookActivity.this, HomeActivity.class);
         startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+        //openingActivity = true;
+        //finish();
 	}
 	
 	public void clicked_btnLibrary(View v) {
         Intent mainIntent = new Intent(BookActivity.this, StoriesActivity.class);
         startActivity(mainIntent);
-        openingActivity = true;
-        finish();
+       // openingActivity = true;
+        //finish();
 	}
 	
 	@Override

@@ -323,8 +323,6 @@ public class PictureEditor extends Activity {
 		SelectedAdults = new ArrayList<String>();
 		SelectedKids = new ArrayList<String>();
 		SelectedThings = new ArrayList<String>();
-		
-		changeBackground(backgroundID);
 
 		Adults = new ArrayList<String>();
 		Adults.add("adult_catmanimage_sam");
