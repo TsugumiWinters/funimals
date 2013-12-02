@@ -36,7 +36,7 @@
 	<string name="button_readstory">Read Story</string>
 	
 	<string name="img_story">Story Image</string>
-	<string name="story_title">%1s</string>
+	<string name="story_title"> </string>
 	
 	<string name="registration_name">What is your name?</string>
 	<string name="registration_age">How old are you?</string>
