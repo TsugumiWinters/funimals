@@ -28,12 +28,22 @@
 		android:layout_toRightOf="@+id/pe_library_button"/>
 	
 	<ImageView
+	    android:id="@+id/pe_read_button"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	    android:layout_toRightOf="@+id/pe_restart_button"
+	    android:contentDescription="@string/description"
+	    android:src="@drawable/pe_narrate_button_selector"
+	   />
+	
+	<ImageView
 		android:id="@+id/pe_createstory_button"
 		android:contentDescription="@string/description"
-		android:layout_width="wrap_content"
+		android:layout_width="375dp"
 		android:layout_height="wrap_content"
+		android:scaleType="fitXY"
 		android:src="@drawable/createstory_button_selector"
-		android:layout_toRightOf="@+id/pe_restart_button"/>
+		android:layout_toRightOf="@+id/pe_read_button"/>
 	
 	<AbsoluteLayout
 		android:id="@+id/pe_bg"
@@ -152,10 +162,11 @@
 	<ImageView
 		android:id="@+id/pe_editstory_button"
 		android:contentDescription="@string/description"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_width="375dp"
+		android:layout_height="wrap_content"	
+		android:scaleType="fitXY"
 		android:src="@drawable/pe_editstory_button"
-		android:layout_toRightOf="@+id/pe_restart_button"
+		android:layout_toRightOf="@+id/pe_read_button"
 		android:visibility="invisible" />
 	 
 	<RelativeLayout
@@ -462,14 +473,6 @@
 	    android:src="@drawable/new_tutorial_left_right_bg"
 	    android:visibility="invisible" />
 
-	<ImageView
-	    android:id="@+id/pe_read_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignTop="@+id/pe_bg"
-	    android:layout_toLeftOf="@+id/tutorial_library"
-	    android:contentDescription="@string/description"
-	    android:src="@drawable/pe_narrate_button"
-	    android:visibility="visible" />
+
 
 </RelativeLayout>

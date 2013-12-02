@@ -79,17 +79,25 @@ import database_entities.StoryFile;
 
 public class PictureEditor extends Activity {
 
-	Dialog dialog;
-	LinearLayout contentView;
-    ImageView image;
-    AnimationDrawable animation;
+	// generate dialog
+	private Dialog generate_dialog;
+	private LinearLayout generateContentView;
+	private ImageView generate_image;
+	private  AnimationDrawable generate_animation;
+    
+    // save dialog
+	private Dialog save_dialog;
+	private LinearLayout saveContentView;
+	private ImageView save_image;
+	private AnimationDrawable save_animation;
+       
 	// text to speech
 	private TextToSpeech tts;
-	ImageView read_button;
-	String currentStoryLine = "";
+	private ImageView read_button;
+	private String currentStoryLine = "";
 	
-	String[] trimSentence;
-    SpannableString span;
+	private String[] trimSentence;
+	private SpannableString span;
 	
 	private static Context context;
 	public static boolean createdStory = false;
@@ -97,7 +105,8 @@ public class PictureEditor extends Activity {
 	private DatabaseHelper dbHelper;
 
 	private int tutorialStep = 0;
-
+	private boolean skipped = false;
+	
 	private String username;
 	private int age;
 	private int storyId;
@@ -105,9 +114,7 @@ public class PictureEditor extends Activity {
 	private boolean loadStory;
 	private int isUserAuthor;
 
-	
-	private ThemeExtractor themeExtractor = new ThemeExtractor();
-	// private IGTheme chosenTheme = null;
+	private ThemeExtractor themeExtractor;;
 	private StoryTree storyTree = null;
 
 	// user selected
@@ -121,63 +128,10 @@ public class PictureEditor extends Activity {
 	private String generatedTitle = new String();
 	private String[] sentences;
 	private String textDisplay;
-	/*
-	 * private Vector<StoryFile> storyFiles; private Vector<UserInformation>
-	 * userInformation;
-	 * 
-	 * private Vector<Word> words; private Vector<Adjective> adjectives; private
-	 * Vector<Adverb> adverbs; private Vector<Noun> nouns; private
-	 * Vector<Article> articles; private Vector<Conjunction> conjunctions;
-	 * private Vector<Verb> verbs; private Vector<Pronoun> pronouns; private
-	 * Vector<Preposition> prepositions; private Vector<ConceptMapper>
-	 * conceptMappers;
-	 * 
-	 * private Vector<Concept> concepts; private Vector<Ontology> ontology;
-	 * 
-	 * private Vector<IGObject> IGObjects; private Vector<IGCharacter>
-	 * IGCharacters; private Vector<Background> backgrounds;
-	 * 
-	 * private Vector<StoryPlotTracker> storyPlotTracker; private
-	 * Vector<CharacterGoal> characterGoals; private Vector<AuthorGoal>
-	 * authorGoals; private Vector<IGTheme> IGThemes; private
-	 * Vector<SemanticRelationRule> semanticRelationRules;
-	 */
-
+	
 	GridView gridView;
 	ImageView stickersBG;
 	AbsoluteLayout pictureBackground;
-
-	/*
-	 * String[] Adults = new String[] { "adult_catmanimage",
-	 * "adult_catwomanimage","adult_chickenmanimage", "adult_chickenwomanimage",
-	 * "adult_dogmanimage", "adult_dogwomanimage", "adult_elephantmanimage",
-	 * "adult_elephantwomanimage", "adult_giraffemanimage",
-	 * "adult_giraffewomanimage", "adult_lionmanimage", "adult_lionwomanimage",
-	 * "adult_pigmanimage", "adult_pigwomanimage", "adult_rabbitmanimage",
-	 * "adult_rabbitwomanimage", "adult_sheepmanimage", "adult_sheepwomanimage",
-	 * "adult_turtlemanimage", "adult_turtlewomanimage"};
-	 * 
-	 * String[] Kids = new String[] { "kid_catboyimage", "kid_catgirlimage",
-	 * "kid_chickenboyimage", "kid_chickengirlimage", "kid_dogboyimage",
-	 * "kid_doggirlimage", "kid_elephantboyimage", "kid_elephantgirlimage",
-	 * "kid_giraffeboyimage", "kid_giraffegirlimage", "kid_lionboyimage",
-	 * "kid_liongirlimage", "kid_pigboyimage", "kid_piggirlimage",
-	 * "kid_rabbitboyimage", "kid_rabbitgirlimage", "kid_sheepboyimage",
-	 * "kid_sheepgirlimage", "kid_turtleboyimage", "kid_turtlegirlimage"};
-	 * 
-	 * String[] Things = new String[] { "thing_alarm_clock", "thing_apple",
-	 * "thing_backpack", "thing_bananas", "thing_beachball", "thing_book",
-	 * "thing_bread", "thing_broccolis", "thing_brush", "thing_cake",
-	 * "thing_candies", "thing_carrots", "thing_chair", "thing_doll",
-	 * "thing_fried_chicken", "thing_glass_of_water", "thing_lamp",
-	 * "thing_pillow", "thing_redball", "thing_rubber_ducky",
-	 * "thing_salt_and_pepper", "thing_seesaw", "thing_soap", "thing_spaghetti",
-	 * "thing_stethoscope", "thing_swingset", "thing_tea_set",
-	 * "thing_television", "thing_thermometer", "thing_toothpaste_toothbrush",
-	 * "thing_toy_blocks", "thing_toy_car", "thing_toy_horse",
-	 * "thing_toy_truck", "thing_tricycle", "thing_wallet",
-	 * "thing_weighing_scale"};
-	 */
 
 	private ArrayList<String> Adults;
 	private ArrayList<String> Kids;
@@ -244,7 +198,6 @@ public class PictureEditor extends Activity {
 	private int currentPage, numberOfPages;
 	private int sentenceLimitPerPage = 4;
 
-	ProgressDialog mDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -252,19 +205,28 @@ public class PictureEditor extends Activity {
 		this.context = this;
 		setContentView(R.layout.picture_editor);
 
-		dialog = new Dialog(context);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-        
-		contentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
-		dialog.setContentView(contentView);
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        
-		image = (ImageView) contentView.findViewById(R.id.loading);
-		animation = (AnimationDrawable) image.getDrawable();
+		// generate story dialog
+		generate_dialog = new Dialog(context);
+		generate_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		generate_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));     
+		generateContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
+		generate_dialog.setContentView(generateContentView);
+		generate_dialog.setCancelable(false);
+		generate_dialog.setCanceledOnTouchOutside(false);       
+		generate_image = (ImageView) generateContentView.findViewById(R.id.loading);
+		generate_animation = (AnimationDrawable) generate_image.getDrawable();
 			
+		// save dialog
+		save_dialog = new Dialog(context);
+		save_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		save_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		saveContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog_save, null);
+		save_dialog.setContentView(saveContentView);
+        save_dialog.setCancelable(false);
+        save_dialog.setCanceledOnTouchOutside(false);
+		save_image = (ImageView) saveContentView.findViewById(R.id.saving);
+		save_animation = (AnimationDrawable) save_image.getDrawable();
+				
 		dbHelper = new DatabaseHelper(this);
 		try {
 			dbHelper.createDataBase();
@@ -279,8 +241,8 @@ public class PictureEditor extends Activity {
 		}
 
 		// text to speech - initialize
-		//CLOSEBUTTON - textDisplay
 		read_button = (ImageView) findViewById(R.id.pe_read_button);
+		read_button.setEnabled(false);
 		tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {			
 			@Override
 			public void onInit(int status) {
@@ -409,7 +371,6 @@ public class PictureEditor extends Activity {
 		Things_Bathroom.add("thing_soap");
 		Things_Bathroom.add("thing_toothbrush_and_toothpaste");
 
-		Things_Bedroom.add("thing_alarm_clock");
 		Things_Bedroom.add("thing_doll");
 		Things_Bedroom.add("thing_lamp");
 		Things_Bedroom.add("thing_pillow");
@@ -430,7 +391,6 @@ public class PictureEditor extends Activity {
 		Things_Classroom.add("thing_toy_horse");
 
 		Things_Clinic.add("thing_stethoscope");
-		//Things_Clinic.add("thing_thermometer");
 
 		Things_DiningRoom.add("thing_apple");
 		Things_DiningRoom.add("thing_bananas");
@@ -626,7 +586,7 @@ public class PictureEditor extends Activity {
 						currentStoryLine += sentences[a] + ". ";
 					}
 
-					
+					textDisplay = correctPlace(textDisplay);
 					storyTextView.setText("");			
 					trimSentence = textDisplay.split(" ");
 					
@@ -672,6 +632,7 @@ public class PictureEditor extends Activity {
 						currentStoryLine += sentences[a] + ". ";
 					}
 
+					textDisplay = correctPlace(textDisplay);
 					storyTextView.setText("");			
 					trimSentence = textDisplay.split(" ");
 					
@@ -845,32 +806,6 @@ public class PictureEditor extends Activity {
 			}
 		});
 
-		// dbHelper = new DatabaseHelper(this);
-		// InitializeDB();
-		/*
-		 * storyFiles = dbHelper.getStoryFiles(); userInformation =
-		 * dbHelper.getUserInformation();
-		 * 
-		 * words = dbHelper.getWords(); verbs = dbHelper.getVerbs(); pronouns =
-		 * dbHelper.getPronouns(); prepositions = dbHelper.getPrepositions();
-		 * nouns = dbHelper.getNouns(); conjunctions =
-		 * dbHelper.getConjunctions(); //conceptMappers =
-		 * dbHelper.getConceptMappers(); articles = dbHelper.getArticles();
-		 * adverbs = dbHelper.getAdverbs(); adjectives =
-		 * dbHelper.getAdjectives();
-		 * 
-		 * concepts = dbHelper.getConcepts(); ontology =
-		 * dbHelper.getOntologies();
-		 * 
-		 * IGCharacters = dbHelper.getIGCharacters(); IGObjects =
-		 * dbHelper.getIGObjects(); backgrounds = dbHelper.getBackgrounds();
-		 * 
-		 * storyPlotTracker = dbHelper.getStoryPlotTracker(); characterGoals =
-		 * dbHelper.getCharacterGoals(); authorGoals =
-		 * dbHelper.getAuthorGoals(); IGThemes = dbHelper.getIGThemes();
-		 * semanticRelationRules = dbHelper.getSemanticRelationRules();
-		 */
-
 		if (loadStory == true) {
 			storyId = getIntent().getIntExtra("storyID", storyId);
 			isUserAuthor = getIntent().getIntExtra("isUserAuthor", isUserAuthor); 
@@ -879,27 +814,45 @@ public class PictureEditor extends Activity {
 			StoryFile sf = dbHelper.findStoryFileById(storyId);
 			String sfBackground = sf.getBackground();
 
-			if (sfBackground.equals("bg_bathroom"))
+			if (sfBackground.equals("bg_bathroom")){
+				selectedBackground = dbHelper.getBackground("Bathroom");
 				backgroundID = 0;
-			else if (sfBackground.equals("bg_bedroom"))
+			}
+			else if (sfBackground.equals("bg_bedroom")){
+				selectedBackground = dbHelper.getBackground("Bedroom");
 				backgroundID = 1;
-			else if (sfBackground.equals("bg_classroom"))
+			}
+			else if (sfBackground.equals("bg_classroom")){
+				selectedBackground = dbHelper.getBackground("Classroom");
 				backgroundID = 2;
-			else if (sfBackground.equals("bg_clinic"))
+			}
+			else if (sfBackground.equals("bg_clinic")){
+				selectedBackground = dbHelper.getBackground("Clinic");
 				backgroundID = 3;
-			else if (sfBackground.equals("bg_diningroom"))
+			}
+			else if (sfBackground.equals("bg_diningroom")){
+				selectedBackground = dbHelper.getBackground("Dining Room");
 				backgroundID = 4;
-			else if (sfBackground.equals("bg_mall"))
+			}
+			else if (sfBackground.equals("bg_mall")){
+				selectedBackground = dbHelper.getBackground("Mall");
 				backgroundID = 5;
-			else if (sfBackground.equals("bg_market"))
+			}
+			else if (sfBackground.equals("bg_market")){
+				selectedBackground = dbHelper.getBackground("Market");
 				backgroundID = 6;
-			else if (sfBackground.equals("bg_outdoors"))
+			}
+			else if (sfBackground.equals("bg_outdoors")){
+				selectedBackground = dbHelper.getBackground("Outdoors");
 				backgroundID = 7;
-			else if (sfBackground.equals("bg_playground"))
+			}
+			else if (sfBackground.equals("bg_playground")){
+				selectedBackground = dbHelper.getBackground("Playground");
 				backgroundID = 8;
+			}
 
 			changeBackground(backgroundID);
-
+			
 			for (int i = 0; i < SavedStickers.size(); i++) {
 				SavedSticker ss = SavedStickers.get(i);
 				String ssType = ss.getType();
@@ -915,25 +868,24 @@ public class PictureEditor extends Activity {
 					SelectedKids.add(ssName);
 				} else if (ssType.equals("thing")) {
 					Things.remove(ssName);
-					SelectedThings.add(ssName);
+					SelectedThings.add(ssName);	
 				}
 
-				int imageID = context.getResources().getIdentifier(ssName,
-						"drawable", context.getPackageName());
+				int imageID = context.getResources().getIdentifier(ssName,"drawable", context.getPackageName());
 				ImageView stickerImageView = new ImageView(this);
-				stickerImageView.setImageDrawable(context.getResources()
-						.getDrawable(imageID));
+				stickerImageView.setImageDrawable(context.getResources().getDrawable(imageID));
 				stickerImageView.setContentDescription(ssName);
 				stickerImageView.setX(ssX);
 				stickerImageView.setY(ssY);
-				pictureBackground.addView(stickerImageView);
+				pictureBackground.addView(stickerImageView);	
+				
 			}
 
-			gridView.setAdapter(new ImageAdapter(context, Adults));
-
+			gridView.setAdapter(new ImageAdapter(context, Adults));		
+		
 			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 				View view = pictureBackground.getChildAt(i);
-				view.setEnabled(false);
+				view.setEnabled(true);
 			}
 
 			generatedTitle = sf.getTitle();
@@ -947,11 +899,6 @@ public class PictureEditor extends Activity {
 				numberOfPages = 1;
 			currentPage = 1;
 
-			for (int i = 0; i < pictureBackground.getChildCount(); i++) {
-				View view = pictureBackground.getChildAt(i);
-				view.setEnabled(false);
-			}
-
 			textDisplay = new String();
 			currentStoryLine = "";
 
@@ -959,6 +906,9 @@ public class PictureEditor extends Activity {
 				textDisplay += sentences[a] + ". ";
 				currentStoryLine += sentences[a] + ". ";
 			}
+
+			textDisplay = correctPlace(textDisplay);
+			currentStoryLine = correctPlace(textDisplay);
 			
 			storyTextView.setText("");			
 			trimSentence = textDisplay.split(" ");
@@ -988,25 +938,22 @@ public class PictureEditor extends Activity {
 			}
 			
 			restart_button.setEnabled(false);
-			
+			read_button.setEnabled(true);
 			retry_button.setEnabled(false);
-			save_button.setEnabled(false);	
+			save_button.setEnabled(false);				
 			
-		//	createstory_button.setVisibility(View.INVISIBLE);
-			editstory_button.setVisibility(View.VISIBLE);
+		/*	editstory_button.setVisibility(View.VISIBLE);
 			editstory_button.setEnabled(false);
-			
+
 			createstory_button.setVisibility(View.INVISIBLE);
+			*/
+			createstory_button.setEnabled(false);
 			
 			bgTitleLayout.setVisibility(View.INVISIBLE);
 			storyTitle.setVisibility(View.VISIBLE);
 
 			stickersLayout.setVisibility(View.INVISIBLE);
-			storyLayout.setVisibility(View.VISIBLE);
-			
-		//	if (isUserAuthor == 0) {
-		
-		//	}
+			storyLayout.setVisibility(View.VISIBLE);		
 		}
 		
 		
@@ -1022,7 +969,7 @@ public class PictureEditor extends Activity {
 			restart_button.setEnabled(false);
 			right_button.setEnabled(false);
 			left_button.setEnabled(false);
-
+			read_button.setEnabled(false);
 		}
 	}
 	
@@ -1043,6 +990,54 @@ public class PictureEditor extends Activity {
 			tts.stop();
 			tts.shutdown();	
 		}
+	}
+	
+	public String correctPlace(String currentStoryLine){
+		String result = currentStoryLine;
+		String bg = getAlias(selectedBackground.getBackgroundWord());
+		ArrayList<String> bgList = new ArrayList<String>();
+		bgList.add("bathroom");
+		bgList.add("bedroom");
+		bgList.add("school");
+		bgList.add("clinic");
+		bgList.add("dining room");
+		bgList.add("mall");
+		bgList.add("market");
+		bgList.add("garden");
+		bgList.add("playground");
+		bgList.add("living room");
+		
+		for(String background:bgList)
+			if(result.contains(background)){
+				result = result.replaceAll(background, bg);
+				Log.e("ok", "background "+background+"   bg:   "+bg);
+			}
+
+		return result;
+	}
+	
+	public String getAlias(String currBg){
+
+		
+		if (currBg.equalsIgnoreCase("bathroom"))
+			return "bathroom";
+		else if (currBg.equalsIgnoreCase("bedroom"))
+			return "bedroom";
+		else if (currBg.equalsIgnoreCase("classroom"))
+			return "school";
+		else if (currBg.equalsIgnoreCase("clinic"))
+			return "clinic";
+		else if (currBg.equalsIgnoreCase("diningroom"))
+			return "dining room";
+		else if (currBg.equalsIgnoreCase("mall"))
+			return "mall";
+		else if (currBg.equalsIgnoreCase("market"))
+			return "market";
+		else if (currBg.equalsIgnoreCase("outdoors"))
+			return "garden";
+		else if (currBg.equalsIgnoreCase("playground"))
+			return "playground";
+		return currBg;
 	}
 
 	public void clearThings() {
@@ -1105,7 +1100,6 @@ public class PictureEditor extends Activity {
 			bgTitle.setText("Bathroom");
 			break;
 		case 1:
-			pictureBackground.setBackgroundResource(0);
 			pictureBackground.setBackgroundResource(R.drawable.bg_bedroom);
 			pictureBackground.setContentDescription("bg_bedroom");
 			Things = Things_Bedroom;
@@ -1174,7 +1168,7 @@ public class PictureEditor extends Activity {
 		}
 	}
 	
-	class MyDragListener_GridView implements OnDragListener {							// IMAGE CHOOSE AT THE RIGHT
+	class MyDragListener_GridView implements OnDragListener {	// IMAGE CHOOSE AT THE RIGHT
 
 		@Override
 		public boolean onDrag(View v, DragEvent event) {
@@ -1235,7 +1229,7 @@ public class PictureEditor extends Activity {
 		}
 	}
 
-	class MyDragListener_RelativeLayout implements OnDragListener {								// PICTURE BACKGROUND EDITOR
+	class MyDragListener_RelativeLayout implements OnDragListener {	// PICTURE BACKGROUND EDITOR
 
 		@Override
 		public boolean onDrag(View v, DragEvent event) {
@@ -1355,28 +1349,13 @@ public class PictureEditor extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();			
-			/*
-			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-			dialog.setContentView(getLayoutInflater().inflate(R.layout.activity_dialog, null));
-			dialog.show();
-*/
-	//		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-	//		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-    //        LinearLayout contentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog, null);
-     //       dialog.setContentView(contentView);
-
-     //       ImageView image = (ImageView) contentView.findViewById(R.id.loading);
-     //        AnimationDrawable animation = (AnimationDrawable) image.getDrawable();
-
-            dialog.setOnShowListener(new OnShowListener() {
+            generate_dialog.setOnShowListener(new OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialog) {
-                	animation.start();
+                	generate_animation.start();
                 }
                 });
-            dialog.show();
+            generate_dialog.show();
 		}
 
 		@Override
@@ -1445,7 +1424,7 @@ public class PictureEditor extends Activity {
 
 			LASGenerator sg = new LASGenerator();
 			PlotMaker pm = new PlotMaker(adultChar);
-			
+			themeExtractor = new ThemeExtractor();
 			boolean isError = false;
 
 			try {
@@ -1573,7 +1552,10 @@ public class PictureEditor extends Activity {
 				textDisplay += sentences[a] + ". ";
 				currentStoryLine += sentences[a] + ". ";
 			}
-
+			
+			textDisplay = correctPlace(textDisplay);
+			currentStoryLine = correctPlace(textDisplay);
+			
 			return background;
 		}
 
@@ -1612,6 +1594,7 @@ public class PictureEditor extends Activity {
 				pageRight_button.setEnabled(true);
 			}
 			restart_button.setEnabled(false);
+			read_button.setEnabled(true);
 			
 			createstory_button.setVisibility(View.INVISIBLE);
 			editstory_button.setVisibility(View.VISIBLE);
@@ -1636,7 +1619,7 @@ public class PictureEditor extends Activity {
 			storyTextView.setVisibility(View.VISIBLE);
 			page.setVisibility(View.VISIBLE);
 			
-			dialog.dismiss();
+			generate_dialog.dismiss();
             
 		}
 
@@ -1659,15 +1642,15 @@ public class PictureEditor extends Activity {
 	    		  
 	    		  definition = removeBr(definition);
 	    		  
-		    	  AlertDialog dialog = new AlertDialog.Builder(context).create();
-			      dialog.setTitle("Did you know that?");
-			      dialog.setMessage(definition);
-			      dialog.setIcon(R.drawable.pe_dictionary_button);
-			      dialog.setButton("OK", new DialogInterface.OnClickListener() {
+		    	  AlertDialog alertdialog = new AlertDialog.Builder(context).create();
+			      alertdialog.setTitle("Did you know that?");
+			      alertdialog.setMessage(definition);
+			      alertdialog.setIcon(R.drawable.pe_dictionary_button);
+			      alertdialog.setButton("OK", new DialogInterface.OnClickListener() {
 			              public void onClick(DialogInterface dialog, int which) {
 			              }
 			      });
-			      dialog.show();
+			      alertdialog.show();
 	    	  }  	 
 	      }
 	      
@@ -1694,9 +1677,13 @@ public class PictureEditor extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 
-			mDialog = new ProgressDialog(context);
-			mDialog.setMessage("Generating story...");
-			mDialog.show();
+			generate_dialog.setOnShowListener(new OnShowListener() {
+	                @Override
+	                public void onShow(DialogInterface dialog) {
+	                	generate_animation.start();
+	                }
+	                });
+	        generate_dialog.show();
 		}
 
 		@Override
@@ -1765,7 +1752,7 @@ public class PictureEditor extends Activity {
 
 			LASGenerator sg = new LASGenerator();
 			PlotMaker pm = new PlotMaker(adultChar);
-			
+			themeExtractor = new ThemeExtractor();
 			boolean isError = false;
 
 			try {
@@ -1891,7 +1878,10 @@ public class PictureEditor extends Activity {
 				textDisplay += sentences[a] + ". ";
 				currentStoryLine += sentences[a] + ". ";
 			}
-
+			
+			textDisplay = correctPlace(textDisplay);
+			currentStoryLine = correctPlace(textDisplay);
+			
 			return background;
 		}
 
@@ -1932,7 +1922,7 @@ public class PictureEditor extends Activity {
 				pageRight_button.setEnabled(true);
 			}
 			restart_button.setEnabled(false);
-			
+			read_button.setEnabled(true);
 			createstory_button.setVisibility(View.INVISIBLE);
 			editstory_button.setVisibility(View.VISIBLE);
 
@@ -1942,7 +1932,7 @@ public class PictureEditor extends Activity {
 			stickersLayout.setVisibility(View.INVISIBLE);
 			storyLayout.setVisibility(View.VISIBLE);
 
-			mDialog.dismiss();
+			generate_dialog.dismiss();
 		}
 
 	}
@@ -1958,9 +1948,14 @@ public class PictureEditor extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 
-			mDialog = new ProgressDialog(context);
-			mDialog.setMessage("Saving story...");
-			mDialog.show();
+
+            save_dialog.setOnShowListener(new OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                	save_animation.start();
+                }
+                });
+            save_dialog.show();
 		}
 
 		@Override
@@ -2007,7 +2002,7 @@ public class PictureEditor extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			mDialog.dismiss();
+			save_dialog.dismiss();
 
 			Intent mainIntent = new Intent(PictureEditor.this,
 					StoriesActivity.class);
@@ -2087,6 +2082,7 @@ public class PictureEditor extends Activity {
 			pictureBackground.setClickable(true);
 			break;
 		case 7:
+			restart_button.setEnabled(false);
 			image = (ImageView) findViewById(R.id.tutorial_things_tab);
 			image.setVisibility(View.VISIBLE);
 			things_button.setEnabled(true);
@@ -2099,6 +2095,7 @@ public class PictureEditor extends Activity {
 			pictureBackground.setClickable(true);
 			break;
 		case 9:
+			restart_button.setEnabled(false);
 			image = (ImageView) findViewById(R.id.tutorial_adults_tab);
 			image.setVisibility(View.VISIBLE);
 			adults_button.setEnabled(false);
@@ -2116,6 +2113,7 @@ public class PictureEditor extends Activity {
 			toggleEnableGridView(true);
 			break;
 		case 11:
+			restart_button.setEnabled(false);
 			image = (ImageView) findViewById(R.id.tutorial_create_story);
 			image.setVisibility(View.VISIBLE);
 			restart_button.setEnabled(false);
@@ -2146,16 +2144,16 @@ public class PictureEditor extends Activity {
 			image.setVisibility(View.INVISIBLE);
 			toggleEnableEvents(true);
 			
-			home_button.setEnabled(true);
-			library_button.setEnabled(true);
-			right_button.setEnabled(true);
-			left_button.setEnabled(true);
-			
+			if(skipped)
+				read_button.setEnabled(false);
+			else
+				read_button.setEnabled(true);
 			break;
 		}
 	}
 
 	public void tutorialSkip(View v) {
+		skipped = true;
 		Log.d("Skip Tutorial", "Skip Tutorial");
 		v.setVisibility(View.INVISIBLE);
 		tutorialStep = 11;
@@ -2166,7 +2164,6 @@ public class PictureEditor extends Activity {
 		toggleEnableGridView(enabled);
 		home_button.setEnabled(enabled);
 		library_button.setEnabled(enabled);
-		restart_button.setEnabled(enabled);
 		createstory_button.setEnabled(enabled);
 		pictureBackground.setEnabled(enabled);
 		left_button.setEnabled(enabled);
