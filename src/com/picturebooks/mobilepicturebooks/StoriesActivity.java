@@ -83,7 +83,7 @@ public class StoriesActivity extends /* ORIGINAL DroidGap */ Activity {
 	}
 	
 	public void clicked_btnBack(View v) {
-        Intent mainIntent = new Intent(StoriesActivity.this, HomeActivity.class);
+        Intent mainIntent = new Intent(StoriesActivity.this, BookActivity.class);
         startActivity(mainIntent);
         openingActivity = true;
         finish();

@@ -21,7 +21,7 @@
 	<string name="button_addaccount">Add New Account</string>
 	
 	<string name="button_home">Home</string>
-	<string name="button_library">Library</string>
+	<string name="button_stories">Stories</string>
 	<string name="button_sound_on">Sound: On</string>
 	<string name="button_sound_off">Sound: Off</string>
 	<string name="button_info">Information</string>

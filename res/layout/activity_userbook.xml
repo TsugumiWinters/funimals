@@ -27,13 +27,13 @@
                 android:src="@drawable/general_home_button_selector" />
 
             <ImageView
-                android:id="@+id/userbook_btn_library"
+                android:id="@+id/userbook_btn_stories"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="@string/button_library"
+                android:contentDescription="@string/button_stories"
                 android:onClick="clicked_btnLibrary"
-                android:src="@drawable/general_library_button_selector" />
+                android:src="@drawable/general_stories_button_selector" />
 
         </LinearLayout>
 
