@@ -140,7 +140,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/pe_adults_button"
-			style="@style/pe_scrollbar_things" >
+			style="@style/pe_scrollbar" >
 		</GridView>
 	 
 	</RelativeLayout>
