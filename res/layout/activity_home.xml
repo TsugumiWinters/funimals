@@ -76,10 +76,10 @@
                 android:layout_width="@dimen/buttonhome_width"
                 android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
-                android:contentDescription="@string/button_viewlibrary"
+                android:contentDescription="@string/button_viewstories"
                 android:onClick="clicked_btnViewLibrary"
                 android:scaleType="centerInside"
-                android:src="@drawable/general_viewlibrary_button_selector" />
+                android:src="@drawable/general_viewstories_button_selector" />
 
             <ImageView
                 android:id="@+id/home_btn_seetutorial"
