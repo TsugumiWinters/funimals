@@ -85,6 +85,7 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		
 		/* Get Selected User */
 		UserInformation user = adapter.getUser(txtName.getText().toString());
+		Log.d("Selected User", user.getUsername() + " : Age " + user.getAge() + " : Level " + user.getGrade());
 		
 		int img = getResources().getIdentifier(viewImage.getContentDescription().toString(), "drawable", this.getPackageName());
 		String username = user.getUsername();

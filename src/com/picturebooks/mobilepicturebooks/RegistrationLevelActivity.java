@@ -13,6 +13,7 @@ import database_entities.UserInformation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -57,7 +58,7 @@ public class RegistrationLevelActivity extends Activity {
 		UserInformation user = new UserInformation();
 		user.setUsername(getIntent().getStringExtra("user_name"));
 		user.setAge(getIntent().getIntExtra("user_age", 6));
-		user.setGrade((level.equals("Prep")) ? 0 : level.charAt(level.length() - 1));
+		user.setGrade((level.equals("Prep")) ? 0 : Integer.parseInt("" + level.charAt(level.length() - 1)));
 		
 		DatabaseHelper dbHelper = new DatabaseHelper(this);
 		dbHelper.openDataBase();
@@ -94,8 +95,9 @@ public class RegistrationLevelActivity extends Activity {
 	    try {
 	    	DatabaseHelper dbHelper = new DatabaseHelper(this);
 	    	dbHelper.openDataBase();
-	    	int index = dbHelper.getUserInformation().size();
+	    	int index = dbHelper.getUserInformation().size() - 1;
 	    	id = drawables.get(index);
+	    	Log.d("Chosen Image", "User No." + index);
 	    }
 	    catch (Exception e) {}
 	    
