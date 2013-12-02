@@ -90,11 +90,8 @@ public class MenuActivity extends /* ORIGINAL DroidGap */ Activity {
 		int img = getResources().getIdentifier(viewImage.getContentDescription().toString(), "drawable", this.getPackageName());
 		String username = user.getUsername();
 		int age = user.getAge();
-		String level = "Grade ";
-		if (user.getGrade() > 0) {
-			level.concat("" + user.getGrade());
-		}
-		else {
+		String level = "Grade " + user.getGrade();
+		if (user.getGrade() <= 0) {
 			level = "Prep";
 		}
 		ActiveUser.setActiveUser(this, img, username, age, level);
