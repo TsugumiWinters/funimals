@@ -9,6 +9,7 @@
          android:id="@+id/saving"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-          android:src="@drawable/progress_dialog_icon_drawable_animation_save" />
+         android:src="@drawable/progress_dialog_icon_drawable_animation_save"
+         android:contentDescription="@string/saving_story" />
  
  </LinearLayout>
