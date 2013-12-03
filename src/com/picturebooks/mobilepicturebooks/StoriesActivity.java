@@ -166,11 +166,6 @@ public class StoriesActivity extends Activity {
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		
 		options.inPreferredConfig = Bitmap.Config.RGB_565;
-		
-		if(BitmapFactory.decodeFile(path + fileName, options) == null)
-			Log.d("null ba", "null eto");
-		else
-			Log.d("indi null", "indi null");
 		return BitmapFactory.decodeFile(path + fileName, options);
 	}
 	
