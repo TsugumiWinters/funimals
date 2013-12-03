@@ -32,15 +32,13 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="175dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="175dp"
-        android:layout_marginRight="175dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="27dp"
+        android:layout_below="@+id/registrationname_btn_back"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
         android:background="@drawable/general_entername"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingLeft="25dp"
+        android:paddingRight="27dp" >
 
         <Space
             android:layout_width="match_parent"
@@ -50,16 +48,13 @@
             android:id="@+id/registration_txt_name"
             android:layout_width="@dimen/layout_widthname"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textSize="@dimen/text_size"
-            android:inputType="textPersonName"
-            android:hint="@string/registration_hint_name"
-            android:gravity="center"
             android:layout_marginLeft="@dimen/margin_leftname"
-            android:background="@drawable/general_textboxname" >
-
-            <requestFocus />
-        </EditText>
+            android:background="@drawable/general_textboxname"
+            android:gravity="center"
+            android:hint="@string/registration_hint_name"
+            android:inputType="textPersonName"
+            android:padding="5dp"
+            android:textSize="@dimen/text_size" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -62,6 +62,7 @@ import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.TranslateAnimation;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AbsoluteLayout;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -1075,27 +1076,6 @@ public class PictureEditor extends Activity {
 			tts.stop();
 			tts.shutdown();	
 		}
-	}
-	
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-		Log.e("start", "started");
-	}
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		Log.e("start", "resumed");
-	}
-	
-	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-		Log.e("start", "stopped");
 	}
 	
 	public String correctPlace(String currentStoryLine){

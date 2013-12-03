@@ -65,6 +65,8 @@ public class MenuActivity extends Activity {
 	}
 	
 	public void clicked_openAccount(View v) {
+		ActiveUser.clearActiveUser(this);
+		
 		ImageView viewImage = (ImageView) v.findViewById(R.id.canvas_img_user);
 		TextView txtName = (TextView) v.findViewById(R.id.canvas_name);
 		
@@ -85,6 +87,12 @@ public class MenuActivity extends Activity {
 		Intent mainIntent = new Intent(MenuActivity.this, HomeActivity.class);
         MenuActivity.this.startActivity(mainIntent);
 
+	}
+	
+	@Override
+	protected void onResume() {
+		ActiveUser.clearActiveUser(this);
+		super.onResume();
 	}
 	
 	@Override

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,6 +50,15 @@ public class HomeActivity extends Activity {
 
         imgUser.setImageResource(user.getImage());
         txtUser.setText(user.getName());
+        frame.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+		        Intent mainIntent = new Intent(HomeActivity.this, MenuActivity.class);
+		        startActivity(mainIntent);
+			}
+        	
+        });
 		
         frame.addView(userCanvas);
        

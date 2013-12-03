@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Funimals</string>
     <string name="menu_settings">Settings</string>
-    <string name="ic_launcher">ic_launcher</string>
 	
 	<string name="description">Image Description</string>
 	
@@ -11,7 +10,7 @@
 	<string name="pe_bgdescription">PE Background Image Description</string>
 	<string name="pe_gridviewdescription">PE GridView Description</string>
 	
-	<string name="splash">De La Salle University</string>
+	<string name="splash">Swift Shot</string>
 	
 	<string name="user_name">%1$s</string>
 	<string name="user_age">%1$d years old</string>

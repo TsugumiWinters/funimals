@@ -30,7 +30,6 @@
             android:contentDescription="@string/button_info"
             android:onClick="clicked_btnInfo"
             android:scaleType="fitXY"
-            android:visibility="invisible"
             android:src="@drawable/general_info_button_selector" />
     </LinearLayout>
 
