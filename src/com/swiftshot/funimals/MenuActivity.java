@@ -10,6 +10,7 @@ import database_entities.UserInformation;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 /* ORIGINAL
 import android.os.Bundle;
 import org.apache.cordova.*;
@@ -70,7 +71,8 @@ public class MenuActivity extends Activity {
 		
 		ImageView viewImage = (ImageView) v.findViewById(R.id.canvas_img_user);
 		TextView txtName = (TextView) v.findViewById(R.id.canvas_name);
-		
+       	viewImage.setColorFilter(Color.rgb(123,73,122), android.graphics.PorterDuff.Mode.DARKEN);
+       	
 		/* Get Selected User */
 		UserInformation user = adapter.getUser(txtName.getText().toString());
 		Log.d("Selected User", user.getUsername() + " : Age " + user.getAge() + " : Level " + user.getGrade());

@@ -42,6 +42,7 @@ public class SplashActivity extends Activity {
                 Intent mainIntent = new Intent(SplashActivity.this, MenuActivity.class);
                 SplashActivity.this.startActivity(mainIntent);
                 openingActivity = true;
+                
                 SplashActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGHT);

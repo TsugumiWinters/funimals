@@ -144,8 +144,8 @@ public class StoriesActivity extends Activity {
         	return;
         }
         
-        imgStory.setColorFilter(Color.rgb(123,73,122), android.graphics.PorterDuff.Mode.MULTIPLY );
-		
+        imgStory.setColorFilter(Color.rgb(123,73,122), android.graphics.PorterDuff.Mode.DARKEN);
+        
 		Intent mainIntent = new Intent(StoriesActivity.this, PictureEditor.class);
         UserInformation user = ActiveUser.getActiveUser(this);
         

@@ -55,6 +55,16 @@ public class ActiveUser {
 		Log.d("Saving", "committing...");
 		editor.commit();
 		Log.d("Saving", "committed.");
+		
+		if(ACTIVE_USER == null) {		
+			ACTIVE_USER = new UserInformation();
+		}
+		
+		ACTIVE_USER.setImage(img);
+		ACTIVE_USER.setName(name);
+		ACTIVE_USER.setAge(age);
+		ACTIVE_USER.setLevel(level);
+		
 	}
 	
 	public static void clearActiveUser(Context context) {
