@@ -2,7 +2,7 @@ package com.picturebooks.funimals;
 
 import android.app.Application;
 
-public class MPBApplication extends Application {
+public class FunimalsApplication extends Application {
 	
 	private String user = "Jeremy";
 	private int age = 8;
