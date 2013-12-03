@@ -45,8 +45,21 @@
             android:gravity="center"
             android:text="@string/story_title"
             android:textAlignment="center"
-            android:onClick="clicked_selectedStory"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textSize="40sp"
+
+android:textStyle="bold"
+
+android:typeface="serif"
+
+android:textColor="#00ccff" 
+
+android:shadowColor="#00ccff"
+
+android:shadowRadius="1.5"
+
+android:shadowDx="1"
+
+android:shadowDy="1" />
     </LinearLayout>
 
     <LinearLayout

@@ -35,7 +35,7 @@
         <com.devsmart.android.ui.HorizontalListView
             android:id="@+id/accounts_list"
             android:layout_width="wrap_content"
-            android:layout_height="340dp"
+            android:layout_height="360dp"
             android:layout_marginTop="90dp"
             android:layout_marginRight="50dp"
             android:orientation="horizontal"

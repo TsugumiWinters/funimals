@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -142,6 +143,8 @@ public class StoriesActivity extends Activity {
         if (selectedStory == -1) {
         	return;
         }
+        
+        imgStory.setColorFilter(Color.rgb(123,73,122), android.graphics.PorterDuff.Mode.MULTIPLY );
 		
 		Intent mainIntent = new Intent(StoriesActivity.this, PictureEditor.class);
         UserInformation user = ActiveUser.getActiveUser(this);
@@ -161,7 +164,13 @@ public class StoriesActivity extends Activity {
 				+ "/MobilePictureBooks/SavedPictures/";
 		
 		BitmapFactory.Options options = new BitmapFactory.Options();
+		
 		options.inPreferredConfig = Bitmap.Config.RGB_565;
+		
+		if(BitmapFactory.decodeFile(path + fileName, options) == null)
+			Log.d("null ba", "null eto");
+		else
+			Log.d("indi null", "indi null");
 		return BitmapFactory.decodeFile(path + fileName, options);
 	}
 	
