@@ -1,6 +1,8 @@
-package com.picturebooks.mobilepicturebooks;
+package com.picturebooks.funimals;
 
 import java.util.ArrayList;
+
+import com.picturebooks.funimals.R;
 
 import android.content.ClipData;
 import android.content.Context;

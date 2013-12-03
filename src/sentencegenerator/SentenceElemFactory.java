@@ -18,7 +18,7 @@ import simplenlg.realiser.Realiser;
 import simplenlg.realiser.SPhraseSpec;
 import simplenlg.realiser.VPPhraseSpec;
 
-import com.picturebooks.mobilepicturebooks.ApplicationContextProvider;
+import com.picturebooks.funimals.ApplicationContextProvider;
 
 import database.DatabaseHelper;
 import database_entities.CharacterGoal;

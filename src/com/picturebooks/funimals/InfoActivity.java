@@ -1,6 +1,7 @@
-package com.picturebooks.mobilepicturebooks;
+package com.picturebooks.funimals;
 
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.picturebooks.funimals.models.ActiveUser;
+import com.picturebooks.funimals.R;
 
 import android.app.Activity;
 import android.content.Intent;

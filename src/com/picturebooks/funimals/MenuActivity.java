@@ -1,8 +1,9 @@
-package com.picturebooks.mobilepicturebooks;
+package com.picturebooks.funimals;
 
 import com.devsmart.android.ui.HorizontalListView;
-import com.picturebooks.mobilepicturebooks.models.AccountListAdapter;
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.picturebooks.funimals.models.AccountListAdapter;
+import com.picturebooks.funimals.models.ActiveUser;
+import com.picturebooks.funimals.R;
 
 import database_entities.UserInformation;
 

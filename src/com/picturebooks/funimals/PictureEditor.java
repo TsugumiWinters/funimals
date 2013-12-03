@@ -1,4 +1,4 @@
-package com.picturebooks.mobilepicturebooks;
+package com.picturebooks.funimals;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -76,8 +76,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.picturebooks.mobilepicturebooks.ImageAdapter.MyOnTouchListener;
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.picturebooks.funimals.ImageAdapter.MyOnTouchListener;
+import com.picturebooks.funimals.models.ActiveUser;
+import com.picturebooks.funimals.R;
 
 import database.DatabaseHelper;
 import database_entities.Background;
@@ -2115,7 +2116,7 @@ public class PictureEditor extends Activity {
 		// Store to sdcard
 		try {
 			String path = Environment.getExternalStorageDirectory().toString()
-					+ "/MobilePictureBooks/SavedPictures";
+					+ "/Funimals/SavedPictures";
 			File myFile = new File(path);
 			myFile.mkdirs();
 			myFile = new File(path, filename);

@@ -1,11 +1,12 @@
-package com.picturebooks.mobilepicturebooks;
+package com.picturebooks.funimals;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.picturebooks.mobilepicturebooks.R.layout;
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.picturebooks.funimals.models.ActiveUser;
+import com.picturebooks.funimals.R;
+import com.picturebooks.funimals.R.layout;
 
 import database.DatabaseHelper;
 import database_entities.UserInformation;

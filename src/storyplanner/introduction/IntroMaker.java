@@ -13,7 +13,7 @@ import storyplanner.StoryElement;
 import storyplanner.component.StoryTree;
 import storyplanner.ontology.OntologyException;
 
-import com.picturebooks.mobilepicturebooks.ApplicationContextProvider;
+import com.picturebooks.funimals.ApplicationContextProvider;
 
 import database.DatabaseHelper;
 import database_entities.CharacterGoal;

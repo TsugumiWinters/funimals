@@ -1,4 +1,4 @@
-package com.picturebooks.mobilepicturebooks.models;
+package com.picturebooks.funimals.models;
 
 
 import android.app.Activity;

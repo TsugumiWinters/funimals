@@ -8,7 +8,7 @@ import sentencegenerator.component.DBLexicalObject;
 import sentencegenerator.component.Phrase;
 import android.content.Context;
 
-import com.picturebooks.mobilepicturebooks.ApplicationContextProvider;
+import com.picturebooks.funimals.ApplicationContextProvider;
 
 import database.DatabaseHelper;
 import database_entities.Word;

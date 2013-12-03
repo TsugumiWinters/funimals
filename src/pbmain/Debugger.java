@@ -20,7 +20,7 @@ import storyplanner.plot.ThemeExtractor;
 import storyplanner.title.TitleMaker;
 import storyplanner.title.TitleMakerException;
 
-import com.picturebooks.mobilepicturebooks.ApplicationContextProvider;
+import com.picturebooks.funimals.ApplicationContextProvider;
 
 import database.DatabaseHelper;
 import database_entities.Background;

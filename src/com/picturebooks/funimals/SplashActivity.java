@@ -1,9 +1,9 @@
-package com.picturebooks.mobilepicturebooks;
+package com.picturebooks.funimals;
 
 import java.io.IOException;
 
-import com.picturebooks.mobilepicturebooks.R;
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.picturebooks.funimals.models.ActiveUser;
+import com.picturebooks.funimals.R;
 
 import database.DatabaseHelper;
 

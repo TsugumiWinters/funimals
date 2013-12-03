@@ -1,4 +1,4 @@
-package com.picturebooks.mobilepicturebooks;
+package com.picturebooks.funimals;
 
 import java.util.ArrayList;
 
@@ -21,9 +21,10 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
-import com.picturebooks.mobilepicturebooks.models.StoryAdapter;
-import com.picturebooks.mobilepicturebooks.models.UserInformation;
+import com.picturebooks.funimals.models.ActiveUser;
+import com.picturebooks.funimals.models.StoryAdapter;
+import com.picturebooks.funimals.models.UserInformation;
+import com.picturebooks.funimals.R;
 
 import database.DatabaseHelper;
 import database_entities.StoryFile;
@@ -161,7 +162,7 @@ public class StoriesActivity extends Activity {
 	
 	private Bitmap getImageFromFile(String fileName) {
 		String path = Environment.getExternalStorageDirectory().toString()
-				+ "/MobilePictureBooks/SavedPictures/";
+				+ "/Funimals/SavedPictures/";
 		
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		

@@ -12,7 +12,7 @@ import pbmain.util.ParserException;
 import storyplanner.StoryElement;
 import storyplanner.StoryPlannerException;
 
-import com.picturebooks.mobilepicturebooks.ApplicationContextProvider;
+import com.picturebooks.funimals.ApplicationContextProvider;
 
 import database.DatabaseHelper;
 import database_entities.CharacterGoal;

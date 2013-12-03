@@ -1,4 +1,4 @@
-package com.picturebooks.mobilepicturebooks;
+package com.picturebooks.funimals;
 
 
 import android.app.Activity;
@@ -14,8 +14,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
-import com.picturebooks.mobilepicturebooks.models.UserInformation;
+import com.picturebooks.funimals.models.ActiveUser;
+import com.picturebooks.funimals.models.UserInformation;
+import com.picturebooks.funimals.R;
 
 public class BookActivity extends Activity {
 	
