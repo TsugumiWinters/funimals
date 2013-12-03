@@ -998,7 +998,7 @@ public class PictureEditor extends Activity {
 		bgList.add("living room");
 		
 		for(String background:bgList)
-			if(result.contains(" "+background+" ")){
+			if(result.contains(background)){
 				result = result.replaceAll(background, bg);
 			}
 
@@ -1007,23 +1007,23 @@ public class PictureEditor extends Activity {
 	
 	public String getAlias(String currBg){	
 		if (currBg.equalsIgnoreCase("bathroom"))
-			return " bathroom ";
+			return "bathroom";
 		else if (currBg.equalsIgnoreCase("bedroom"))
-			return " bedroom ";
+			return "bedroom";
 		else if (currBg.equalsIgnoreCase("classroom"))
-			return " school ";
+			return "school";
 		else if (currBg.equalsIgnoreCase("clinic"))
-			return " clinic ";
+			return "clinic";
 		else if (currBg.equalsIgnoreCase("diningroom"))
-			return " dining room ";
+			return "dining room";
 		else if (currBg.equalsIgnoreCase("mall"))
-			return " mall ";
+			return "mall";
 		else if (currBg.equalsIgnoreCase("market"))
-			return " market ";
+			return "market";
 		else if (currBg.equalsIgnoreCase("outdoors"))
-			return " garden ";
+			return "garden";
 		else if (currBg.equalsIgnoreCase("playground"))
-			return " playground ";
+			return "playground";
 		return currBg;
 	}
 
@@ -1611,7 +1611,6 @@ public class PictureEditor extends Activity {
 
 		  public void onClick(View textView) {
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
-	    	  tts.setSpeechRate((float) 0.5);
 	    	  String definition = dbHelper.findDefinitionByWord(word);
 	    	  
 	    	  if(!definition.equals("")) {	    		  
