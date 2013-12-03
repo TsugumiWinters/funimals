@@ -1,7 +1,7 @@
-package com.picturebooks.funimals;
+package com.swiftshot.funimals;
 
-import com.picturebooks.funimals.R;
-import com.picturebooks.funimals.R.layout;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;

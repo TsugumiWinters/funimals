@@ -1,12 +1,12 @@
-package com.picturebooks.funimals;
+package com.swiftshot.funimals;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.picturebooks.funimals.models.ActiveUser;
-import com.picturebooks.funimals.R;
-import com.picturebooks.funimals.R.layout;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.R.layout;
+import com.swiftshot.funimals.models.ActiveUser;
 
 import database.DatabaseHelper;
 import database_entities.UserInformation;

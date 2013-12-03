@@ -1,4 +1,4 @@
-package com.picturebooks.funimals;
+package com.swiftshot.funimals;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,7 +25,6 @@ import storyplanner.title.TitleMakerException;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnShowListener;
@@ -57,14 +56,12 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
-import android.view.View.DragShadowBuilder;
 import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
-import android.view.animation.TranslateAnimation;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.AbsoluteLayout;
 import android.view.Window;
+import android.view.animation.TranslateAnimation;
+import android.widget.AbsoluteLayout;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -76,9 +73,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.picturebooks.funimals.ImageAdapter.MyOnTouchListener;
-import com.picturebooks.funimals.models.ActiveUser;
-import com.picturebooks.funimals.R;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.models.ActiveUser;
 
 import database.DatabaseHelper;
 import database_entities.Background;
@@ -310,7 +306,7 @@ public class PictureEditor extends Activity {
 		
 		stickersBG = (ImageView) findViewById(R.id.pe_stickers_bg);	
 		gridView = (GridView) findViewById(R.id.gridView1);
-		
+
 		right_button = (ImageView) findViewById(R.id.pe_right_button);
 		left_button = (ImageView) findViewById(R.id.pe_left_button);
 
@@ -1289,7 +1285,7 @@ public class PictureEditor extends Activity {
 				View view = (View) event.getLocalState();
 				view.playSoundEffect(SoundEffectConstants.CLICK);
 				ViewGroup owner = (ViewGroup) view.getParent();
-				View container = (View) v;
+
 				if (owner.getContentDescription().equals(
 						pictureBackground.getContentDescription()) == true) {
 					owner.removeView(view);

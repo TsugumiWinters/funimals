@@ -1,4 +1,4 @@
-package com.picturebooks.funimals;
+package com.swiftshot.funimals;
 
 import java.util.ArrayList;
 
@@ -15,16 +15,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.picturebooks.funimals.models.ActiveUser;
-import com.picturebooks.funimals.models.StoryAdapter;
-import com.picturebooks.funimals.models.UserInformation;
-import com.picturebooks.funimals.R;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.models.ActiveUser;
+import com.swiftshot.funimals.models.StoryAdapter;
+import com.swiftshot.funimals.models.UserInformation;
 
 import database.DatabaseHelper;
 import database_entities.StoryFile;

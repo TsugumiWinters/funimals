@@ -3,7 +3,6 @@
     android:id="@+id/library_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     >
 
     <LinearLayout
@@ -46,20 +45,14 @@
             android:text="@string/story_title"
             android:textAlignment="center"
             android:textSize="40sp"
-
-android:textStyle="bold"
-
-android:typeface="serif"
-
-android:textColor="#00ccff" 
-
-android:shadowColor="#00ccff"
-
-android:shadowRadius="1.5"
-
-android:shadowDx="1"
-
-android:shadowDy="1" />
+			android:textStyle="bold"
+			android:typeface="serif"
+			android:textColor="#00ccff" 
+			android:shadowColor="#00ccff"
+			android:shadowRadius="1.5"
+			android:shadowDx="1"
+			android:shadowDy="1" />
+        
     </LinearLayout>
 
     <LinearLayout

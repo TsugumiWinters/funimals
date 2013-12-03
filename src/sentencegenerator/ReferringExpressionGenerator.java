@@ -10,7 +10,7 @@ import sentencegenerator.component.Phrase;
 import sentencegenerator.component.sentence.POSKeywords;
 import simplenlg.features.Gender;
 
-import com.picturebooks.funimals.ApplicationContextProvider;
+import com.swiftshot.funimals.ApplicationContextProvider;
 
 import database.DatabaseHelper;
 import database_entities.CharacterGoal;

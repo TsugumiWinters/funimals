@@ -1,4 +1,4 @@
-package com.picturebooks.funimals;
+package com.swiftshot.funimals;
 
 
 import android.app.Activity;
@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.picturebooks.funimals.models.ActiveUser;
-import com.picturebooks.funimals.models.UserInformation;
-import com.picturebooks.funimals.R;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.models.ActiveUser;
+import com.swiftshot.funimals.models.UserInformation;
 
 public class BookActivity extends Activity {
 	

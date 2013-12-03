@@ -1,8 +1,8 @@
-package com.picturebooks.funimals;
+package com.swiftshot.funimals;
 
 import java.util.ArrayList;
 
-import com.picturebooks.funimals.R;
+import com.swiftshot.funimals.R;
 
 import android.content.ClipData;
 import android.content.Context;

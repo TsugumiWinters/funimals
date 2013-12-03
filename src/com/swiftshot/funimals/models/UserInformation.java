@@ -1,4 +1,4 @@
-package com.picturebooks.funimals.models;
+package com.swiftshot.funimals.models;
 
 public class UserInformation {
 	

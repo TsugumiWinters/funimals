@@ -57,4 +57,13 @@
 	    \nOliver Syson</string>
 	
 	<string name="saving_story">Saving Story</string>
+	
+	<string name="abs_content">bg_bedroom</string>
+	<string name="text_bg">Bedroom</string>
+	<string name="text_title">Title</string>
+	<string name="text_story">Story</string>
+	<string name="text_page">Page 1</string>
+	<string name="text_word">Word</string>
+	<string name="text_pos">PartOfSpeech</string>
+	<string name="text_def">Definition</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.picturebooks.funimals;
+package com.swiftshot.funimals;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,10 +11,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.picturebooks.funimals.models.ActiveUser;
-import com.picturebooks.funimals.models.Preferences;
-import com.picturebooks.funimals.models.UserInformation;
-import com.picturebooks.funimals.R;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.models.ActiveUser;
+import com.swiftshot.funimals.models.Preferences;
+import com.swiftshot.funimals.models.UserInformation;
 
 public class HomeActivity extends Activity {
 	

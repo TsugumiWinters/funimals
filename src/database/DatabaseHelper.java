@@ -22,7 +22,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.picturebooks.funimals.ApplicationContextProvider;
+import com.swiftshot.funimals.ApplicationContextProvider;
 
 import database_entities.Adjective;
 import database_entities.Adverb;
@@ -51,7 +51,7 @@ import database_entities.Word;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	//The Android's default system path of your application database.
-    private static String DB_PATH = "/data/data/com.picturebooks.funimals/databases/";
+    private static String DB_PATH = "/data/data/com.swiftshot.funimals/databases/";
 
     private static String DB_NAME = "funimals.db";
  

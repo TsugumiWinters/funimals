@@ -21,5 +21,9 @@
     <dimen name="abs_height">570dp</dimen>
     <dimen name="stickerbg_width">505dp</dimen>     
     <dimen name="stickerbg_height">690dp</dimen>
-    
+    <dimen name="accountimage_width">269dp</dimen>     
+    <dimen name="accountimage_height">340dp</dimen>
+    <dimen name="accounthoriz_height">360dp</dimen>    
+    <dimen name="registername_height">175dp</dimen>    
+    <dimen name="createstory_width">375dp</dimen>    
 </resources>

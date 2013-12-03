@@ -46,7 +46,7 @@
             android:contentDescription="@string/user_img"
             android:layout_margin="5dp"
              />
-	<!--  android:src="@drawable/usersdefault" -->
+
         <TextView
             android:id="@+id/userbook_name"
             android:layout_width="match_parent"
