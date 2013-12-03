@@ -6,14 +6,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.picturebooks.mobilepicturebooks.models.ActiveUser;
@@ -30,6 +34,14 @@ public class StoriesActivity extends Activity {
 	private ListView lstStories;
 	private int selectedStory;
 	private boolean openingActivity;
+	Bitmap icon;
+	Drawable bg;
+	BitmapFactory.Options options;
+	RelativeLayout libraryBackground;
+	
+	Bitmap icon2;
+	Drawable bg2;
+	BitmapFactory.Options options2;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +50,24 @@ public class StoriesActivity extends Activity {
         openingActivity = false;
         selectedStory = -1;
 		
+        libraryBackground = (RelativeLayout) findViewById(R.id.library_bg);
+        
+        options = new BitmapFactory.Options(); 
+		options.inPurgeable = true;
+		options2 = new BitmapFactory.Options(); 
+		options2.inPurgeable = true;
+		
+        icon = BitmapFactory.decodeResource(getResources(),R.drawable.library_openbook, options);
+		bg = new BitmapDrawable(icon);
+		libraryBackground.setBackground(bg);
+        
         imgStory = (ImageView) findViewById(R.id.userstories_img_story);
         txtStory = (TextView) findViewById(R.id.userstories_txt_storytitle);
         lstStories = (ListView) findViewById(R.id.userstories_titles);
+             
+        icon2 = BitmapFactory.decodeResource(getResources(),R.drawable.library_preview_default, options2);
+		bg2 = new BitmapDrawable(icon2);
+		imgStory.setImageDrawable(bg2);
         
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         dbHelper.openDataBase();
@@ -141,6 +168,8 @@ public class StoriesActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		libraryBackground.setBackgroundResource(0);
+		imgStory.setImageBitmap(null);
 		if (!openingActivity) {
 			ActiveUser.clearActiveUser(this);
 		}

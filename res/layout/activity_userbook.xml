@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/book_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/library_openbook" >
+>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -44,8 +45,8 @@
             android:layout_gravity="center"
             android:contentDescription="@string/user_img"
             android:layout_margin="5dp"
-            android:src="@drawable/usersdefault" />
-
+             />
+	<!--  android:src="@drawable/usersdefault" -->
         <TextView
             android:id="@+id/userbook_name"
             android:layout_width="match_parent"
@@ -71,16 +72,5 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/userbook_darken"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:alpha="0.75"
-        android:visibility="invisible"
-        android:src="@drawable/library_openbook_darken"
-        android:contentDescription="@string/text_space" />
 
 </RelativeLayout>

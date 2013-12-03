@@ -25,17 +25,20 @@ import storyplanner.title.TitleMakerException;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnShowListener;
 import android.content.Intent;
 import android.database.SQLException;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -51,9 +54,13 @@ import android.text.method.ScrollingMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
+import android.view.View.DragShadowBuilder;
 import android.view.View.OnDragListener;
+import android.view.View.OnTouchListener;
+import android.view.animation.TranslateAnimation;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.view.Window;
@@ -68,6 +75,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.picturebooks.mobilepicturebooks.ImageAdapter.MyOnTouchListener;
 import com.picturebooks.mobilepicturebooks.models.ActiveUser;
 
 import database.DatabaseHelper;
@@ -201,13 +209,16 @@ public class PictureEditor extends Activity {
 	private int currentPage, numberOfPages;
 	private int sentenceLimitPerPage = 4;
 
-
+	private Bitmap icon ,icon2;
+	private Drawable bg, bg2;
+	private BitmapFactory.Options options, options2;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.context = this;
 		setContentView(R.layout.picture_editor);
-				
+					
 		dbHelper = new DatabaseHelper(this);
 		try {
 			dbHelper.createDataBase();
@@ -232,6 +243,7 @@ public class PictureEditor extends Activity {
 				}
 			}
 		});
+		tts.setSpeechRate((float)0.8);
 		read_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -252,8 +264,21 @@ public class PictureEditor extends Activity {
 		generate_animation = (AnimationDrawable) generate_image.getDrawable();
 			
 		// save dialog
-		save_dialog = new Dialog(context);
+		save_dialog = new Dialog(context);		
+		save_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		save_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		saveContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog_save, null);
+		save_dialog.setContentView(saveContentView);
+        save_dialog.setCancelable(false);
+        save_dialog.setCanceledOnTouchOutside(false);
+		save_image = (ImageView) saveContentView.findViewById(R.id.saving);
+		save_animation = (AnimationDrawable) save_image.getDrawable();
+			
+		options = new BitmapFactory.Options(); 
+		options.inPurgeable = true;
 		
+		options2 = new BitmapFactory.Options(); 
+		options2.inPurgeable = true;
 		
 		// InitializeDB();
 		username = ActiveUser.getActiveUser(context).getName();
@@ -278,9 +303,12 @@ public class PictureEditor extends Activity {
 		editstory_button = (ImageView) findViewById(R.id.pe_editstory_button);
 
 		pictureBackground = (AbsoluteLayout) findViewById(R.id.pe_bg);
-		stickersBG = (ImageView) findViewById(R.id.pe_stickers_bg);
+		
+		changeBackground(1);
+		
+		stickersBG = (ImageView) findViewById(R.id.pe_stickers_bg);	
 		gridView = (GridView) findViewById(R.id.gridView1);
-
+		
 		right_button = (ImageView) findViewById(R.id.pe_right_button);
 		left_button = (ImageView) findViewById(R.id.pe_left_button);
 
@@ -429,6 +457,9 @@ public class PictureEditor extends Activity {
 		Things_Playground.add("thing_toy_truck");
 		Things_Playground.add("thing_tricycle");
 
+		
+		changeGridView(1);
+		
 		// Listview Data
 		String dictionary_words[] = { "Dell Inspiron", "HTC One X",
 				"HTC Wildfire S", "HTC Sense", "HTC Sensation XE", "iPhone 4S",
@@ -524,28 +555,35 @@ public class PictureEditor extends Activity {
 		home_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(tts != null){
+					tts.stop();
+				}
 				PictureEditor.createdStory = false;
 				Intent mainIntent = new Intent(PictureEditor.this,
 						HomeActivity.class);
 				PictureEditor.this.startActivity(mainIntent);
-				PictureEditor.this.finish();
 			}
 		});
 
 		library_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(tts != null){
+					tts.stop();
+				}
 				PictureEditor.createdStory = false;
 				Intent mainIntent = new Intent(PictureEditor.this,
 						StoriesActivity.class);
 				PictureEditor.this.startActivity(mainIntent);
-				PictureEditor.this.finish();
 			}
 		});
 
 		save_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(tts != null){
+					tts.stop();
+				}
 				new SaveAsync(PictureEditor.context).execute();
 			}
 		});
@@ -553,6 +591,9 @@ public class PictureEditor extends Activity {
 		retry_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(tts != null){
+					tts.stop();
+				}
 				new GetTaskRandom(PictureEditor.context).execute();
 			}
 		});
@@ -571,6 +612,10 @@ public class PictureEditor extends Activity {
 		pageRight_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(tts != null){
+					tts.stop();
+				}
+
 				if (currentPage < numberOfPages) {
 					currentPage++;
 					String textDisplay = new String();
@@ -617,6 +662,10 @@ public class PictureEditor extends Activity {
 		pageLeft_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(tts != null){
+					tts.stop();
+				}
+
 				if (currentPage > 1) {
 					currentPage--;
 					String textDisplay = new String();
@@ -663,6 +712,10 @@ public class PictureEditor extends Activity {
 		editstory_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(tts != null){
+					tts.stop();
+				}
+
 				for (int i = 0; i < pictureBackground.getChildCount(); i++) {
 					View view = pictureBackground.getChildAt(i);
 					view.setEnabled(true);
@@ -793,7 +846,6 @@ public class PictureEditor extends Activity {
 			public void beforeTextChanged(CharSequence arg0, int arg1,
 					int arg2, int arg3) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -810,6 +862,8 @@ public class PictureEditor extends Activity {
 			StoryFile sf = dbHelper.findStoryFileById(storyId);
 			String sfBackground = sf.getBackground();
 
+			Log.e("sfbackground", sfBackground);
+			
 			if (sfBackground.equals("bg_bathroom")){
 				selectedBackground = dbHelper.getBackground("Bathroom");
 				backgroundID = 0;
@@ -827,7 +881,7 @@ public class PictureEditor extends Activity {
 				backgroundID = 3;
 			}
 			else if (sfBackground.equals("bg_diningroom")){
-				selectedBackground = dbHelper.getBackground("Dining Room");
+				selectedBackground = dbHelper.getBackground("DiningRoom");
 				backgroundID = 4;
 			}
 			else if (sfBackground.equals("bg_mall")){
@@ -869,12 +923,13 @@ public class PictureEditor extends Activity {
 
 				int imageID = context.getResources().getIdentifier(ssName,"drawable", context.getPackageName());
 				ImageView stickerImageView = new ImageView(this);
+				stickerImageView.setOnTouchListener(new MyTouchListener());
 				stickerImageView.setImageDrawable(context.getResources().getDrawable(imageID));
 				stickerImageView.setContentDescription(ssName);
 				stickerImageView.setX(ssX);
 				stickerImageView.setY(ssY);
 				pictureBackground.addView(stickerImageView);	
-				
+
 			}
 
 			gridView.setAdapter(new ImageAdapter(context, Adults));		
@@ -963,10 +1018,48 @@ public class PictureEditor extends Activity {
 		}
 	}
 	
+	private class MyTouchListener implements OnTouchListener {
+		@Override
+		public boolean onTouch(View view, MotionEvent event) {
+			final ImageView image = (ImageView) view;
+			int id;
+			switch (event.getAction()) {
+		    case MotionEvent.ACTION_DOWN:
+		    		if(view.getContentDescription().toString().startsWith("a")) {
+		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 30.0f, 0.0f, 0.0f);  
+			    	    animation.setDuration(500);
+			    	    animation.setRepeatCount(2);
+			    	    animation.setRepeatMode(2);
+			    	    image.startAnimation(animation);
+		    		}
+		    		else if(view.getContentDescription().toString().startsWith("k")) {
+		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  
+			    	    animation.setDuration(500);
+			    	    animation.setRepeatCount(2);
+			    	    animation.setRepeatMode(2);
+			    	    image.startAnimation(animation);
+		    		}
+		    	    	
+		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
+		    	image.setImageResource(id);
+		    			    	
+		    	 return true;  	
+		    case MotionEvent.ACTION_UP:
+		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
+		    	 image.setImageResource(id);
+		    	 return true;    	
+		    default: break;
+		    }
+			
+			return false;
+		}
+	  }
+	
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		Log.e("nag pause","pause");
 		if(tts != null){
 			tts.stop();
 		}
@@ -976,30 +1069,53 @@ public class PictureEditor extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		pictureBackground.setBackgroundResource(0);
+		stickersBG.setImageBitmap(null);
 		if(tts != null){
 			tts.stop();
 			tts.shutdown();	
 		}
 	}
 	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Log.e("start", "started");
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Log.e("start", "resumed");
+	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		Log.e("start", "stopped");
+	}
+	
 	public String correctPlace(String currentStoryLine){
 		String result = currentStoryLine;
 		String bg = getAlias(selectedBackground.getBackgroundWord());
 		ArrayList<String> bgList = new ArrayList<String>();
-		bgList.add("bathroom");
-		bgList.add("bedroom");
-		bgList.add("school");
-		bgList.add("clinic");
-		bgList.add("dining room");
-		bgList.add("mall");
-		bgList.add("market");
-		bgList.add("garden");
-		bgList.add("playground");
-		bgList.add("living room");
+		bgList.add(" bathroom ");
+		bgList.add(" bedroom ");
+		bgList.add(" school ");
+		bgList.add(" clinic ");
+		bgList.add(" dining room ");
+		bgList.add(" mall ");
+		bgList.add(" market ");
+		bgList.add(" garden ");
+		bgList.add(" playground ");
+		bgList.add(" living room ");
 		
 		for(String background:bgList)
 			if(result.contains(background)){
-				result = result.replaceAll(background, bg);
+				result = result.replaceAll(background,  " " + bg + " ");
 			}
 
 		return result;
@@ -1073,55 +1189,73 @@ public class PictureEditor extends Activity {
 
 		switch (backgroundID % 9) {
 		case 0:
-			pictureBackground.setBackgroundResource(R.drawable.bg_bathroom);
+			icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_bathroom, options);
+			bg = new BitmapDrawable(icon);
+			pictureBackground.setBackground(bg);
 			pictureBackground.setContentDescription("bg_bathroom");
 			Things = Things_Bathroom;
 			bgTitle.setText("Bathroom");
 			break;
 		case 1:
-			pictureBackground.setBackgroundResource(R.drawable.bg_bedroom);
+			icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_bedroom, options);
+			bg = new BitmapDrawable(icon);
+			pictureBackground.setBackground(bg);
 			pictureBackground.setContentDescription("bg_bedroom");
 			Things = Things_Bedroom;
 			bgTitle.setText("Bedroom");
 			break;
 		case 2:
-			pictureBackground.setBackgroundResource(R.drawable.bg_classroom);
+			icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_classroom, options);
+			bg = new BitmapDrawable(icon);
+			pictureBackground.setBackground(bg);
 			pictureBackground.setContentDescription("bg_classroom");
 			Things = Things_Classroom;
 			bgTitle.setText("Classroom");
 			break;
 		case 3:
-			pictureBackground.setBackgroundResource(R.drawable.bg_clinic);
+			icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_clinic, options);
+			bg = new BitmapDrawable(icon);
+			pictureBackground.setBackground(bg);
 			pictureBackground.setContentDescription("bg_clinic");
 			Things = Things_Clinic;
 			bgTitle.setText("Clinic");
 			break;
 		case 4:
-			pictureBackground.setBackgroundResource(R.drawable.bg_diningroom);
+			icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_diningroom, options);
+			bg = new BitmapDrawable(icon);
+			pictureBackground.setBackground(bg);
 			pictureBackground.setContentDescription("bg_diningroom");
 			Things = Things_DiningRoom;
 			bgTitle.setText("Dining Room");
 			break;
 		case 5:
-			pictureBackground.setBackgroundResource(R.drawable.bg_mall);
+			icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_mall, options);
+			bg = new BitmapDrawable(icon);
+			pictureBackground.setBackground(bg);
 			pictureBackground.setContentDescription("bg_mall");
 			Things = Things_Mall;
 			bgTitle.setText("Mall");
 			break;
 		case 6:
-			pictureBackground.setBackgroundResource(R.drawable.bg_market);
+			icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_market, options);
+			bg = new BitmapDrawable(icon);
+			pictureBackground.setBackground(bg);
 			pictureBackground.setContentDescription("bg_market");
 			Things = Things_Market;
 			bgTitle.setText("Market");
 			break;
 		case 7:
-			pictureBackground.setBackgroundResource(R.drawable.bg_outdoors);
+			icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_outdoors, options);
+			bg = new BitmapDrawable(icon);
+			pictureBackground.setBackground(bg);
 			pictureBackground.setContentDescription("bg_outdoors");
 			Things = Things_Outdoors;
 			bgTitle.setText("Outdoors");
 			break;
 		case 8:
-			pictureBackground.setBackgroundResource(R.drawable.bg_playground);
+			icon = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_playground, options);
+			bg = new BitmapDrawable(icon);
+			pictureBackground.setBackground(bg);
 			pictureBackground.setContentDescription("bg_playground");
 			Things = Things_Playground;
 			bgTitle.setText("Playground");
@@ -1133,16 +1267,22 @@ public class PictureEditor extends Activity {
 	public void changeGridView(int choice) {
 		switch (choice) {
 		case 1:
+			icon2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.pe_adults_bg, options2);
+			bg2 = new BitmapDrawable(icon2);
+			stickersBG.setImageDrawable(bg2);
 			gridView.setAdapter(new ImageAdapter(this, Adults));
-			stickersBG.setImageResource(R.drawable.pe_adults_bg);
 			break;
 		case 2:
+			icon2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.pe_kids_bg, options2);
+			bg2 = new BitmapDrawable(icon2);
+			stickersBG.setImageDrawable(bg2);
 			gridView.setAdapter(new ImageAdapter(this, Kids));
-			stickersBG.setImageResource(R.drawable.pe_kids_bg);
 			break;
 		case 3:
+			icon2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.pe_things_bg, options2);
+			bg2 = new BitmapDrawable(icon2);
+			stickersBG.setImageDrawable(bg2);
 			gridView.setAdapter(new ImageAdapter(this, Things));
-			stickersBG.setImageResource(R.drawable.pe_things_bg);
 			break;
 		}
 	}
@@ -1611,6 +1751,7 @@ public class PictureEditor extends Activity {
 
 		  public void onClick(View textView) {
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+	    	  tts.setSpeechRate((float) 0.8);
 	    	  String definition = dbHelper.findDefinitionByWord(word);
 	    	  
 	    	  if(!definition.equals("")) {	    		  
@@ -1919,16 +2060,7 @@ public class PictureEditor extends Activity {
 
 		@Override
 		protected void onPreExecute() {
-			super.onPreExecute();
-			save_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			save_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-			saveContentView = (LinearLayout) ((Activity) context).getLayoutInflater().inflate(R.layout.activity_dialog_save, null);
-			save_dialog.setContentView(saveContentView);
-	        save_dialog.setCancelable(false);
-	        save_dialog.setCanceledOnTouchOutside(false);
-			save_image = (ImageView) saveContentView.findViewById(R.id.saving);
-			save_animation = (AnimationDrawable) save_image.getDrawable();
-			
+			super.onPreExecute();			
             save_dialog.setOnShowListener(new OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialog) {

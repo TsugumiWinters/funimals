@@ -3,10 +3,15 @@ package com.picturebooks.mobilepicturebooks;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.picturebooks.mobilepicturebooks.models.ActiveUser;
@@ -19,6 +24,10 @@ public class BookActivity extends Activity {
 	private TextView txtAge;
 	private TextView txtLevel;
 	private boolean openingActivity;
+	Bitmap icon;
+	Drawable bg;
+	BitmapFactory.Options options;
+	RelativeLayout bookBackground;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +35,15 @@ public class BookActivity extends Activity {
         setContentView(R.layout.activity_userbook);
         openingActivity = false;
         
+        bookBackground = (RelativeLayout) findViewById(R.id.book_bg);
+        
+        options = new BitmapFactory.Options(); 
+		options.inPurgeable = true;
+        
+		icon = BitmapFactory.decodeResource(getResources(),R.drawable.library_openbook, options);
+		bg = new BitmapDrawable(icon);
+		bookBackground.setBackground(bg);
+		
         Log.d("BookActivity", "Activity created.");
         
         imgUser = (ImageView) findViewById(R.id.userbook_img_user);
@@ -38,8 +56,6 @@ public class BookActivity extends Activity {
         if (user == null) {
             Intent mainIntent = new Intent(BookActivity.this, MenuActivity.class);
             startActivity(mainIntent);
-            //openingActivity = true;
-           // finish();
         }
         
         imgUser.setImageResource(user.getImage());
@@ -61,6 +77,7 @@ public class BookActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		bookBackground.setBackgroundResource(0);
 		if (!openingActivity) {
 			ActiveUser.clearActiveUser(this);
 		}

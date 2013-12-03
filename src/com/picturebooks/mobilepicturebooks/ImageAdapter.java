@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
@@ -44,23 +48,23 @@ public class ImageAdapter extends BaseAdapter {
 		} else {
 			gridView = (View) convertView;
 		}
- 
+		
 		// set image based on selected text
-		ImageView imageView = (ImageView) gridView
-				.findViewById(R.id.sticker_image);
+		ImageView imageView = (ImageView) gridView.findViewById(R.id.sticker_image);
 
 		imageView.setOnTouchListener(new MyOnTouchListener());
 		
 		String stickerName = stickers[position];
  	
 		int id = context.getResources().getIdentifier(stickerName, "drawable", context.getPackageName());
+		
 		imageView.setImageResource(id);
 		imageView.setContentDescription(stickerName);
 
 		return gridView;
 	}
 
-	private final class MyOnTouchListener implements OnTouchListener {
+	public final class MyOnTouchListener implements OnTouchListener {
 		@Override
 		public boolean onTouch(View view, MotionEvent event) {
 			final ImageView image = (ImageView) view;

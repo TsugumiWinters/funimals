@@ -17,4 +17,9 @@
     <dimen name="grade_width">300dp</dimen>    
     <dimen name="layoutgrade_height">450dp</dimen>     
     <dimen name="buttonhome_width">450dp</dimen>
+    <dimen name="abs_width">775dp</dimen>     
+    <dimen name="abs_height">570dp</dimen>
+    <dimen name="stickerbg_width">505dp</dimen>     
+    <dimen name="stickerbg_height">690dp</dimen>
+    
 </resources>

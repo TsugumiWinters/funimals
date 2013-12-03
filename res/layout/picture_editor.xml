@@ -48,9 +48,8 @@
 	<AbsoluteLayout
 		android:id="@+id/pe_bg"
 		android:contentDescription="bg_bedroom"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@drawable/bg_bedroom"
+		android:layout_width="@dimen/abs_width"
+		android:layout_height="@dimen/abs_height"
 		android:layout_below="@+id/pe_home_button">
 	</AbsoluteLayout>
 
@@ -118,14 +117,12 @@
 			android:layout_height="wrap_content"
 			android:src="@drawable/pe_things_button"
 			android:layout_toRightOf="@+id/pe_kids_button"/>
-		 
-			 
+		 		 
 		<ImageView
 			android:id="@+id/pe_stickers_bg"
 			android:contentDescription="@string/description"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/pe_adults_bg"
+			android:layout_width="@dimen/stickerbg_width"
+			android:layout_height="@dimen/stickerbg_height"	
 			android:layout_below="@+id/pe_adults_button"/>
 		 
 		<GridView
