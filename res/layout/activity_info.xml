@@ -16,14 +16,13 @@
         android:onClick="clicked_btnBack"
         android:src="@drawable/general_back_button_selector" />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/info_container_background"
-        android:padding="10dp"
-        android:text="@string/info"
-        android:textSize="@dimen/text_size" />
+        android:background="@drawable/general_info_credits">
+        
+    </RelativeLayout>
 
 </RelativeLayout>
