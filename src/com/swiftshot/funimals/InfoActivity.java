@@ -5,17 +5,35 @@ import com.swiftshot.funimals.models.ActiveUser;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 public class InfoActivity extends Activity {
 	
 	private boolean openingActivity;
+	Bitmap icon;
+	Drawable bg;
+	BitmapFactory.Options options;
+	RelativeLayout creditsBackground;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_info);
+		
+		creditsBackground = (RelativeLayout) findViewById(R.id.info_credits);
+		options = new BitmapFactory.Options(); 
+		options.inPurgeable = true;
+		
+		icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_info_credits, options);
+		bg = new BitmapDrawable(icon);
+		creditsBackground.setBackground(bg);
+		
 		openingActivity = false;
 	}
 	

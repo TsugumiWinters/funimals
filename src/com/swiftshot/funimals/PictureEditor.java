@@ -241,7 +241,7 @@ public class PictureEditor extends Activity {
 				}
 			}
 		});
-		tts.setSpeechRate((float)0.8);
+		tts.setSpeechRate((float)0.9);
 		read_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -1075,6 +1075,18 @@ public class PictureEditor extends Activity {
 		}
 	}
 	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		pictureBackground.setBackgroundResource(0);
+		stickersBG.setImageBitmap(null);
+		if(tts != null){
+			tts.stop();
+			tts.shutdown();	
+		}
+	}
+	
 	public String correctPlace(String currentStoryLine){
 		String result = currentStoryLine;
 		String bg = getAlias(selectedBackground.getBackgroundWord());
@@ -1728,7 +1740,7 @@ public class PictureEditor extends Activity {
 
 		  public void onClick(View textView) {
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
-	    	  tts.setSpeechRate((float) 0.8);
+	    	  tts.setSpeechRate((float) 0.9);
 	    	  String definition = dbHelper.findDefinitionByWord(word);
 	    	  
 	    	  if(!definition.equals("")) {	    		  
@@ -2119,6 +2131,7 @@ public class PictureEditor extends Activity {
 			FileOutputStream out = new FileOutputStream(myFile);
 
 			image.compress(Bitmap.CompressFormat.PNG, 90, out); // Output
+			image.recycle();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -2230,8 +2243,11 @@ public class PictureEditor extends Activity {
 			image.setVisibility(View.INVISIBLE);
 			toggleEnableEvents(true);
 			
-			if(skipped)
+			if(skipped) {
+				if(SelectedAdults.size() < 1 || SelectedKids.size() < 1 || SelectedThings.size() < 1)
+					createstory_button.setEnabled(false);
 				read_button.setEnabled(false);
+			}				
 			else
 				read_button.setEnabled(true);
 			break;
