@@ -1,9 +1,9 @@
-package com.picturebooks.mobilepicturebooks;
+package com.swiftshot.funimals;
 
 import java.io.IOException;
 
-import com.picturebooks.mobilepicturebooks.R;
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.models.ActiveUser;
 
 import database.DatabaseHelper;
 
@@ -42,6 +42,7 @@ public class SplashActivity extends Activity {
                 Intent mainIntent = new Intent(SplashActivity.this, MenuActivity.class);
                 SplashActivity.this.startActivity(mainIntent);
                 openingActivity = true;
+                
                 SplashActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGHT);

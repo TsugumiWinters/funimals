@@ -1,14 +1,16 @@
-package com.picturebooks.mobilepicturebooks;
+package com.swiftshot.funimals;
 
 import com.devsmart.android.ui.HorizontalListView;
-import com.picturebooks.mobilepicturebooks.models.AccountListAdapter;
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.models.AccountListAdapter;
+import com.swiftshot.funimals.models.ActiveUser;
 
 import database_entities.UserInformation;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 /* ORIGINAL
 import android.os.Bundle;
 import org.apache.cordova.*;
@@ -65,9 +67,12 @@ public class MenuActivity extends Activity {
 	}
 	
 	public void clicked_openAccount(View v) {
+		ActiveUser.clearActiveUser(this);
+		
 		ImageView viewImage = (ImageView) v.findViewById(R.id.canvas_img_user);
 		TextView txtName = (TextView) v.findViewById(R.id.canvas_name);
-		
+       	viewImage.setColorFilter(Color.rgb(123,73,122), android.graphics.PorterDuff.Mode.DARKEN);
+       	
 		/* Get Selected User */
 		UserInformation user = adapter.getUser(txtName.getText().toString());
 		Log.d("Selected User", user.getUsername() + " : Age " + user.getAge() + " : Level " + user.getGrade());
@@ -85,6 +90,12 @@ public class MenuActivity extends Activity {
 		Intent mainIntent = new Intent(MenuActivity.this, HomeActivity.class);
         MenuActivity.this.startActivity(mainIntent);
 
+	}
+	
+	@Override
+	protected void onResume() {
+		ActiveUser.clearActiveUser(this);
+		super.onResume();
 	}
 	
 	@Override

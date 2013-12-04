@@ -1,4 +1,4 @@
-package com.picturebooks.mobilepicturebooks;
+package com.swiftshot.funimals;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -14,11 +17,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
-import com.picturebooks.mobilepicturebooks.models.StoryAdapter;
-import com.picturebooks.mobilepicturebooks.models.UserInformation;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.models.ActiveUser;
+import com.swiftshot.funimals.models.StoryAdapter;
+import com.swiftshot.funimals.models.UserInformation;
 
 import database.DatabaseHelper;
 import database_entities.StoryFile;
@@ -30,6 +35,14 @@ public class StoriesActivity extends Activity {
 	private ListView lstStories;
 	private int selectedStory;
 	private boolean openingActivity;
+	Bitmap icon;
+	Drawable bg;
+	BitmapFactory.Options options;
+	RelativeLayout libraryBackground;
+	
+	Bitmap icon2;
+	Drawable bg2;
+	BitmapFactory.Options options2;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +51,24 @@ public class StoriesActivity extends Activity {
         openingActivity = false;
         selectedStory = -1;
 		
+        libraryBackground = (RelativeLayout) findViewById(R.id.library_bg);
+        
+        options = new BitmapFactory.Options(); 
+		options.inPurgeable = true;
+		options2 = new BitmapFactory.Options(); 
+		options2.inPurgeable = true;
+		
+        icon = BitmapFactory.decodeResource(getResources(),R.drawable.library_openbook, options);
+		bg = new BitmapDrawable(icon);
+		libraryBackground.setBackground(bg);
+        
         imgStory = (ImageView) findViewById(R.id.userstories_img_story);
         txtStory = (TextView) findViewById(R.id.userstories_txt_storytitle);
         lstStories = (ListView) findViewById(R.id.userstories_titles);
+             
+        icon2 = BitmapFactory.decodeResource(getResources(),R.drawable.library_preview_default, options2);
+		bg2 = new BitmapDrawable(icon2);
+		imgStory.setImageDrawable(bg2);
         
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         dbHelper.openDataBase();
@@ -115,7 +143,9 @@ public class StoriesActivity extends Activity {
         if (selectedStory == -1) {
         	return;
         }
-		
+        
+        imgStory.setColorFilter(Color.rgb(123,73,122), android.graphics.PorterDuff.Mode.DARKEN);
+        
 		Intent mainIntent = new Intent(StoriesActivity.this, PictureEditor.class);
         UserInformation user = ActiveUser.getActiveUser(this);
         
@@ -131,9 +161,10 @@ public class StoriesActivity extends Activity {
 	
 	private Bitmap getImageFromFile(String fileName) {
 		String path = Environment.getExternalStorageDirectory().toString()
-				+ "/MobilePictureBooks/SavedPictures/";
+				+ "/Funimals/SavedPictures/";
 		
 		BitmapFactory.Options options = new BitmapFactory.Options();
+		
 		options.inPreferredConfig = Bitmap.Config.RGB_565;
 		return BitmapFactory.decodeFile(path + fileName, options);
 	}
@@ -141,6 +172,8 @@ public class StoriesActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		libraryBackground.setBackgroundResource(0);
+		imgStory.setImageBitmap(null);
 		if (!openingActivity) {
 			ActiveUser.clearActiveUser(this);
 		}

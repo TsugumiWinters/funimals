@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/library_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:background="@drawable/library_openbook"
     >
-    
+
     <LinearLayout
         android:id="@+id/userstories_container_main"
         android:layout_width="630dp"
@@ -29,7 +29,6 @@
             android:paddingBottom="35dp"
             android:paddingTop="50dp"
             android:scaleType="fitXY"           
-            android:src="@drawable/library_preview_default"
             android:onClick="clicked_selectedStory" 
            />
 			
@@ -42,12 +41,18 @@
             android:layout_marginRight="45dp"
             android:layout_marginTop="10dp"
             android:layout_weight="0.3"
-            android:background="@drawable/library_title"
             android:gravity="center"
             android:text="@string/story_title"
             android:textAlignment="center"
-            android:onClick="clicked_selectedStory"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textSize="40sp"
+			android:textStyle="bold"
+			android:typeface="serif"
+			android:textColor="#00ccff" 
+			android:shadowColor="#00ccff"
+			android:shadowRadius="1.5"
+			android:shadowDx="1"
+			android:shadowDy="1" />
+        
     </LinearLayout>
 
     <LinearLayout

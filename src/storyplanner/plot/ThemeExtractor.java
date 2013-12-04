@@ -9,7 +9,7 @@ import pbmain.util.ParserException;
 import pictureeditor.component.InputContentRepresentation;
 import storyplanner.StoryPlannerException;
 
-import com.picturebooks.mobilepicturebooks.ApplicationContextProvider;
+import com.swiftshot.funimals.ApplicationContextProvider;
 
 import database.DatabaseHelper;
 import database_entities.IGObject;

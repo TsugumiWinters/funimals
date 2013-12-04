@@ -16,7 +16,7 @@ import storyplanner.StoryElement;
 import storyplanner.StoryPlannerException;
 import storyplanner.component.StoryTree;
 
-import com.picturebooks.mobilepicturebooks.ApplicationContextProvider;
+import com.swiftshot.funimals.ApplicationContextProvider;
 
 import database.DatabaseHelper;
 import database_entities.AuthorGoal;

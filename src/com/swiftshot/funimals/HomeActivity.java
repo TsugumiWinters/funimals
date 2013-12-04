@@ -1,18 +1,21 @@
-package com.picturebooks.mobilepicturebooks;
+package com.swiftshot.funimals;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.picturebooks.mobilepicturebooks.models.ActiveUser;
-import com.picturebooks.mobilepicturebooks.models.Preferences;
-import com.picturebooks.mobilepicturebooks.models.UserInformation;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.models.ActiveUser;
+import com.swiftshot.funimals.models.Preferences;
+import com.swiftshot.funimals.models.UserInformation;
 
 public class HomeActivity extends Activity {
 	
@@ -37,7 +40,7 @@ public class HomeActivity extends Activity {
 		LayoutInflater inflater = getLayoutInflater();
         View userCanvas = inflater.inflate(R.layout.user_canvas, frame, false);
         
-        ImageView imgUser = (ImageView) userCanvas.findViewById(R.id.canvas_img_user);
+        final ImageView imgUser = (ImageView) userCanvas.findViewById(R.id.canvas_img_user);
         TextView txtUser = (TextView) userCanvas.findViewById(R.id.canvas_name);
         
         UserInformation user = ActiveUser.getActiveUser(this);
@@ -49,6 +52,16 @@ public class HomeActivity extends Activity {
 
         imgUser.setImageResource(user.getImage());
         txtUser.setText(user.getName());
+        frame.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				imgUser.setColorFilter(Color.rgb(123,73,122), android.graphics.PorterDuff.Mode.DARKEN );
+		        Intent mainIntent = new Intent(HomeActivity.this, MenuActivity.class);
+		        startActivity(mainIntent);
+			}
+        	
+        });
 		
         frame.addView(userCanvas);
        

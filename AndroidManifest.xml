@@ -1,20 +1,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.picturebooks.mobilepicturebooks"
+    package="com.swiftshot.funimals"
     android:versionCode="2"
     android:versionName="2.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="16"
         android:targetSdkVersion="17" />
-
+        
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    
     <application
-        android:name="ApplicationContextProvider"
+        android:name="com.swiftshot.funimals.ApplicationContextProvider"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.SplashActivity"
+            android:name="com.swiftshot.funimals.SplashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape" >
             <intent-filter>
@@ -23,69 +30,69 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.MenuActivity"
+            android:name="com.swiftshot.funimals.MenuActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.HomeActivity"
+            android:name="com.swiftshot.funimals.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>>
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.InfoActivity"
+            android:name="com.swiftshot.funimals.InfoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.StoriesActivity"
+            android:name="com.swiftshot.funimals.StoriesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.LibraryActivity"
+            android:name="com.swiftshot.funimals.LibraryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
 
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.BookActivity"
+            android:name="com.swiftshot.funimals.BookActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
              
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.RegistrationNameActivity"
+            android:name="com.swiftshot.funimals.RegistrationNameActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
         
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.RegistrationAgeActivity"
+            android:name="com.swiftshot.funimals.RegistrationAgeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
         
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.RegistrationLevelActivity"
+            android:name="com.swiftshot.funimals.RegistrationLevelActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
                 
         <activity
-            android:name="com.picturebooks.mobilepicturebooks.PictureEditor"
+            android:name="com.swiftshot.funimals.PictureEditor"
             android:label="@string/app_name"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
+            android:screenOrientation="sensorLandscape" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >"
         </activity>
     </application>
 

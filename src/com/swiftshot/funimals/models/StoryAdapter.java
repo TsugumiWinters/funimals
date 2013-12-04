@@ -1,4 +1,4 @@
-package com.picturebooks.mobilepicturebooks.models;
+package com.swiftshot.funimals.models;
 
 import java.util.List;
 import database_entities.StoryFile;

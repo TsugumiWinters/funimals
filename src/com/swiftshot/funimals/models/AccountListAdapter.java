@@ -1,14 +1,19 @@
-package com.picturebooks.mobilepicturebooks.models;
+package com.swiftshot.funimals.models;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import com.picturebooks.mobilepicturebooks.MenuActivity;
-import com.picturebooks.mobilepicturebooks.R;
+import com.swiftshot.funimals.MenuActivity;
+import com.swiftshot.funimals.R;
 
 import database.DatabaseHelper;
 import database_entities.UserInformation;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +30,11 @@ public class AccountListAdapter extends BaseAdapter{
 	private ArrayList<Field> drawables;
 	private LayoutInflater inflater;
 
+	
     public AccountListAdapter(Context context) {
     	this.context = context;	
     	inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    	
+   	
 		DatabaseHelper dbHelper = new DatabaseHelper(context);
 		dbHelper.openDataBase();
 		list = new ArrayList<UserInformation>(dbHelper.getUserInformation());

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_width">250dp</dimen>
-    <dimen name="button_height">100dp</dimen>
+    <dimen name="button_width">190dp</dimen>
+    <dimen name="button_height">80dp</dimen>
     <dimen name="button_square">75dp</dimen>
     <dimen name="text_size">40sp</dimen>
     <dimen name="home_space_vertical">0dp</dimen>
@@ -13,8 +13,17 @@
     <dimen name="layout_height">320dp</dimen>
     <dimen name="margin_bottom">0dp</dimen>
     <dimen name="margin_leftname">0dp</dimen>
-    <dimen name="layout_widthname">620dp</dimen>    
+    <dimen name="layout_widthname">970dp</dimen>    
     <dimen name="grade_width">300dp</dimen>  
     <dimen name="layoutgrade_height">300dp</dimen>       
     <dimen name="buttonhome_width">450dp</dimen>  
+    <dimen name="abs_width">615dp</dimen>     
+    <dimen name="abs_height">420dp</dimen>
+    <dimen name="stickerbg_width">505dp</dimen>     
+    <dimen name="stickerbg_height">690dp</dimen>
+    <dimen name="accountimage_width">220dp</dimen>     
+    <dimen name="accountimage_height">300dp</dimen>
+    <dimen name="accounthoriz_height">300dp</dimen>      
+    <dimen name="registername_height">175dp</dimen>   
+    <dimen name="createstory_width">299dp</dimen>       
 </resources>

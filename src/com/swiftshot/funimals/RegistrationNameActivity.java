@@ -1,6 +1,7 @@
-package com.picturebooks.mobilepicturebooks;
+package com.swiftshot.funimals;
 
-import com.picturebooks.mobilepicturebooks.R.layout;
+import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;

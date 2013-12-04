@@ -1,4 +1,4 @@
-package com.picturebooks.mobilepicturebooks;
+package com.swiftshot.funimals;
 
 import android.app.Application;
 import android.content.Context;

@@ -39,7 +39,7 @@
 	<ImageView
 		android:id="@+id/pe_createstory_button"
 		android:contentDescription="@string/description"
-		android:layout_width="375dp"
+		android:layout_width="@dimen/createstory_width"
 		android:layout_height="wrap_content"
 		android:scaleType="fitXY"
 		android:src="@drawable/createstory_button_selector"
@@ -47,10 +47,9 @@
 	
 	<AbsoluteLayout
 		android:id="@+id/pe_bg"
-		android:contentDescription="bg_bedroom"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@drawable/bg_bedroom"
+		android:contentDescription="@string/abs_content"
+		android:layout_width="@dimen/abs_width"
+		android:layout_height="@dimen/abs_height"
 		android:layout_below="@+id/pe_home_button">
 	</AbsoluteLayout>
 
@@ -70,7 +69,7 @@
 		<TextView
 			android:id="@+id/pe_bgtitle"
 			android:contentDescription="@string/description"
-			android:text="Bedroom"
+			android:text="@string/text_bg"
 			android:textSize="40sp"
 			android:textColor="#FFFFFF"
 			android:fontFamily="Georgia"
@@ -118,14 +117,12 @@
 			android:layout_height="wrap_content"
 			android:src="@drawable/pe_things_button"
 			android:layout_toRightOf="@+id/pe_kids_button"/>
-		 
-			 
+		 		 
 		<ImageView
 			android:id="@+id/pe_stickers_bg"
 			android:contentDescription="@string/description"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/pe_adults_bg"
+			android:layout_width="@dimen/stickerbg_width"
+			android:layout_height="@dimen/stickerbg_height"	
 			android:layout_below="@+id/pe_adults_button"/>
 		 
 		<GridView
@@ -148,7 +145,7 @@
 	<TextView
 		android:id="@+id/pe_storytitle"
 		android:contentDescription="@string/description"  
-		android:text="Title"
+		android:text="@string/text_title"
 		android:textSize="37sp"
 		android:textColor="#FFFFFF"
 		android:fontFamily="Georgia"
@@ -230,7 +227,7 @@
 		<TextView
 			android:id="@+id/pe_story"
 			android:scrollbars = "vertical"
-			android:text="Story"
+			android:text="@string/text_story"
 			android:fontFamily="Georgia"
 			android:textSize="35sp"
 			android:lineSpacingExtra="10dp"
@@ -271,7 +268,7 @@
 		<TextView
 			android:id="@+id/pe_page"
 			android:contentDescription="@string/description"
-			android:text="Page 1"
+			android:text="@string/text_page"
 			android:textSize="37sp"
 			android:textColor="#FFFFFF"
 			android:fontFamily="Georgia"
@@ -300,7 +297,7 @@
 			android:layout_below="@+id/pe_story_bg"
 			android:visibility="invisible"/>
 		 
-		 <RelativeLayout
+		<RelativeLayout
 	  	android:id="@+id/pe_definitionLayout"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -311,7 +308,7 @@
 			
 		<TextView
 			android:id="@+id/pe_word"
-			android:text="Word"
+			android:text="@string/text_word"
 			android:fontFamily="Georgia"
 			android:textSize="35sp"
 			android:paddingTop="10dp"
@@ -323,7 +320,7 @@
 		 
 		<TextView
 			android:id="@+id/pe_partofspeech"
-			android:text="PartOfSpeech"
+			android:text="@string/text_pos"
 			android:fontFamily="Georgia"
 			android:textSize="20sp"
 			android:paddingLeft="20dp"
@@ -336,7 +333,7 @@
 		<TextView
 			android:id="@+id/pe_definition"
 			android:scrollbars = "vertical"
-			android:text="Definition"
+			android:text="@string/text_def"
 			android:fontFamily="Georgia"
 			android:textSize="25sp"
 			android:paddingLeft="20dp"

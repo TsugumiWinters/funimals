@@ -6,8 +6,8 @@ import pbmain.PBException;
 import pictureeditor.component.InputContentRepresentation;
 import android.content.Context;
 
-import com.picturebooks.mobilepicturebooks.ApplicationContextProvider;
-import com.picturebooks.mobilepicturebooks.PictureEditor;
+import com.swiftshot.funimals.ApplicationContextProvider;
+import com.swiftshot.funimals.PictureEditor;
 
 import database.DatabaseHelper;
 import database_entities.IGCharacter;
