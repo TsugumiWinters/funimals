@@ -164,8 +164,9 @@ public class StoriesActivity extends Activity {
 				+ "/Funimals/SavedPictures/";
 		
 		BitmapFactory.Options options = new BitmapFactory.Options();
-		
+		options.inPurgeable = true;
 		options.inPreferredConfig = Bitmap.Config.RGB_565;
+		
 		return BitmapFactory.decodeFile(path + fileName, options);
 	}
 	

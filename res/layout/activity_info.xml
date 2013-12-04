@@ -17,11 +17,12 @@
         android:src="@drawable/general_back_button_selector" />
 
     <RelativeLayout
+        android:id="@+id/info_credits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/general_info_credits">
+        >
         
     </RelativeLayout>
 
