@@ -20,6 +20,11 @@ public class ImageAdapter extends BaseAdapter {
 	private Context context;
 	String[] stickers;
 	
+	Bitmap icon;
+	Drawable bg;
+	BitmapFactory.Options options;
+
+	
 	public ImageAdapter(Context context, ArrayList<String> stickers) {
 		this.context = context;
 		this.stickers = new String[stickers.size()];
@@ -53,8 +58,14 @@ public class ImageAdapter extends BaseAdapter {
 		String stickerName = stickers[position];
  	
 		int id = context.getResources().getIdentifier(stickerName, "drawable", context.getPackageName());
+		options = new BitmapFactory.Options();
+		options.inPurgeable = true;
+        icon = BitmapFactory.decodeResource(context.getResources(),id, options);
+		bg = new BitmapDrawable(icon);
+		imageView.setImageDrawable(bg);
+
 		
-		imageView.setImageResource(id);
+	//	imageView.setImageResource(id);
 		imageView.setContentDescription(stickerName);
 
 		return gridView;
@@ -85,7 +96,12 @@ public class ImageAdapter extends BaseAdapter {
 		    		}
 		    	    	
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
-		    	image.setImageResource(id);
+		    	options.inPurgeable = true;
+		        icon = BitmapFactory.decodeResource(context.getResources(),id, options);
+				bg = new BitmapDrawable(icon);
+				image.setImageDrawable(bg);
+		    	
+		    	//image.setImageResource(id);
 		    			    	
 		    	 return true;
 		    	}
@@ -97,7 +113,12 @@ public class ImageAdapter extends BaseAdapter {
 			        
 			        view.playSoundEffect(SoundEffectConstants.CLICK);
 			        id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-			    	image.setImageResource(id);
+			        options.inPurgeable = true;
+			        icon = BitmapFactory.decodeResource(context.getResources(),id, options);
+					bg = new BitmapDrawable(icon);
+					image.setImageDrawable(bg);
+			        
+			        //image.setImageResource(id);
 			        
 			        view.setVisibility(View.INVISIBLE);
 			        return true;
@@ -105,7 +126,11 @@ public class ImageAdapter extends BaseAdapter {
 		    case MotionEvent.ACTION_UP:
 		    	if(PictureEditorActivity.createdStory) {
 		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-		    	 image.setImageResource(id);
+		    	 options.inPurgeable = true;
+		         icon = BitmapFactory.decodeResource(context.getResources(),id, options);
+		 		bg = new BitmapDrawable(icon);
+		 		image.setImageDrawable(bg);
+		    //	 image.setImageResource(id);
 		    	 return true;    	
 		    	}
 		    default: break;

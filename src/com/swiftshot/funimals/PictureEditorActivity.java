@@ -1075,36 +1075,24 @@ public class PictureEditorActivity extends Activity {
 		}
 	}
 	
-	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-		pictureBackground.setBackgroundResource(0);
-		stickersBG.setImageBitmap(null);
-		if(tts != null){
-			tts.stop();
-			tts.shutdown();	
-		}
-	}
-	
 	public String correctPlace(String currentStoryLine){
 		String result = currentStoryLine;
 		String bg = getAlias(selectedBackground.getBackgroundWord());
 		ArrayList<String> bgList = new ArrayList<String>();
-		bgList.add(" bathroom ");
-		bgList.add(" bedroom ");
-		bgList.add(" school ");
-		bgList.add(" clinic ");
-		bgList.add(" dining room ");
-		bgList.add(" mall ");
-		bgList.add(" market ");
-		bgList.add(" garden ");
-		bgList.add(" playground ");
-		bgList.add(" living room ");
+		bgList.add(" bathroom");
+		bgList.add(" bedroom");
+		bgList.add(" school");
+		bgList.add(" clinic");
+		bgList.add(" dining room");
+		bgList.add(" mall");
+		bgList.add(" market");
+		bgList.add(" garden");
+		bgList.add(" playground");
+		bgList.add(" living room");
 		
 		for(String background:bgList)
 			if(result.contains(background)){
-				result = result.replaceAll(background,  " " + bg + " ");
+				result = result.replaceAll(background,  " " + bg);
 			}
 
 		return result;
@@ -1295,7 +1283,7 @@ public class PictureEditorActivity extends Activity {
 			case DragEvent.ACTION_DROP:
 				// Dropped, reassign View to ViewGroup
 				View view = (View) event.getLocalState();
-				view.playSoundEffect(SoundEffectConstants.CLICK);
+			//	view.playSoundEffect(SoundEffectConstants.CLICK);
 				ViewGroup owner = (ViewGroup) view.getParent();
 
 				if (owner.getContentDescription().equals(
@@ -1354,7 +1342,7 @@ public class PictureEditorActivity extends Activity {
 			case DragEvent.ACTION_DROP:
 				// Dropped, reassign View to ViewGroup
 				ImageView view = (ImageView) event.getLocalState();
-				view.playSoundEffect(SoundEffectConstants.CLICK);
+			//	view.playSoundEffect(SoundEffectConstants.CLICK);
 				ViewGroup owner = (ViewGroup) view.getParent();
 				ViewGroup container = (ViewGroup) v;
 				Log.d("CONTAINER",
