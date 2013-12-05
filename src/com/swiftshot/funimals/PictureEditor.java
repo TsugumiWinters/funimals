@@ -1075,18 +1075,6 @@ public class PictureEditor extends Activity {
 		}
 	}
 	
-	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-		pictureBackground.setBackgroundResource(0);
-		stickersBG.setImageBitmap(null);
-		if(tts != null){
-			tts.stop();
-			tts.shutdown();	
-		}
-	}
-	
 	public String correctPlace(String currentStoryLine){
 		String result = currentStoryLine;
 		String bg = getAlias(selectedBackground.getBackgroundWord());
