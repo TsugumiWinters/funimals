@@ -54,7 +54,6 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
-import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
@@ -73,7 +72,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.swiftshot.funimals.R;
 import com.swiftshot.funimals.models.ActiveUser;
 
 import database.DatabaseHelper;
@@ -209,7 +207,7 @@ public class PictureEditor extends Activity {
 
 	private Bitmap icon ,icon2;
 	private Drawable bg, bg2;
-	private BitmapFactory.Options options, options2;
+	private BitmapFactory.Options options;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -274,9 +272,6 @@ public class PictureEditor extends Activity {
 			
 		options = new BitmapFactory.Options(); 
 		options.inPurgeable = true;
-		
-		options2 = new BitmapFactory.Options(); 
-		options2.inPurgeable = true;
 		
 		// InitializeDB();
 		username = ActiveUser.getActiveUser(context).getName();
@@ -1057,7 +1052,6 @@ public class PictureEditor extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		Log.e("nag pause","pause");
 		if(tts != null){
 			tts.stop();
 		}
@@ -1244,20 +1238,20 @@ public class PictureEditor extends Activity {
 	public void changeGridView(int choice) {
 		switch (choice) {
 		case 1:
-			icon2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.pe_adults_bg, options2);
-			bg2 = new BitmapDrawable(icon2);
+			icon2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.pe_adults_bg, options);
+			bg2 = new BitmapDrawable(getResources(), icon2);
 			stickersBG.setImageDrawable(bg2);
 			gridView.setAdapter(new ImageAdapter(this, Adults));
 			break;
 		case 2:
-			icon2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.pe_kids_bg, options2);
-			bg2 = new BitmapDrawable(icon2);
+			icon2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.pe_kids_bg, options);
+			bg2 = new BitmapDrawable(getResources(), icon2);
 			stickersBG.setImageDrawable(bg2);
 			gridView.setAdapter(new ImageAdapter(this, Kids));
 			break;
 		case 3:
-			icon2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.pe_things_bg, options2);
-			bg2 = new BitmapDrawable(icon2);
+			icon2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.pe_things_bg, options);
+			bg2 = new BitmapDrawable(getResources(), icon2);
 			stickersBG.setImageDrawable(bg2);
 			gridView.setAdapter(new ImageAdapter(this, Things));
 			break;
@@ -1387,6 +1381,7 @@ public class PictureEditor extends Activity {
 					int imageID = context.getResources().getIdentifier(
 							contentDescription, "drawable",
 							context.getPackageName());
+	
 					BitmapDrawable bd = (BitmapDrawable) context.getResources()
 							.getDrawable(imageID);
 					int imageHeight = bd.getBitmap().getHeight();

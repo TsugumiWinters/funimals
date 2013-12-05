@@ -16,10 +16,10 @@ import android.widget.RelativeLayout;
 public class InfoActivity extends Activity {
 	
 	private boolean openingActivity;
-	Bitmap icon;
-	Drawable bg;
-	BitmapFactory.Options options;
-	RelativeLayout creditsBackground;
+	private Bitmap icon;
+	private Drawable bg;
+	private BitmapFactory.Options options;
+	private RelativeLayout creditsBackground;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class InfoActivity extends Activity {
 		options.inPurgeable = true;
 		
 		icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_info_credits, options);
-		bg = new BitmapDrawable(icon);
+		bg = new BitmapDrawable(getResources(), icon);
 		creditsBackground.setBackground(bg);
 		
 		openingActivity = false;

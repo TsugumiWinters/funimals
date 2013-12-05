@@ -25,10 +25,10 @@ public class BookActivity extends Activity {
 	private TextView txtAge;
 	private TextView txtLevel;
 	private boolean openingActivity;
-	Bitmap icon;
-	Drawable bg;
-	BitmapFactory.Options options;
-	RelativeLayout bookBackground;
+	private Bitmap icon;
+	private Drawable bg;
+	private BitmapFactory.Options options;
+	private RelativeLayout bookBackground;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class BookActivity extends Activity {
 		options.inPurgeable = true;
         
 		icon = BitmapFactory.decodeResource(getResources(),R.drawable.library_openbook, options);
-		bg = new BitmapDrawable(icon);
+		bg = new BitmapDrawable(getResources(), icon);
 		bookBackground.setBackground(bg);
 		
         Log.d("BookActivity", "Activity created.");

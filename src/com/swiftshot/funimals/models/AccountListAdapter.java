@@ -3,25 +3,21 @@ package com.swiftshot.funimals.models;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.swiftshot.funimals.MenuActivity;
 import com.swiftshot.funimals.R;
 
 import database.DatabaseHelper;
 import database_entities.UserInformation;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class AccountListAdapter extends BaseAdapter{
 

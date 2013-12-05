@@ -2,7 +2,11 @@ package com.swiftshot.funimals;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +24,10 @@ import com.swiftshot.funimals.models.UserInformation;
 public class HomeActivity extends Activity {
 	
 	private boolean openingActivity;
+	private Bitmap icon;
+	private Drawable bg;
+	private BitmapFactory.Options options;
+	private ImageView general_title;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {		
@@ -27,6 +35,15 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
         openingActivity = false;
         
+        general_title = (ImageView) findViewById(R.id.home_title);
+        
+        options = new BitmapFactory.Options();
+		options.inPurgeable = true;
+        icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_title, options);
+		bg = new BitmapDrawable(getResources(), icon);
+        
+		general_title.setImageDrawable(bg);
+		
         Log.d("HomeActivity", "Activity created.");
         
         boolean musicOn = Preferences.getMusicOn(this);

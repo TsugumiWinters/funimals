@@ -2,8 +2,6 @@ package com.swiftshot.funimals;
 
 import java.util.ArrayList;
 
-import com.swiftshot.funimals.R;
-
 import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,7 +10,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnTouchListener;
@@ -24,12 +21,11 @@ import android.widget.ImageView;
  
 public class ImageAdapter extends BaseAdapter {
 	private Context context;
-	String[] stickers;
+	private String[] stickers;
 	
-	Bitmap icon;
-	Drawable bg;
-	BitmapFactory.Options options;
-
+	private Bitmap icon;
+	private Drawable bg;
+	private BitmapFactory.Options options;
 	
 	public ImageAdapter(Context context, ArrayList<String> stickers) {
 		this.context = context;
@@ -46,10 +42,7 @@ public class ImageAdapter extends BaseAdapter {
 		View gridView;
 		
 		if (convertView == null) {
- 
 			gridView = new View(context);
- 
-			// get layout from mobile.xml
 			gridView = inflater.inflate(R.layout.sticker, null);
  
 		} else {
@@ -67,11 +60,9 @@ public class ImageAdapter extends BaseAdapter {
 		options = new BitmapFactory.Options();
 		options.inPurgeable = true;
         icon = BitmapFactory.decodeResource(context.getResources(),id, options);
-		bg = new BitmapDrawable(icon);
-		imageView.setImageDrawable(bg);
-
+		bg = new BitmapDrawable(context.getResources(), icon);
 		
-	//	imageView.setImageResource(id);
+		imageView.setImageDrawable(bg);
 		imageView.setContentDescription(stickerName);
 
 		return gridView;
@@ -101,13 +92,11 @@ public class ImageAdapter extends BaseAdapter {
 			    	    image.startAnimation(animation);
 		    		}
 		    	    	
-		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
-		    	options.inPurgeable = true;
-		        icon = BitmapFactory.decodeResource(context.getResources(),id, options);
-				bg = new BitmapDrawable(icon);
-				image.setImageDrawable(bg);
-		    	
-		    	//image.setImageResource(id);
+		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
+		    
+		         icon = BitmapFactory.decodeResource(context.getResources(),id, options);
+				 bg = new BitmapDrawable(context.getResources(), icon);
+				 image.setImageDrawable(bg);
 		    			    	
 		    	 return true;
 		    	}
@@ -117,14 +106,10 @@ public class ImageAdapter extends BaseAdapter {
 			        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
 			        view.startDrag(data, shadowBuilder, view, 0);
 			        
-			        view.playSoundEffect(SoundEffectConstants.CLICK);
 			        id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-			        options.inPurgeable = true;
 			        icon = BitmapFactory.decodeResource(context.getResources(),id, options);
-					bg = new BitmapDrawable(icon);
+					bg = new BitmapDrawable(context.getResources(), icon);
 					image.setImageDrawable(bg);
-			        
-			        //image.setImageResource(id);
 			        
 			        view.setVisibility(View.INVISIBLE);
 			        return true;
@@ -132,11 +117,11 @@ public class ImageAdapter extends BaseAdapter {
 		    case MotionEvent.ACTION_UP:
 		    	if(PictureEditor.createdStory) {
 		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-		    	 options.inPurgeable = true;
+		    	
 		         icon = BitmapFactory.decodeResource(context.getResources(),id, options);
-		 		bg = new BitmapDrawable(icon);
-		 		image.setImageDrawable(bg);
-		    //	 image.setImageResource(id);
+		 	     bg = new BitmapDrawable(context.getResources(), icon);
+		 		 image.setImageDrawable(bg);
+	
 		    	 return true;    	
 		    	}
 		    default: break;

@@ -159,7 +159,7 @@
 	<ImageView
 		android:id="@+id/pe_editstory_button"
 		android:contentDescription="@string/description"
-		android:layout_width="375dp"
+		android:layout_width="@dimen/createstory_width"
 		android:layout_height="wrap_content"	
 		android:scaleType="fitXY"
 		android:src="@drawable/pe_editstory_button"

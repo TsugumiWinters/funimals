@@ -35,14 +35,10 @@ public class StoriesActivity extends Activity {
 	private ListView lstStories;
 	private int selectedStory;
 	private boolean openingActivity;
-	Bitmap icon;
-	Drawable bg;
-	BitmapFactory.Options options;
-	RelativeLayout libraryBackground;
-	
-	Bitmap icon2;
-	Drawable bg2;
-	BitmapFactory.Options options2;
+	private Bitmap icon, icon2, icon3;
+	private Drawable bg, bg2, bg3;
+	private BitmapFactory.Options options, options2;
+	private RelativeLayout libraryBackground;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,24 +46,24 @@ public class StoriesActivity extends Activity {
         setContentView(R.layout.activity_userstories);
         openingActivity = false;
         selectedStory = -1;
-		
+	
         libraryBackground = (RelativeLayout) findViewById(R.id.library_bg);
-        
-        options = new BitmapFactory.Options(); 
-		options.inPurgeable = true;
-		options2 = new BitmapFactory.Options(); 
-		options2.inPurgeable = true;
-		
-        icon = BitmapFactory.decodeResource(getResources(),R.drawable.library_openbook, options);
-		bg = new BitmapDrawable(icon);
-		libraryBackground.setBackground(bg);
-        
         imgStory = (ImageView) findViewById(R.id.userstories_img_story);
         txtStory = (TextView) findViewById(R.id.userstories_txt_storytitle);
         lstStories = (ListView) findViewById(R.id.userstories_titles);
+        
+        options = new BitmapFactory.Options(); 
+		options.inPurgeable = true;
+		
+		options2.inPurgeable = true;
+		options2.inPreferredConfig = Bitmap.Config.RGB_565;
+		
+        icon = BitmapFactory.decodeResource(getResources(),R.drawable.library_openbook, options);
+		bg = new BitmapDrawable(getResources(), icon);
+		libraryBackground.setBackground(bg);
              
-        icon2 = BitmapFactory.decodeResource(getResources(),R.drawable.library_preview_default, options2);
-		bg2 = new BitmapDrawable(icon2);
+        icon2 = BitmapFactory.decodeResource(getResources(),R.drawable.library_preview_default, options);
+		bg2 = new BitmapDrawable(getResources(), icon2);
 		imgStory.setImageDrawable(bg2);
         
         DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -116,28 +112,11 @@ public class StoriesActivity extends Activity {
 		
 		selectedStory = story.getStoryID();
 		txtStory.setText(title);
-		imgStory.setImageBitmap(getImageFromFile(filePath));
+		imgStory.setImageDrawable(getImageFromFile(filePath));
+
 	}
 	
-	public void clicked_lstStories(View v) {
-		String title = ((TextView) v).getText().toString();
-		StoryFile story = null;
-		String filePath = null;
-		
-		Log.e("log", title);
-		
-		DatabaseHelper dbHelper = new DatabaseHelper(this);
-		story = dbHelper.findStoryFileByTitle(ActiveUser.getActiveUser(this).getName(), title);
-		filePath = story.getUsername() + "_" + story.getStoryID() + ".png";
-		
-		Log.e("selectedstory", selectedStory + "");
-		Log.e("txtstory", title);
-		Log.e("imgstory", filePath);
-		
-		selectedStory = story.getStoryID();
-		txtStory.setText(title);
-		imgStory.setImageBitmap(getImageFromFile(filePath));
-	}
+
 	
 	public void clicked_selectedStory(View v) {
         if (selectedStory == -1) {
@@ -159,15 +138,14 @@ public class StoriesActivity extends Activity {
         startActivity(mainIntent);
 	}
 	
-	private Bitmap getImageFromFile(String fileName) {
+	private Drawable getImageFromFile(String fileName) {
 		String path = Environment.getExternalStorageDirectory().toString()
 				+ "/Funimals/SavedPictures/";
 		
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inPurgeable = true;
-		options.inPreferredConfig = Bitmap.Config.RGB_565;
-		
-		return BitmapFactory.decodeFile(path + fileName, options);
+		icon3 = BitmapFactory.decodeFile(path + fileName, options2);
+		bg3 =  new BitmapDrawable(getResources(), icon3);
+
+		return bg3;
 	}
 	
 	@Override
