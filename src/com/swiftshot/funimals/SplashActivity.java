@@ -9,6 +9,7 @@ import com.swiftshot.funimals.models.database.DatabaseHelper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;

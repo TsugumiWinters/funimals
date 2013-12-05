@@ -236,10 +236,12 @@ public class PictureEditorActivity extends Activity {
 			public void onInit(int status) {
 				if(status != TextToSpeech.ERROR){
 					tts.setLanguage(Locale.US);
+		
 				}
 			}
 		});
-		tts.setSpeechRate((float)0.85);
+		tts.setPitch((float)1.3);
+		tts.setSpeechRate((float)0.87);
 		read_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -1723,7 +1725,9 @@ public class PictureEditorActivity extends Activity {
 
 		  public void onClick(View textView) {
 	    	  tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
-	    	  tts.setSpeechRate((float) 0.85);
+		  	  tts.setPitch((float)1.3);
+			  tts.setSpeechRate((float)0.87);
+			  
 	    	  String definition = dbHelper.findDefinitionByWord(word);
 	    	  
 	    	  if(!definition.equals("")) {	    		  

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.swiftshot.funimals.R;
@@ -24,10 +25,11 @@ import com.swiftshot.funimals.models.UserInformation;
 public class HomeActivity extends Activity {
 	
 	private boolean openingActivity;
-	private Bitmap icon;
-	private Drawable bg;
+	private Bitmap icon, icon2;
+	private Drawable bg, bg2;
 	private BitmapFactory.Options options;
 	private ImageView general_title;
+	private RelativeLayout homeBackground;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {		
@@ -36,13 +38,18 @@ public class HomeActivity extends Activity {
         openingActivity = false;
         
         general_title = (ImageView) findViewById(R.id.home_title);
+        homeBackground = (RelativeLayout) findViewById(R.id.home_relative);
         
         options = new BitmapFactory.Options();
 		options.inPurgeable = true;
+		
         icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_title, options);
-		bg = new BitmapDrawable(getResources(), icon);
-        
+		bg = new BitmapDrawable(getResources(), icon);    
 		general_title.setImageDrawable(bg);
+		
+		icon2 = BitmapFactory.decodeResource(getResources(),R.drawable.general_background, options);
+		bg2 = new BitmapDrawable(getResources(), icon2);
+		homeBackground.setBackground(bg2);
 		
         Log.d("HomeActivity", "Activity created.");
         

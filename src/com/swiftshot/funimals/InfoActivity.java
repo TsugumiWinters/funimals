@@ -29,6 +29,7 @@ public class InfoActivity extends Activity {
 		creditsBackground = (RelativeLayout) findViewById(R.id.info_credits);
 		options = new BitmapFactory.Options(); 
 		options.inPurgeable = true;
+		options.inPreferredConfig = Bitmap.Config.RGB_565;
 		
 		icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_info_credits, options);
 		bg = new BitmapDrawable(getResources(), icon);
