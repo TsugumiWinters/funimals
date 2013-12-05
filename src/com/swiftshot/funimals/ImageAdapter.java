@@ -63,6 +63,7 @@ public class ImageAdapter extends BaseAdapter {
 		bg = new BitmapDrawable(context.getResources(), icon);
 		
 		imageView.setImageDrawable(bg);
+	
 		imageView.setContentDescription(stickerName);
 
 		return gridView;
@@ -93,11 +94,11 @@ public class ImageAdapter extends BaseAdapter {
 		    		}
 		    	    	
 		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
-		    
+		    	 options.inPurgeable = true;
 		         icon = BitmapFactory.decodeResource(context.getResources(),id, options);
 				 bg = new BitmapDrawable(context.getResources(), icon);
 				 image.setImageDrawable(bg);
-		    			    	
+		         
 		    	 return true;
 		    	}
 		    case MotionEvent.ACTION_MOVE:
@@ -105,7 +106,7 @@ public class ImageAdapter extends BaseAdapter {
 		    		ClipData data = ClipData.newPlainText("", "");
 			        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
 			        view.startDrag(data, shadowBuilder, view, 0);
-			        
+			        options.inPurgeable = true;
 			        id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
 			        icon = BitmapFactory.decodeResource(context.getResources(),id, options);
 					bg = new BitmapDrawable(context.getResources(), icon);
@@ -117,7 +118,7 @@ public class ImageAdapter extends BaseAdapter {
 		    case MotionEvent.ACTION_UP:
 		    	if(PictureEditorActivity.createdStory) {
 		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
-		    	
+
 		         icon = BitmapFactory.decodeResource(context.getResources(),id, options);
 		 	     bg = new BitmapDrawable(context.getResources(), icon);
 		 		 image.setImageDrawable(bg);

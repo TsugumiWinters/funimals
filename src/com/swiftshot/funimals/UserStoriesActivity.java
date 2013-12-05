@@ -35,7 +35,7 @@ public class UserStoriesActivity extends Activity {
 	private int selectedStory;
 	private boolean openingActivity;
 	private Bitmap icon, icon2, icon3;
-	private Drawable bg, bg2, bg3;
+	private Drawable bg, bg2;
 	private BitmapFactory.Options options, options2;
 	private RelativeLayout libraryBackground;
 	
@@ -54,6 +54,7 @@ public class UserStoriesActivity extends Activity {
         options = new BitmapFactory.Options(); 
 		options.inPurgeable = true;
 		
+		options2 = new BitmapFactory.Options(); 
 		options2.inPurgeable = true;
 		options2.inPreferredConfig = Bitmap.Config.RGB_565;
 		
@@ -111,7 +112,7 @@ public class UserStoriesActivity extends Activity {
 		
 		selectedStory = story.getStoryID();
 		txtStory.setText(title);
-		imgStory.setImageDrawable(getImageFromFile(filePath));
+		imgStory.setImageBitmap(getImageFromFile(filePath));
 
 	}
 	
@@ -137,14 +138,14 @@ public class UserStoriesActivity extends Activity {
         startActivity(mainIntent);
 	}
 	
-	private Drawable getImageFromFile(String fileName) {
+	private Bitmap getImageFromFile(String fileName) {
 		String path = Environment.getExternalStorageDirectory().toString()
 				+ "/Funimals/SavedPictures/";
 		
 		icon3 = BitmapFactory.decodeFile(path + fileName, options2);
-		bg3 =  new BitmapDrawable(getResources(), icon3);
+	//	bg3 =  new BitmapDrawable(getResources(), icon3);
 
-		return bg3;
+		return icon3;
 	}
 	
 	@Override
