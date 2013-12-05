@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import com.swiftshot.funimals.R;
 import com.swiftshot.funimals.models.ActiveUser;
+import com.swiftshot.funimals.models.database.DatabaseHelper;
 
-import database.DatabaseHelper;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -39,7 +39,7 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
-                Intent mainIntent = new Intent(SplashActivity.this, MenuActivity.class);
+                Intent mainIntent = new Intent(SplashActivity.this, AccountsActivity.class);
                 SplashActivity.this.startActivity(mainIntent);
                 openingActivity = true;
                 

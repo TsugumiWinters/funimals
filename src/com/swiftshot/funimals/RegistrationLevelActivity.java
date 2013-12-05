@@ -7,9 +7,9 @@ import java.util.List;
 import com.swiftshot.funimals.R;
 import com.swiftshot.funimals.R.layout;
 import com.swiftshot.funimals.models.ActiveUser;
+import com.swiftshot.funimals.models.database.DatabaseHelper;
+import com.swiftshot.funimals.models.database.entities.UserInformation;
 
-import database.DatabaseHelper;
-import database_entities.UserInformation;
 
 import android.app.Activity;
 import android.content.Intent;
