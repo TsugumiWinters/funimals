@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     
     <application
-        android:name="com.swiftshot.funimals.ApplicationContextProvider"
+        android:name="com.swiftshot.funimals.models.ApplicationContextProvider"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.swiftshot.funimals.MenuActivity"
+            android:name="com.swiftshot.funimals.AccountsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
@@ -48,7 +48,7 @@
             android:windowSoftInputMode="adjustNothing" >
         </activity>
         <activity
-            android:name="com.swiftshot.funimals.StoriesActivity"
+            android:name="com.swiftshot.funimals.UserStoriesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
@@ -61,7 +61,7 @@
         </activity>
 
         <activity
-            android:name="com.swiftshot.funimals.BookActivity"
+            android:name="com.swiftshot.funimals.UserbookActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustNothing" >
@@ -89,7 +89,7 @@
         </activity>
                 
         <activity
-            android:name="com.swiftshot.funimals.PictureEditor"
+            android:name="com.swiftshot.funimals.PictureEditorActivity"
             android:label="@string/app_name"
             android:screenOrientation="sensorLandscape" 
             >

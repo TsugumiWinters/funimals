@@ -75,7 +75,7 @@ public class ImageAdapter extends BaseAdapter {
 			int id;
 			switch (event.getAction()) {
 		    case MotionEvent.ACTION_DOWN:
-		    	if(PictureEditor.createdStory) {
+		    	if(PictureEditorActivity.createdStory) {
 		    	
 		    		if(view.getContentDescription().toString().startsWith("a")) {
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 30.0f, 0.0f, 0.0f);  
@@ -101,7 +101,7 @@ public class ImageAdapter extends BaseAdapter {
 		    	 return true;
 		    	}
 		    case MotionEvent.ACTION_MOVE:
-		    	if(!PictureEditor.createdStory) {
+		    	if(!PictureEditorActivity.createdStory) {
 		    		ClipData data = ClipData.newPlainText("", "");
 			        DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
 			        view.startDrag(data, shadowBuilder, view, 0);
@@ -115,7 +115,7 @@ public class ImageAdapter extends BaseAdapter {
 			        return true;
 		    	}		    	
 		    case MotionEvent.ACTION_UP:
-		    	if(PictureEditor.createdStory) {
+		    	if(PictureEditorActivity.createdStory) {
 		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString(), "drawable", context.getPackageName());
 		    	
 		         icon = BitmapFactory.decodeResource(context.getResources(),id, options);

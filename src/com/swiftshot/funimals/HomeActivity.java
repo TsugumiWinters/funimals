@@ -63,7 +63,7 @@ public class HomeActivity extends Activity {
         UserInformation user = ActiveUser.getActiveUser(this);
         
         if (user == null) {
-            Intent mainIntent = new Intent(HomeActivity.this, MenuActivity.class);
+            Intent mainIntent = new Intent(HomeActivity.this, AccountsActivity.class);
             startActivity(mainIntent);
         }
 
@@ -74,7 +74,7 @@ public class HomeActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				imgUser.setColorFilter(Color.rgb(123,73,122), android.graphics.PorterDuff.Mode.DARKEN );
-		        Intent mainIntent = new Intent(HomeActivity.this, MenuActivity.class);
+		        Intent mainIntent = new Intent(HomeActivity.this, AccountsActivity.class);
 		        startActivity(mainIntent);
 			}
         	
@@ -107,17 +107,17 @@ public class HomeActivity extends Activity {
 	}
 	
 	public void clicked_btnNewPicture(View v) {
-        Intent mainIntent = new Intent(HomeActivity.this, PictureEditor.class);
+        Intent mainIntent = new Intent(HomeActivity.this, PictureEditorActivity.class);
         startActivity(mainIntent);
 	}
 	
 	public void clicked_btnViewLibrary(View v) {
-        Intent mainIntent = new Intent(HomeActivity.this, BookActivity.class);
+        Intent mainIntent = new Intent(HomeActivity.this, UserbookActivity.class);
         startActivity(mainIntent);
 	}
 	
 	public void clicked_btnSeeTutorial(View v) {
-		Intent mainIntent = new Intent(HomeActivity.this, PictureEditor.class);
+		Intent mainIntent = new Intent(HomeActivity.this, PictureEditorActivity.class);
 		mainIntent.putExtra("tutorial", 1);
         startActivity(mainIntent);
 	}

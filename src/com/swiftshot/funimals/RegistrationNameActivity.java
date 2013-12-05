@@ -47,7 +47,7 @@ public class RegistrationNameActivity extends Activity {
 	}
 	
 	public void clicked_btnBack(View v) {
-        Intent mainIntent = new Intent(RegistrationNameActivity.this, MenuActivity.class);
+        Intent mainIntent = new Intent(RegistrationNameActivity.this, AccountsActivity.class);
         startActivity(mainIntent);
 	}
 	
