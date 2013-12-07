@@ -66,4 +66,6 @@
 	<string name="text_word">Word</string>
 	<string name="text_pos">PartOfSpeech</string>
 	<string name="text_def">Definition</string>
+	
+	<string name="info_credits">Info</string>
 </resources>

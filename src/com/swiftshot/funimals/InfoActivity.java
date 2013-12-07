@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class InfoActivity extends Activity {
@@ -19,21 +20,20 @@ public class InfoActivity extends Activity {
 	private Bitmap icon;
 	private Drawable bg;
 	private BitmapFactory.Options options;
-	private RelativeLayout creditsBackground;
+	private ImageView creditsBackground;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_info);
 		
-		creditsBackground = (RelativeLayout) findViewById(R.id.info_credits);
+		creditsBackground = (ImageView) findViewById(R.id.info_credits);
 		options = new BitmapFactory.Options(); 
 		options.inPurgeable = true;
-		options.inPreferredConfig = Bitmap.Config.RGB_565;
 		
 		icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_info_credits, options);
 		bg = new BitmapDrawable(getResources(), icon);
-		creditsBackground.setBackground(bg);
+		creditsBackground.setImageDrawable(bg);
 		
 		openingActivity = false;
 	}
