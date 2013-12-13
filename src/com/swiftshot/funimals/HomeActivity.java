@@ -1,26 +1,56 @@
 package com.swiftshot.funimals;
 
+import java.util.StringTokenizer;
+import java.util.Vector;
+
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnShowListener;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.swiftshot.funimals.R;
+import com.swiftshot.funimals.PictureEditorActivity.GetTask;
+import com.swiftshot.funimals.PictureEditorActivity.MyClickableSpan;
 import com.swiftshot.funimals.models.ActiveUser;
 import com.swiftshot.funimals.models.Preferences;
 import com.swiftshot.funimals.models.UserInformation;
+import com.swiftshot.funimals.models.database.entities.CharacterGoal;
+import com.swiftshot.funimals.models.database.entities.IGTheme;
+import com.swiftshot.funimals.models.pictureeditor.component.InputContentRepresentation;
+import com.swiftshot.funimals.models.sentencegenerator.LASGenerator;
+import com.swiftshot.funimals.models.sentencegenerator.ReferringExpressionGenerator;
+import com.swiftshot.funimals.models.sentencegenerator.StoryGeneratorException;
+import com.swiftshot.funimals.models.storyplanner.StoryPlannerException;
+import com.swiftshot.funimals.models.storyplanner.introduction.IntroMaker;
+import com.swiftshot.funimals.models.storyplanner.introduction.IntroMakerException;
+import com.swiftshot.funimals.models.storyplanner.plot.PlotMaker;
+import com.swiftshot.funimals.models.storyplanner.plot.ThemeExtractor;
+import com.swiftshot.funimals.models.storyplanner.title.TitleMaker;
+import com.swiftshot.funimals.models.storyplanner.title.TitleMakerException;
 
 public class HomeActivity extends Activity {
 	
@@ -30,11 +60,17 @@ public class HomeActivity extends Activity {
 	private BitmapFactory.Options options;
 	private ImageView general_title;
 	private RelativeLayout homeBackground;
-	
+	private LoadTask task;
+	private Dialog load_dialog;
+	private LinearLayout loadContentView;
+	private ImageView load_image;
+	private  AnimationDrawable load_animation;
+	private Context context;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        this.context = this;
         openingActivity = false;
         
         general_title = (ImageView) findViewById(R.id.home_title);
@@ -50,6 +86,16 @@ public class HomeActivity extends Activity {
 		icon2 = BitmapFactory.decodeResource(getResources(),R.drawable.general_background, options);
 		bg2 = new BitmapDrawable(getResources(), icon2);
 		homeBackground.setBackground(bg2);
+		
+		load_dialog = new Dialog(context);
+		load_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		load_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));     
+		loadContentView = (LinearLayout)((Activity)context).getLayoutInflater().inflate(R.layout.activity_dialog_load, null);
+		load_dialog.setContentView(loadContentView);
+		load_dialog.setCancelable(false);
+		load_dialog.setCanceledOnTouchOutside(false);       
+		load_image = (ImageView) loadContentView.findViewById(R.id.loading);
+		load_animation = (AnimationDrawable) load_image.getDrawable();
 		
         Log.d("HomeActivity", "Activity created.");
         
@@ -114,8 +160,8 @@ public class HomeActivity extends Activity {
 	}
 	
 	public void clicked_btnNewPicture(View v) {
-        Intent mainIntent = new Intent(HomeActivity.this, PictureEditorActivity.class);
-        startActivity(mainIntent);
+		task = new LoadTask();
+		task.execute();
 	}
 	
 	public void clicked_btnViewLibrary(View v) {
@@ -128,6 +174,33 @@ public class HomeActivity extends Activity {
 		mainIntent.putExtra("tutorial", 1);
         startActivity(mainIntent);
 	}
+	
+	class LoadTask extends AsyncTask<String, Void, String> {
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();			
+            load_dialog.setOnShowListener(new OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                	load_animation.start();
+                }
+                });
+            load_dialog.show();
+		}
+
+		@Override
+		protected String doInBackground(String... params) {		
+	        Intent mainIntent = new Intent(HomeActivity.this, PictureEditorActivity.class);
+	        startActivity(mainIntent);
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {					      		
+
+	        load_dialog.dismiss();  
+		}	
+    }
 	
 	@Override
 	protected void onDestroy() {
