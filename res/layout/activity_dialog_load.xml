@@ -6,11 +6,11 @@
      android:gravity="center" >
  
      <ImageView
-         android:id="@+id/generating"
+         android:id="@+id/loading"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:src="@drawable/progress_dialog_icon_drawable_animation"
-         android:contentDescription="@string/generating_story"
+         android:contentDescription="@string/loading_story"
            />
  
  </LinearLayout>

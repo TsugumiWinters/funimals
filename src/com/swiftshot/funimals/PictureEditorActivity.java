@@ -258,7 +258,7 @@ public class PictureEditorActivity extends Activity {
 		generate_dialog.setContentView(generateContentView);
 		generate_dialog.setCancelable(false);
 		generate_dialog.setCanceledOnTouchOutside(false);       
-		generate_image = (ImageView) generateContentView.findViewById(R.id.loading);
+		generate_image = (ImageView) generateContentView.findViewById(R.id.generating);
 		generate_animation = (AnimationDrawable) generate_image.getDrawable();
 			
 		// save dialog

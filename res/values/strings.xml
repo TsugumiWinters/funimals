@@ -57,6 +57,8 @@
 	    \nOliver Syson</string>
 	
 	<string name="saving_story">Saving Story</string>
+	<string name="generating_story">Generating Story</string>
+	<string name="loading_story">Loading Story Maker</string>
 	
 	<string name="abs_content">bg_bedroom</string>
 	<string name="text_bg">Bedroom</string>
