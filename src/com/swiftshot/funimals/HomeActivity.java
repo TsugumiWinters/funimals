@@ -1,14 +1,11 @@
 package com.swiftshot.funimals;
 
-import java.util.StringTokenizer;
-import java.util.Vector;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnShowListener;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -18,39 +15,20 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.swiftshot.funimals.R;
-import com.swiftshot.funimals.PictureEditorActivity.GetTask;
-import com.swiftshot.funimals.PictureEditorActivity.MyClickableSpan;
 import com.swiftshot.funimals.models.ActiveUser;
 import com.swiftshot.funimals.models.Preferences;
 import com.swiftshot.funimals.models.UserInformation;
-import com.swiftshot.funimals.models.database.entities.CharacterGoal;
-import com.swiftshot.funimals.models.database.entities.IGTheme;
-import com.swiftshot.funimals.models.pictureeditor.component.InputContentRepresentation;
-import com.swiftshot.funimals.models.sentencegenerator.LASGenerator;
-import com.swiftshot.funimals.models.sentencegenerator.ReferringExpressionGenerator;
-import com.swiftshot.funimals.models.sentencegenerator.StoryGeneratorException;
-import com.swiftshot.funimals.models.storyplanner.StoryPlannerException;
-import com.swiftshot.funimals.models.storyplanner.introduction.IntroMaker;
-import com.swiftshot.funimals.models.storyplanner.introduction.IntroMakerException;
-import com.swiftshot.funimals.models.storyplanner.plot.PlotMaker;
-import com.swiftshot.funimals.models.storyplanner.plot.ThemeExtractor;
-import com.swiftshot.funimals.models.storyplanner.title.TitleMaker;
-import com.swiftshot.funimals.models.storyplanner.title.TitleMakerException;
 
 public class HomeActivity extends Activity {
 	
