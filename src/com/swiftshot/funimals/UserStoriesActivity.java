@@ -79,6 +79,10 @@ public class UserStoriesActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
 				adapter.getItem(arg2);
+				for(int i = 0; i < lstStories.getChildCount(); i++)
+					if(i != arg2)
+						lstStories.getChildAt(arg2).setBackgroundColor(Color.TRANSPARENT);
+				lstStories.getChildAt(arg2).setBackgroundColor(Color.BLUE);
 				showStories(adapter.getItem(arg2).getTitle());	
 			}
         });
