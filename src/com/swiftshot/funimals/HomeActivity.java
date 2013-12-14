@@ -60,17 +60,11 @@ public class HomeActivity extends Activity {
 	private BitmapFactory.Options options;
 	private ImageView general_title;
 	private RelativeLayout homeBackground;
-	private LoadTask task;
-	private Dialog load_dialog;
-	private LinearLayout loadContentView;
-	private ImageView load_image;
-	private  AnimationDrawable load_animation;
-	private Context context;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        this.context = this;
         openingActivity = false;
         
         general_title = (ImageView) findViewById(R.id.home_title);
@@ -86,16 +80,6 @@ public class HomeActivity extends Activity {
 		icon2 = BitmapFactory.decodeResource(getResources(),R.drawable.general_background, options);
 		bg2 = new BitmapDrawable(getResources(), icon2);
 		homeBackground.setBackground(bg2);
-		
-		load_dialog = new Dialog(context);
-		load_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		load_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));     
-		loadContentView = (LinearLayout)((Activity)context).getLayoutInflater().inflate(R.layout.activity_dialog_load, null);
-		load_dialog.setContentView(loadContentView);
-		load_dialog.setCancelable(false);
-		load_dialog.setCanceledOnTouchOutside(false);       
-		load_image = (ImageView) loadContentView.findViewById(R.id.loading);
-		load_animation = (AnimationDrawable) load_image.getDrawable();
 		
         Log.d("HomeActivity", "Activity created.");
         
@@ -160,8 +144,8 @@ public class HomeActivity extends Activity {
 	}
 	
 	public void clicked_btnNewPicture(View v) {
-		task = new LoadTask();
-		task.execute();
+        Intent mainIntent = new Intent(HomeActivity.this, PictureEditorActivity.class);
+        startActivity(mainIntent);
 	}
 	
 	public void clicked_btnViewLibrary(View v) {
@@ -174,33 +158,7 @@ public class HomeActivity extends Activity {
 		mainIntent.putExtra("tutorial", 1);
         startActivity(mainIntent);
 	}
-	
-	class LoadTask extends AsyncTask<String, Void, String> {
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();			
-            load_dialog.setOnShowListener(new OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialog) {
-                	load_animation.start();
-                }
-                });
-            load_dialog.show();
-		}
-
-		@Override
-		protected String doInBackground(String... params) {		
-	        Intent mainIntent = new Intent(HomeActivity.this, PictureEditorActivity.class);
-	        startActivity(mainIntent);
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String result) {					      		
-
-	        load_dialog.dismiss();  
-		}	
-    }
+ 
 	
 	@Override
 	protected void onDestroy() {
