@@ -47,18 +47,18 @@ public class HomeActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        this.context = this;
-        openingActivity = false;
-        
-        general_title = (ImageView) findViewById(R.id.home_title);
-        homeBackground = (RelativeLayout) findViewById(R.id.home_relative);
-        
-        options = new BitmapFactory.Options();
+		setContentView(R.layout.activity_home);
+		this.context = this;
+		openingActivity = false;
+		
+		general_title = (ImageView) findViewById(R.id.home_title);
+		homeBackground = (RelativeLayout) findViewById(R.id.home_relative);
+		
+		options = new BitmapFactory.Options();
 		options.inPurgeable = true;
 		
-        icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_title, options);
-		bg = new BitmapDrawable(getResources(), icon);    
+		icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_title, options);
+		bg = new BitmapDrawable(getResources(), icon);	
 		general_title.setImageDrawable(bg);
 		
 		icon2 = BitmapFactory.decodeResource(getResources(),R.drawable.general_background, options);
@@ -67,52 +67,52 @@ public class HomeActivity extends Activity {
 		
 		load_dialog = new Dialog(context);
 		load_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		load_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));     
+		load_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));	 
 		loadContentView = (LinearLayout)((Activity)context).getLayoutInflater().inflate(R.layout.activity_dialog_load, null);
 		load_dialog.setContentView(loadContentView);
 		load_dialog.setCancelable(false);
-		load_dialog.setCanceledOnTouchOutside(false);       
+		load_dialog.setCanceledOnTouchOutside(false);	   
 		load_image = (ImageView) loadContentView.findViewById(R.id.loading);
 		load_animation = (AnimationDrawable) load_image.getDrawable();
 		
-        Log.d("HomeActivity", "Activity created.");
-        
-        boolean musicOn = Preferences.getMusicOn(this);
-        setMusic(musicOn);
-        
-        if (!musicOn) {
-        	clicked_btnSound(findViewById(R.id.home_btn_sound));
-        }
-        
-        FrameLayout frame = (FrameLayout) findViewById(R.id.home_usercanvas);
+		Log.d("HomeActivity", "Activity created.");
+		
+		boolean musicOn = Preferences.getMusicOn(this);
+		setMusic(musicOn);
+		
+		if (!musicOn) {
+			clicked_btnSound(findViewById(R.id.home_btn_sound));
+		}
+		
+		FrameLayout frame = (FrameLayout) findViewById(R.id.home_usercanvas);
 		LayoutInflater inflater = getLayoutInflater();
-        View userCanvas = inflater.inflate(R.layout.user_canvas, frame, false);
-        
-        final ImageView imgUser = (ImageView) userCanvas.findViewById(R.id.canvas_img_user);
-        TextView txtUser = (TextView) userCanvas.findViewById(R.id.canvas_name);
-        
-        UserInformation user = ActiveUser.getActiveUser(this);
-        
-        if (user == null) {
-            Intent mainIntent = new Intent(HomeActivity.this, AccountsActivity.class);
-            startActivity(mainIntent);
-        }
+		View userCanvas = inflater.inflate(R.layout.user_canvas, frame, false);
+		
+		final ImageView imgUser = (ImageView) userCanvas.findViewById(R.id.canvas_img_user);
+		TextView txtUser = (TextView) userCanvas.findViewById(R.id.canvas_name);
+		
+		UserInformation user = ActiveUser.getActiveUser(this);
+		
+		if (user == null) {
+			Intent mainIntent = new Intent(HomeActivity.this, AccountsActivity.class);
+			startActivity(mainIntent);
+		}
 
-        imgUser.setImageResource(user.getImage());
-        txtUser.setText(user.getName());
-        frame.setOnClickListener(new OnClickListener(){
+		imgUser.setImageResource(user.getImage());
+		txtUser.setText(user.getName());
+		frame.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View arg0) {
 				imgUser.setColorFilter(Color.rgb(123,73,122), android.graphics.PorterDuff.Mode.DARKEN );
-		        Intent mainIntent = new Intent(HomeActivity.this, AccountsActivity.class);
-		        startActivity(mainIntent);
+				Intent mainIntent = new Intent(HomeActivity.this, AccountsActivity.class);
+				startActivity(mainIntent);
 			}
-        	
-        });
+			
+		});
 		
-        frame.addView(userCanvas);
-       
+		frame.addView(userCanvas);
+	   
 	}
 	
 	public void clicked_btnSound(View v) {
@@ -134,7 +134,7 @@ public class HomeActivity extends Activity {
 	
 	public void clicked_btnInfo(View v) {
 		Intent mainIntent = new Intent(HomeActivity.this, InfoActivity.class);
-        startActivity(mainIntent);
+		startActivity(mainIntent);
 	}
 	
 	public void clicked_btnNewPicture(View v) {
@@ -143,42 +143,45 @@ public class HomeActivity extends Activity {
 	}
 	
 	public void clicked_btnViewLibrary(View v) {
-        Intent mainIntent = new Intent(HomeActivity.this, UserbookActivity.class);
-        startActivity(mainIntent);
+		Intent mainIntent = new Intent(HomeActivity.this, UserbookActivity.class);
+		startActivity(mainIntent);
 	}
 	
 	public void clicked_btnSeeTutorial(View v) {
 		Intent mainIntent = new Intent(HomeActivity.this, PictureEditorActivity.class);
 		mainIntent.putExtra("tutorial", 1);
-        startActivity(mainIntent);
+		startActivity(mainIntent);
 	}
 	
 	class LoadTask extends AsyncTask<String, Void, String> {
+		Intent mainIntent;
+		
 		@Override
 		protected void onPreExecute() {
-			super.onPreExecute();			
-            load_dialog.setOnShowListener(new OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialog) {
-                	load_animation.start();
-                }
-                });
-            load_dialog.show();
+			super.onPreExecute();
+			mainIntent = null;
+			
+			load_dialog.setOnShowListener(new OnShowListener() {
+				@Override
+				public void onShow(DialogInterface dialog) {
+					load_animation.start();
+				}
+				});
+			load_dialog.show();
 		}
 
 		@Override
 		protected String doInBackground(String... params) {		
-	        Intent mainIntent = new Intent(HomeActivity.this, PictureEditorActivity.class);
-	        startActivity(mainIntent);
+			mainIntent = new Intent(HomeActivity.this, PictureEditorActivity.class);
 			return null;
 		}
 
 		@Override
-		protected void onPostExecute(String result) {					      		
-
-	        load_dialog.dismiss();  
+		protected void onPostExecute(String result) {						  		
+			startActivity(mainIntent);
+			load_dialog.dismiss();  
 		}	
-    }
+	}
 	
 	@Override
 	protected void onDestroy() {
@@ -196,5 +199,5 @@ public class HomeActivity extends Activity {
 			// TODO logic for closing music
 		}
 	}
-    
+	
 }
