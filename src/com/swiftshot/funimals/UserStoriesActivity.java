@@ -117,7 +117,6 @@ public class UserStoriesActivity extends Activity {
 		selectedStory = story.getStoryID();
 		txtStory.setText(title);
 		imgStory.setImageBitmap(getImageFromFile(filePath));
-
 	}
 	
 
