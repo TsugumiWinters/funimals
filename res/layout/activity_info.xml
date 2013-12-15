@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/general_background" >
+    android:background="@drawable/general_background_info" >
 
     <ImageView
         android:id="@+id/info_btn_back"
@@ -15,14 +15,5 @@
         android:scaleType="fitXY"
         android:onClick="clicked_btnBack"
         android:src="@drawable/general_back_button_selector" />
-
-    <ImageView
-        android:id="@+id/info_credits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:contentDescription="@string/info_credits"
-        />
         
 </RelativeLayout>
