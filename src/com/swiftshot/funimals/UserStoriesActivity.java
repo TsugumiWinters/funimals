@@ -80,9 +80,8 @@ public class UserStoriesActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
 				adapter.getItem(arg2);
 				for(int i = 0; i < lstStories.getChildCount(); i++)
-					if(i != arg2)
-						lstStories.getChildAt(arg2).setBackgroundColor(Color.rgb(178, 205, 255));
-				lstStories.getChildAt(arg2).setBackgroundColor(Color.CYAN);
+						lstStories.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
+				lstStories.getChildAt(arg2).setBackgroundColor(Color.rgb(178, 205, 255));
 				showStories(adapter.getItem(arg2).getTitle());	
 			}
         });
