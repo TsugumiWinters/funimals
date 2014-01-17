@@ -226,6 +226,8 @@ public class PictureEditorActivity extends Activity {
 		} catch (SQLException sqle) {
 			throw sqle;
 		}
+		
+		PictureEditorActivity.createdStory = false;
 
 		// text to speech - initialize
 		read_button = (ImageView) findViewById(R.id.pe_read_button);
