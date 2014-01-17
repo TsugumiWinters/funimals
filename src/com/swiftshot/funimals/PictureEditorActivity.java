@@ -164,8 +164,7 @@ public class PictureEditorActivity extends Activity {
 	TextView storyTitle;
 	TextView bgTitle;
 
-	ImageView home_button;
-	ImageView library_button;
+	ImageView back_button;
 	ImageView restart_button;
 	ImageView createstory_button;
 	ImageView editstory_button;
@@ -289,8 +288,7 @@ public class PictureEditorActivity extends Activity {
 		storyTitle = (TextView) findViewById(R.id.pe_storytitle);
 		bgTitle = (TextView) findViewById(R.id.pe_bgtitle);
 
-		home_button = (ImageView) findViewById(R.id.pe_home_button);
-		library_button = (ImageView) findViewById(R.id.pe_library_button);
+		back_button = (ImageView) findViewById(R.id.pe_home_button);
 		restart_button = (ImageView) findViewById(R.id.pe_restart_button);
 		restart_button.setEnabled(false);
 		createstory_button = (ImageView) findViewById(R.id.pe_createstory_button);
@@ -505,8 +503,7 @@ public class PictureEditorActivity extends Activity {
 		pictureBackground.setOnDragListener(new MyDragListener_RelativeLayout());
 		gridView.setOnDragListener(new MyDragListener_GridView());
 
-		home_button.setOnDragListener(new MyDragListener_GridView());
-		library_button.setOnDragListener(new MyDragListener_GridView());
+		back_button.setOnDragListener(new MyDragListener_GridView());
 		restart_button.setOnDragListener(new MyDragListener_GridView());
 		createstory_button.setOnDragListener(new MyDragListener_GridView());
 		left_button.setOnDragListener(new MyDragListener_GridView());
@@ -547,7 +544,7 @@ public class PictureEditorActivity extends Activity {
 			}
 		});
 
-		home_button.setOnClickListener(new View.OnClickListener() {
+		back_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if(tts != null){
@@ -562,19 +559,6 @@ public class PictureEditorActivity extends Activity {
 				Intent mainIntent = new Intent(PictureEditorActivity.this,
 						HomeActivity.class);
 				PictureEditorActivity.this.startActivity(mainIntent);*/
-			}
-		});
-
-		library_button.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if(tts != null){
-					tts.stop();
-				}
-				PictureEditorActivity.createdStory = false;
-				Intent mainIntent = new Intent(PictureEditorActivity.this,
-						UserStoriesActivity.class);
-				PictureEditorActivity.this.startActivity(mainIntent);
 			}
 		});
 
@@ -1009,8 +993,7 @@ public class PictureEditorActivity extends Activity {
 			image = (ImageView) findViewById(R.id.tutorial_skip);
 			image.setVisibility(View.VISIBLE);
 			
-			home_button.setEnabled(false);
-			library_button.setEnabled(false);
+			back_button.setEnabled(false);
 			restart_button.setEnabled(false);
 			right_button.setEnabled(false);
 			left_button.setEnabled(false);
@@ -2253,8 +2236,7 @@ public class PictureEditorActivity extends Activity {
 
 	public void toggleEnableEvents(boolean enabled) {
 		toggleEnableGridView(enabled);
-		home_button.setEnabled(enabled);
-		library_button.setEnabled(enabled);
+		back_button.setEnabled(enabled);
 		createstory_button.setEnabled(enabled);
 		pictureBackground.setEnabled(enabled);
 		left_button.setEnabled(enabled);
