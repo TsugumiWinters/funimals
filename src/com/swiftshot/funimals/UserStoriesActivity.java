@@ -89,8 +89,10 @@ public class UserStoriesActivity extends Activity {
 	}
 	
 	public void clicked_btnBack(View v) {
-        Intent mainIntent = new Intent(UserStoriesActivity.this, UserbookActivity.class);
-        startActivity(mainIntent);
+        /*Intent mainIntent = new Intent(UserStoriesActivity.this, UserbookActivity.class);
+        startActivity(mainIntent);*/
+        finish();
+        //OR         onBackPressed();
 	}
 	
 	public void clicked_btnAdd(View v) {

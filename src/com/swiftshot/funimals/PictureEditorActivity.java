@@ -553,10 +553,15 @@ public class PictureEditorActivity extends Activity {
 				if(tts != null){
 					tts.stop();
 				}
+				finish();
+		        //OR         onBackPressed();
+				
+				
+				/*
 				PictureEditorActivity.createdStory = false;
 				Intent mainIntent = new Intent(PictureEditorActivity.this,
 						HomeActivity.class);
-				PictureEditorActivity.this.startActivity(mainIntent);
+				PictureEditorActivity.this.startActivity(mainIntent);*/
 			}
 		});
 
