@@ -550,6 +550,7 @@ public class PictureEditorActivity extends Activity {
 				if(tts != null){
 					tts.stop();
 				}
+				PictureEditorActivity.createdStory = false;
 				finish();
 		        //OR         onBackPressed();
 				
