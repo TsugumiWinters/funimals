@@ -137,6 +137,7 @@ public class UserStoriesActivity extends Activity {
         mainIntent.putExtra("isUserAuthor", 1);
         
         startActivity(mainIntent);
+        imgStory.clearColorFilter();
 	}
 	
 	private Bitmap getImageFromFile(String fileName) {
