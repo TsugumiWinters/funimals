@@ -1009,14 +1009,24 @@ public class PictureEditorActivity extends Activity {
 		public boolean onTouch(View view, MotionEvent event) {
 			final ImageView image = (ImageView) view;
 			int id;
+			
+			String[] name = view.getContentDescription().toString().split("_");
+			
 			switch (event.getAction()) {
 		    case MotionEvent.ACTION_DOWN:
 		    		if(view.getContentDescription().toString().startsWith("a")) {
+		    			
+		    	    	if(view.getContentDescription().toString().contains("woman"))
+		    	    		tts.speak("Mommy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+		    	    	else
+		    	    		tts.speak("Daddy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+		    			
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 30.0f, 0.0f, 0.0f);  
 			    	    animation.setDuration(500);
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
+			    	    
 		    		}
 		    		else if(view.getContentDescription().toString().startsWith("k")) {
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  

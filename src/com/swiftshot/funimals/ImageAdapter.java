@@ -1,6 +1,7 @@
 package com.swiftshot.funimals;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.content.ClipData;
 import android.content.Context;
@@ -27,8 +28,6 @@ public class ImageAdapter extends BaseAdapter {
 	private Bitmap icon;
 	private Drawable bg;
 	private BitmapFactory.Options options;
-	
-	private TextToSpeech tts2;
 	
 	public ImageAdapter(Context context, ArrayList<String> stickers) {
 		this.context = context;
@@ -76,11 +75,7 @@ public class ImageAdapter extends BaseAdapter {
 		@Override
 		public boolean onTouch(View view, MotionEvent event) {
 			final ImageView image = (ImageView) view;
-			int id;
-			
-			tts2.setPitch((float)1.1);
-			tts2.setSpeechRate((float)0.9);
-			
+			int id;			
 			switch (event.getAction()) {
 		    case MotionEvent.ACTION_DOWN:
 		    	if(PictureEditorActivity.createdStory) {
@@ -88,16 +83,17 @@ public class ImageAdapter extends BaseAdapter {
 		    	    String[] name = view.getContentDescription().toString().split("_");
 		    	
 		    		if(view.getContentDescription().toString().startsWith("a")) {
+		    			if(view.getContentDescription().toString().contains("woman"))
+		    	    		PictureEditorActivity.tts.speak("Mommy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+		    	    	else
+		    	    		PictureEditorActivity.tts.speak("Daddy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+		    			
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 30.0f, 0.0f, 0.0f);  
 			    	    animation.setDuration(500);
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
-			    	    if(!PictureEditorActivity.tts.isSpeaking())
-			    	    	if(view.getContentDescription().toString().contains("woman"))
-			    	    		tts2.speak("Mommy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
-			    	    	else
-			    	    		tts2.speak("Daddy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+			    	    
 		    		}
 		    		else if(view.getContentDescription().toString().startsWith("k")) {
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  
@@ -105,8 +101,6 @@ public class ImageAdapter extends BaseAdapter {
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
-			    	    if(!PictureEditorActivity.tts.isSpeaking())
-			    	    	tts2.speak(name[2], TextToSpeech.QUEUE_FLUSH, null);
 		    		}
 		    	    	
 		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
