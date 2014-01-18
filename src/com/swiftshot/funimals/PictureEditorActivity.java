@@ -99,7 +99,7 @@ public class PictureEditorActivity extends Activity {
 	private AnimationDrawable save_animation;
        
 	// text to speech
-	private TextToSpeech tts;
+	public static TextToSpeech tts;
 	private ImageView read_button;
 	private String currentStoryLine = "";
 	
@@ -552,8 +552,7 @@ public class PictureEditorActivity extends Activity {
 					tts.stop();
 				}
 				PictureEditorActivity.createdStory = false;
-				finish();
-		        //OR         onBackPressed();
+				onBackPressed();
 				
 				
 				/*
