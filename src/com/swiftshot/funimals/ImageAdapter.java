@@ -1,6 +1,7 @@
 package com.swiftshot.funimals;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.content.ClipData;
 import android.content.Context;
@@ -77,6 +78,16 @@ public class ImageAdapter extends BaseAdapter {
 		public boolean onTouch(View view, MotionEvent event) {
 			final ImageView image = (ImageView) view;
 			int id;
+			
+			tts2 = new TextToSpeech(context, new TextToSpeech.OnInitListener() {			
+				@Override
+				public void onInit(int status) {
+					if(status != TextToSpeech.ERROR){
+						tts2.setLanguage(Locale.US);
+			
+					}
+				}
+			});
 			
 			tts2.setPitch((float)1.1);
 			tts2.setSpeechRate((float)0.9);
