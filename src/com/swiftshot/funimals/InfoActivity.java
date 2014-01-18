@@ -1,7 +1,6 @@
 package com.swiftshot.funimals;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,8 +19,7 @@ public class InfoActivity extends Activity {
 	}
 	
 	public void clicked_btnBack(View v) {
-		Intent mainIntent = new Intent(this, HomeActivity.class);
-		startActivity(mainIntent);
+		onBackPressed();
 	}
 	
 	@Override

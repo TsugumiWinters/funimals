@@ -118,7 +118,7 @@ public class HomeActivity extends Activity {
 	}
 	
 	public void clicked_btnViewLibrary(View v) {
-		Intent mainIntent = new Intent(HomeActivity.this, UserbookActivity.class);
+		Intent mainIntent = new Intent(HomeActivity.this, UserStoriesActivity.class);
 		startActivity(mainIntent);
 	}
 	
