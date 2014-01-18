@@ -4,12 +4,21 @@
 	android:layout_height="fill_parent" >
 	
 	<ImageView
-		android:id="@+id/pe_home_button"
+		android:id="@+id/pe_back_button"
 		android:contentDescription="@string/description"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/home_button_selector">
+		android:src="@drawable/back_button_selector">
 	</ImageView>
+	
+	<ImageView
+	    android:id="@+id/pe_narrate_button"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	    android:layout_toRightOf="@+id/pe_back_button"
+	    android:contentDescription="@string/description"
+	    android:src="@drawable/pe_narrate_button_selector"
+	   />
 	
 	<ImageView
 		android:id="@+id/pe_restart_button"
@@ -17,16 +26,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:src="@drawable/restart_button_selector"
-		android:layout_toRightOf="@+id/pe_home_button"/>
-	
-	<ImageView
-	    android:id="@+id/pe_read_button"
-	    android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-	    android:layout_toRightOf="@+id/pe_restart_button"
-	    android:contentDescription="@string/description"
-	    android:src="@drawable/pe_narrate_button_selector"
-	   />
+		android:layout_toRightOf="@+id/pe_narrate_button"/>
 	
 	<ImageView
 		android:id="@+id/pe_createstory_button"
@@ -35,14 +35,14 @@
 		android:layout_height="wrap_content"
 		android:scaleType="fitXY"
 		android:src="@drawable/createstory_button_selector"
-		android:layout_toRightOf="@+id/pe_read_button"/>
+		android:layout_toRightOf="@+id/pe_restart_button"/>
 	
 	<AbsoluteLayout
 		android:id="@+id/pe_bg"
 		android:contentDescription="@string/abs_content"
 		android:layout_width="@dimen/abs_width"
 		android:layout_height="@dimen/abs_height"
-		android:layout_below="@+id/pe_home_button">
+		android:layout_below="@+id/pe_back_button">
 	</AbsoluteLayout>
 
 	<RelativeLayout
@@ -157,7 +157,7 @@
 		android:layout_height="wrap_content"	
 		android:scaleType="fitXY"
 		android:src="@drawable/pe_editstory_button"
-		android:layout_toRightOf="@+id/pe_read_button"
+		android:layout_toRightOf="@+id/pe_narrate_button"
 		android:visibility="invisible" />
 	 
 	<RelativeLayout
@@ -352,7 +352,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:src="@drawable/new_tutorial_home"
-		android:layout_below="@+id/pe_home_button"/>
+		android:layout_below="@+id/pe_back_button"/>
 	  
 	<ImageView
 		android:id="@+id/tutorial_library"
@@ -362,8 +362,8 @@
 		android:layout_height="wrap_content"
 		android:src="@drawable/new_tutorial_library"
 		android:visibility="invisible"
-		android:layout_below="@+id/pe_home_button"
-		android:layout_toRightOf="@+id/pe_home_button"/>
+		android:layout_below="@+id/pe_back_button"
+		android:layout_toRightOf="@+id/pe_back_button"/>
 	 
 	<ImageView
 		android:id="@+id/tutorial_delete"
@@ -373,7 +373,7 @@
 		android:layout_height="wrap_content"
 		android:src="@drawable/new_tutorial_delete"
 		android:visibility="invisible"
-		android:layout_below="@+id/pe_home_button"
+		android:layout_below="@+id/pe_back_button"
 		android:layout_toRightOf="@+id/pe_restart_button"/>
 	 
 	<ImageView

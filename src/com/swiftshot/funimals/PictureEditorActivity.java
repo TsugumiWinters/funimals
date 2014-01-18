@@ -99,7 +99,7 @@ public class PictureEditorActivity extends Activity {
 	private AnimationDrawable save_animation;
        
 	// text to speech
-	private TextToSpeech tts;
+	public static TextToSpeech tts;
 	private ImageView read_button;
 	private String currentStoryLine = "";
 	
@@ -230,7 +230,7 @@ public class PictureEditorActivity extends Activity {
 		PictureEditorActivity.createdStory = false;
 
 		// text to speech - initialize
-		read_button = (ImageView) findViewById(R.id.pe_read_button);
+		read_button = (ImageView) findViewById(R.id.pe_narrate_button);
 		read_button.setEnabled(false);
 		tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {			
 			@Override
@@ -290,7 +290,7 @@ public class PictureEditorActivity extends Activity {
 		storyTitle = (TextView) findViewById(R.id.pe_storytitle);
 		bgTitle = (TextView) findViewById(R.id.pe_bgtitle);
 
-		back_button = (ImageView) findViewById(R.id.pe_home_button);
+		back_button = (ImageView) findViewById(R.id.pe_back_button);
 		restart_button = (ImageView) findViewById(R.id.pe_restart_button);
 		restart_button.setEnabled(false);
 		createstory_button = (ImageView) findViewById(R.id.pe_createstory_button);
@@ -553,8 +553,7 @@ public class PictureEditorActivity extends Activity {
 					tts.stop();
 				}
 				PictureEditorActivity.createdStory = false;
-				finish();
-		        //OR         onBackPressed();
+				onBackPressed();
 				
 				
 				/*
@@ -1004,6 +1003,7 @@ public class PictureEditorActivity extends Activity {
 		}
 	}
 	
+	/* Adds animation / highlight to selected sticker */
 	private class MyTouchListener implements OnTouchListener {
 		@Override
 		public boolean onTouch(View view, MotionEvent event) {
@@ -1043,7 +1043,6 @@ public class PictureEditorActivity extends Activity {
 	
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		if(tts != null){
 			tts.stop();
@@ -1052,7 +1051,6 @@ public class PictureEditorActivity extends Activity {
 	
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		pictureBackground.setBackgroundResource(0);
 		stickersBG.setImageBitmap(null);
@@ -1085,6 +1083,7 @@ public class PictureEditorActivity extends Activity {
 		return result;
 	}
 	
+	/* Return background name */
 	public String getAlias(String currBg){	
 		if (currBg.equalsIgnoreCase("bathroom"))
 			return "bathroom";
@@ -1106,7 +1105,8 @@ public class PictureEditorActivity extends Activity {
 			return "playground";
 		return currBg;
 	}
-
+	
+	/* Removes things sticker from picture */
 	public void clearThings() {
 		for (int a = 0; a < pictureBackground.getChildCount(); a++) {
 			View view = pictureBackground.getChildAt(a);
@@ -1117,7 +1117,8 @@ public class PictureEditorActivity extends Activity {
 			Things.add(SelectedThings.remove(0));		
 		}
 	}
-
+	
+	/* Removes stickers from picture */
 	public void clearImage(int i) {
 		int a = 0;
 		while(i == 1 && SelectedKids.size() > 0){
@@ -1251,8 +1252,8 @@ public class PictureEditorActivity extends Activity {
 		}
 	}
 	
-	class MyDragListener_GridView implements OnDragListener {	// IMAGE CHOOSE AT THE RIGHT
-
+	/* IMAGE CHOOSE AT THE RIGHT */
+	class MyDragListener_GridView implements OnDragListener {
 		@Override
 		public boolean onDrag(View v, DragEvent event) {
 			int action = event.getAction();
@@ -1311,8 +1312,8 @@ public class PictureEditorActivity extends Activity {
 		}
 	}
 
-	class MyDragListener_RelativeLayout implements OnDragListener {	// PICTURE BACKGROUND EDITOR
-
+	/* PICTURE BACKGROUND EDITOR */
+	class MyDragListener_RelativeLayout implements OnDragListener {
 		@Override
 		public boolean onDrag(View v, DragEvent event) {
 			int action = event.getAction();
@@ -1422,6 +1423,7 @@ public class PictureEditorActivity extends Activity {
 		return ICR;
 	}
 
+	/* Generate story */
 	class GetTask extends AsyncTask<Object, Void, String> {
 		Context context;
 
