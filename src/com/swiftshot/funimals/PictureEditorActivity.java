@@ -1018,6 +1018,9 @@ public class PictureEditorActivity extends Activity {
 		public boolean onTouch(View view, MotionEvent event) {
 			final ImageView image = (ImageView) view;
 			int id;
+			
+			String[] name = view.getContentDescription().toString().split("_");
+			
 			switch (event.getAction()) {
 		    case MotionEvent.ACTION_DOWN:
 		    		if(view.getContentDescription().toString().startsWith("a")) {
@@ -1026,6 +1029,12 @@ public class PictureEditorActivity extends Activity {
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
+			    	    
+		    	    	if(view.getContentDescription().toString().contains("woman"))
+		    	    		PictureEditorActivity.tts.speak("Mommy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+		    	    	else
+		    	    		PictureEditorActivity.tts.speak("Daddy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+			    	    
 		    		}
 		    		else if(view.getContentDescription().toString().startsWith("k")) {
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  
@@ -1033,6 +1042,8 @@ public class PictureEditorActivity extends Activity {
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
+			    	    
+			    	    PictureEditorActivity.tts.speak(name[2], TextToSpeech.QUEUE_FLUSH, null);
 		    		}
 		    	    	
 		    	id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
