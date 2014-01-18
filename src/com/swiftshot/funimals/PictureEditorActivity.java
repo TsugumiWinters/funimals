@@ -244,7 +244,7 @@ public class PictureEditorActivity extends Activity {
 			}
 		});
 		tts.setPitch((float)1.1);
-		tts.setSpeechRate((float)0.9);
+		tts.setSpeechRate((float)0.875);
 		read_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -1038,6 +1038,8 @@ public class PictureEditorActivity extends Activity {
 			    	    
 		    		}
 		    		else if(view.getContentDescription().toString().startsWith("k")) {
+		    			tts.speak(name[2], TextToSpeech.QUEUE_FLUSH, null);
+		    			
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  
 			    	    animation.setDuration(500);
 			    	    animation.setRepeatCount(2);
