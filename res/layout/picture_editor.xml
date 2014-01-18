@@ -27,7 +27,7 @@
 	    android:layout_toRightOf="@+id/pe_back_button"
 	    android:contentDescription="@string/description"
 	    android:src="@drawable/pe_narrate_button_selector"
-	    android:visibility="invisible" />
+	    android:visibility="gone" />
 	
 	<ImageView
 		android:id="@+id/pe_restart_button"

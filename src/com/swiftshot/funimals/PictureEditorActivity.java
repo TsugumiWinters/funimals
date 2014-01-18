@@ -250,17 +250,23 @@ public class PictureEditorActivity extends Activity {
 		read_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(!currentStoryLine.equals(""))
+				if(!currentStoryLine.equals("")) {
 					tts.speak(currentStoryLine, TextToSpeech.QUEUE_FLUSH, null);
-				while(tts.isSpeaking())
+					read_button.setVisibility(View.GONE);
 					read_stop_button.setVisibility(View.VISIBLE);
+				}
+				while(tts.isSpeaking()) {
+					
+				}
+				read_stop_button.setVisibility(View.VISIBLE);
 			}
 		});
 		read_stop_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				tts.stop();
-				read_stop_button.setVisibility(View.INVISIBLE);
+				read_stop_button.setVisibility(View.GONE);
+				read_button.setVisibility(View.VISIBLE);
 			}
 		});
 		
