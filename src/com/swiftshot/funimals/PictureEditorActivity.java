@@ -101,6 +101,7 @@ public class PictureEditorActivity extends Activity {
 	// text to speech
 	public static TextToSpeech tts;
 	private ImageView read_button;
+	private ImageView read_stop_button;
 	private String currentStoryLine = "";
 	
 	private String[] trimSentence;
@@ -230,6 +231,7 @@ public class PictureEditorActivity extends Activity {
 		PictureEditorActivity.createdStory = false;
 
 		// text to speech - initialize
+		read_stop_button = (ImageView) findViewById(R.id.pe_narratestop_button);
 		read_button = (ImageView) findViewById(R.id.pe_narrate_button);
 		tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {			
 			@Override
@@ -247,6 +249,15 @@ public class PictureEditorActivity extends Activity {
 			public void onClick(View v) {
 				if(!currentStoryLine.equals(""))
 					tts.speak(currentStoryLine, TextToSpeech.QUEUE_FLUSH, null);
+				while(tts.isSpeaking())
+					read_stop_button.setVisibility(View.VISIBLE);
+			}
+		});
+		read_stop_button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tts.stop();
+				read_stop_button.setVisibility(View.INVISIBLE);
 			}
 		});
 		

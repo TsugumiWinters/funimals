@@ -21,6 +21,15 @@
 	    android:visibility="gone" />
 	
 	<ImageView
+	    android:id="@+id/pe_narratestop_button"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	    android:layout_toRightOf="@+id/pe_back_button"
+	    android:contentDescription="@string/description"
+	    android:src="@drawable/pe_narrate_button_selector"
+	    android:visibility="invisible" />
+	
+	<ImageView
 		android:id="@+id/pe_restart_button"
 		android:contentDescription="@string/description"
 		android:layout_width="wrap_content"
