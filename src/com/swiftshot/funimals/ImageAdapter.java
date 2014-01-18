@@ -83,16 +83,17 @@ public class ImageAdapter extends BaseAdapter {
 		    	    String[] name = view.getContentDescription().toString().split("_");
 		    	
 		    		if(view.getContentDescription().toString().startsWith("a")) {
+		    			if(view.getContentDescription().toString().contains("woman"))
+		    	    		PictureEditorActivity.tts.speak("Mommy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+		    	    	else
+		    	    		PictureEditorActivity.tts.speak("Daddy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+		    			
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 30.0f, 0.0f, 0.0f);  
 			    	    animation.setDuration(500);
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
 			    	    
-		    	    	if(view.getContentDescription().toString().contains("woman"))
-		    	    		PictureEditorActivity.tts.speak("Mommy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
-		    	    	else
-		    	    		PictureEditorActivity.tts.speak("Daddy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
 		    		}
 		    		else if(view.getContentDescription().toString().startsWith("k")) {
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  
@@ -100,8 +101,6 @@ public class ImageAdapter extends BaseAdapter {
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
-			    	    
-			    	    PictureEditorActivity.tts.speak(name[2], TextToSpeech.QUEUE_FLUSH, null);
 		    		}
 		    	    	
 		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
