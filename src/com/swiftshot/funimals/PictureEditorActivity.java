@@ -231,7 +231,6 @@ public class PictureEditorActivity extends Activity {
 
 		// text to speech - initialize
 		read_button = (ImageView) findViewById(R.id.pe_narrate_button);
-		read_button.setEnabled(false);
 		tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {			
 			@Override
 			public void onInit(int status) {
@@ -708,7 +707,8 @@ public class PictureEditorActivity extends Activity {
 					view.setEnabled(true);
 					PictureEditorActivity.createdStory = false;
 				}
-				restart_button.setEnabled(true);
+				restart_button.setVisibility(View.VISIBLE);
+				read_button.setVisibility(View.GONE);
 				
 				createstory_button.setVisibility(View.VISIBLE);
 				createstory_button.setEnabled(false);
@@ -1679,8 +1679,8 @@ public class PictureEditorActivity extends Activity {
 			if (numberOfPages > 1) {
 				pageRight_button.setEnabled(true);
 			}
-			restart_button.setEnabled(false);
-			read_button.setEnabled(true);
+			restart_button.setVisibility(View.GONE);
+			read_button.setVisibility(View.VISIBLE);
 			
 			createstory_button.setVisibility(View.INVISIBLE);
 			editstory_button.setVisibility(View.VISIBLE);

@@ -18,7 +18,7 @@
 	    android:layout_toRightOf="@+id/pe_back_button"
 	    android:contentDescription="@string/description"
 	    android:src="@drawable/pe_narrate_button_selector"
-	   />
+	    android:visibility="gone" />
 	
 	<ImageView
 		android:id="@+id/pe_restart_button"
@@ -192,13 +192,14 @@
 		 
 		<EditText
 			android:id="@+id/pe_searchbar"
-			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:paddingLeft="30dp"
 			android:background="@drawable/pe_searchbar"
 			android:layout_toRightOf="@+id/pe_dictionary_button"
-			android:visibility="invisible"/>
+			android:visibility="invisible"
+			android:hint=""
+			android:inputType="none"/>
 		 
 		<ImageView
 			android:id="@+id/pe_searchdictionary_button"
