@@ -166,21 +166,13 @@
 		android:layout_height="wrap_content"
 		android:visibility="invisible"
 		android:layout_toRightOf="@+id/pe_editstory_button" >
-	
-		<ImageView
-			android:id="@+id/pe_dictionary_button"
-			android:contentDescription="@string/description"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/dictionary_button_selector"/>
 		 
 		<ImageView
 			android:id="@+id/pe_retrystory_button"
 			android:contentDescription="@string/description"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/retrystory_button_selector"
-			android:layout_toRightOf="@+id/pe_dictionary_button"/>
+			android:src="@drawable/retrystory_button_selector" />
 		 
 		<ImageView
 			android:id="@+id/pe_savestory_button"
@@ -188,7 +180,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:src="@drawable/savestory_button_selector"
-			android:layout_toRightOf="@+id/pe_retrystory_button"/>
+			android:layout_toRightOf="@+id/pe_retrystory_button" />
 		 
 		<EditText
 			android:id="@+id/pe_searchbar"
@@ -196,7 +188,6 @@
 			android:layout_height="wrap_content"
 			android:paddingLeft="30dp"
 			android:background="@drawable/pe_searchbar"
-			android:layout_toRightOf="@+id/pe_dictionary_button"
 			android:visibility="invisible"
 			android:hint=""
 			android:inputType="none"/>
@@ -207,8 +198,15 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:src="@drawable/searchdictionary_button_selector"
-			android:layout_toRightOf="@+id/pe_dictionary_button"
 			android:visibility="invisible"/>
+	
+		<ImageView
+			android:id="@+id/pe_opendictionary_button"
+			android:contentDescription="@string/description"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/dictionary_button_selector"
+			android:layout_toRightOf="@+id/pe_savestory_button"/>
 		 
 		<ImageView
 			android:id="@+id/pe_story_bg"

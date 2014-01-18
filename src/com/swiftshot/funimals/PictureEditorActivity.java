@@ -169,6 +169,9 @@ public class PictureEditorActivity extends Activity {
 	ImageView createstory_button;
 	ImageView editstory_button;
 
+	ImageView storymode_left;
+	ImageView storymode_right;
+
 	ImageView right_button;
 	ImageView left_button;
 
@@ -295,6 +298,9 @@ public class PictureEditorActivity extends Activity {
 		createstory_button = (ImageView) findViewById(R.id.pe_createstory_button);
 		createstory_button.setEnabled(false);
 		editstory_button = (ImageView) findViewById(R.id.pe_editstory_button);
+		
+		/*storymode_left = (ImageView) findViewById(R.id.pe_purestory_left);
+		storymode_right = (ImageView) findViewById(R.id.pe_purestory_right);*/
 
 		pictureBackground = (AbsoluteLayout) findViewById(R.id.pe_bg);
 		
@@ -323,7 +329,7 @@ public class PictureEditorActivity extends Activity {
 		pageLeft_button.setEnabled(false);
 		pageRight_button.setEnabled(false);
 
-		dictionary_button = (ImageView) findViewById(R.id.pe_dictionary_button);
+		dictionary_button = (ImageView) findViewById(R.id.pe_opendictionary_button);
 		search_bar = (EditText) findViewById(R.id.pe_searchbar);
 		closedictionary_button = (ImageView) findViewById(R.id.pe_closedictionary_button);
 		dictionary_list = (ListView) findViewById(R.id.pe_dictionary_list);
@@ -973,12 +979,12 @@ public class PictureEditorActivity extends Activity {
 				pageRight_button.setEnabled(true);
 			}
 			
-			restart_button.setEnabled(false);
-			read_button.setEnabled(true);
-			retry_button.setEnabled(false);
-			save_button.setEnabled(false);				
+			restart_button.setVisibility(View.GONE);
+			read_button.setVisibility(View.VISIBLE);
+			retry_button.setVisibility(View.INVISIBLE);
+			save_button.setVisibility(View.INVISIBLE);
 		
-			createstory_button.setEnabled(false);
+			createstory_button.setVisibility(View.INVISIBLE);
 			
 			bgTitleLayout.setVisibility(View.INVISIBLE);
 			storyTitle.setVisibility(View.VISIBLE);
