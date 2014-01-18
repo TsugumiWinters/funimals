@@ -30,6 +30,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.text.Editable;
 import android.text.Html;
 import android.text.SpannableString;
@@ -101,7 +102,6 @@ public class PictureEditorActivity extends Activity {
 	// text to speech
 	public static TextToSpeech tts;
 	private ImageView read_button;
-	private ImageView read_stop_button;
 	private String currentStoryLine = "";
 	
 	private String[] trimSentence;
@@ -222,7 +222,6 @@ public class PictureEditorActivity extends Activity {
 		try {
 			dbHelper.createDataBase();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
@@ -234,14 +233,12 @@ public class PictureEditorActivity extends Activity {
 		PictureEditorActivity.createdStory = false;
 
 		// text to speech - initialize
-		read_stop_button = (ImageView) findViewById(R.id.pe_narratestop_button);
 		read_button = (ImageView) findViewById(R.id.pe_narrate_button);
 		tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {			
 			@Override
 			public void onInit(int status) {
 				if(status != TextToSpeech.ERROR){
 					tts.setLanguage(Locale.US);
-		
 				}
 			}
 		});
@@ -250,23 +247,14 @@ public class PictureEditorActivity extends Activity {
 		read_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(!currentStoryLine.equals("")) {
-					tts.speak(currentStoryLine, TextToSpeech.QUEUE_FLUSH, null);
-					read_button.setVisibility(View.GONE);
-					read_stop_button.setVisibility(View.VISIBLE);
+				if (tts.isSpeaking()) {
+					tts.stop();
 				}
-				while(tts.isSpeaking()) {
-					
+				else {
+					if(!currentStoryLine.equals("")) {
+						tts.speak(currentStoryLine, TextToSpeech.QUEUE_FLUSH, null);
+					}
 				}
-				read_stop_button.setVisibility(View.VISIBLE);
-			}
-		});
-		read_stop_button.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				tts.stop();
-				read_stop_button.setVisibility(View.GONE);
-				read_button.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -807,8 +795,6 @@ public class PictureEditorActivity extends Activity {
 				closedictionary_button.setVisibility(View.VISIBLE);
 				dictionary_list.setVisibility(View.VISIBLE);
 
-				save_button.setVisibility(View.INVISIBLE);
-				retry_button.setVisibility(View.INVISIBLE);
 				pageLeft_button.setVisibility(View.INVISIBLE);
 				pageRight_button.setVisibility(View.INVISIBLE);
 
@@ -832,8 +818,6 @@ public class PictureEditorActivity extends Activity {
 				closedictionary_button.setVisibility(View.INVISIBLE);
 				dictionary_list.setVisibility(View.INVISIBLE);
 
-				save_button.setVisibility(View.VISIBLE);
-				retry_button.setVisibility(View.VISIBLE);
 				pageLeft_button.setVisibility(View.VISIBLE);
 				pageRight_button.setVisibility(View.VISIBLE);
 
@@ -852,15 +836,10 @@ public class PictureEditorActivity extends Activity {
 			}
 
 			@Override
-			public void beforeTextChanged(CharSequence arg0, int arg1,
-					int arg2, int arg3) {
-				// TODO Auto-generated method stub
-			}
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
 
 			@Override
-			public void afterTextChanged(Editable arg0) {
-				// TODO Auto-generated method stub
-			}
+			public void afterTextChanged(Editable arg0) {}
 		});
 
 		if (loadStory == true) {
@@ -1450,7 +1429,6 @@ public class PictureEditorActivity extends Activity {
 	}
 
 	private InputContentRepresentation createICR() {
-		// TODO Auto-generated method stub
 		InputContentRepresentation ICR = null;
 		ICR = new InputContentRepresentation();
 		ICR.setName(username);
