@@ -230,7 +230,7 @@ public class PictureEditorActivity extends Activity {
 		PictureEditorActivity.createdStory = false;
 
 		// text to speech - initialize
-		read_button = (ImageView) findViewById(R.id.pe_read_button);
+		read_button = (ImageView) findViewById(R.id.pe_narrate_button);
 		read_button.setEnabled(false);
 		tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {			
 			@Override
@@ -290,7 +290,7 @@ public class PictureEditorActivity extends Activity {
 		storyTitle = (TextView) findViewById(R.id.pe_storytitle);
 		bgTitle = (TextView) findViewById(R.id.pe_bgtitle);
 
-		back_button = (ImageView) findViewById(R.id.pe_home_button);
+		back_button = (ImageView) findViewById(R.id.pe_back_button);
 		restart_button = (ImageView) findViewById(R.id.pe_restart_button);
 		restart_button.setEnabled(false);
 		createstory_button = (ImageView) findViewById(R.id.pe_createstory_button);
