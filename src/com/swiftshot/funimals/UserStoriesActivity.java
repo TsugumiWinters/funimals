@@ -137,7 +137,6 @@ public class UserStoriesActivity extends Activity {
         mainIntent.putExtra("isUserAuthor", 1);
         
         startActivity(mainIntent);
-        imgStory.clearColorFilter();
 	}
 	
 	private Bitmap getImageFromFile(String fileName) {
@@ -148,6 +147,12 @@ public class UserStoriesActivity extends Activity {
 	//	bg3 =  new BitmapDrawable(getResources(), icon3);
 
 		return icon3;
+	}
+	
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+        imgStory.clearColorFilter();
 	}
 	
 	@Override
