@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,6 +27,8 @@ public class ImageAdapter extends BaseAdapter {
 	private Bitmap icon;
 	private Drawable bg;
 	private BitmapFactory.Options options;
+	
+	private TextToSpeech tts2;
 	
 	public ImageAdapter(Context context, ArrayList<String> stickers) {
 		this.context = context;
@@ -74,9 +77,15 @@ public class ImageAdapter extends BaseAdapter {
 		public boolean onTouch(View view, MotionEvent event) {
 			final ImageView image = (ImageView) view;
 			int id;
+			
+			tts2.setPitch((float)1.1);
+			tts2.setSpeechRate((float)0.9);
+			
 			switch (event.getAction()) {
 		    case MotionEvent.ACTION_DOWN:
 		    	if(PictureEditorActivity.createdStory) {
+		    		
+		    	    String[] name = view.getContentDescription().toString().split("_");
 		    	
 		    		if(view.getContentDescription().toString().startsWith("a")) {
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 30.0f, 0.0f, 0.0f);  
@@ -84,6 +93,11 @@ public class ImageAdapter extends BaseAdapter {
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
+			    	    if(!PictureEditorActivity.tts.isSpeaking())
+			    	    	if(view.getContentDescription().toString().contains("woman"))
+			    	    		tts2.speak("Mommy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
+			    	    	else
+			    	    		tts2.speak("Daddy " + name[2], TextToSpeech.QUEUE_FLUSH, null);
 		    		}
 		    		else if(view.getContentDescription().toString().startsWith("k")) {
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  
@@ -91,6 +105,8 @@ public class ImageAdapter extends BaseAdapter {
 			    	    animation.setRepeatCount(2);
 			    	    animation.setRepeatMode(2);
 			    	    image.startAnimation(animation);
+			    	    if(!PictureEditorActivity.tts.isSpeaking())
+			    	    	tts2.speak(name[2], TextToSpeech.QUEUE_FLUSH, null);
 		    		}
 		    	    	
 		    	 id = context.getResources().getIdentifier(view.getContentDescription().toString() + "_highlighted", "drawable", context.getPackageName());
