@@ -299,8 +299,8 @@ public class PictureEditorActivity extends Activity {
 		createstory_button.setEnabled(false);
 		editstory_button = (ImageView) findViewById(R.id.pe_editstory_button);
 		
-		/*storymode_left = (ImageView) findViewById(R.id.pe_purestory_left);
-		storymode_right = (ImageView) findViewById(R.id.pe_purestory_right);*/
+		storymode_left = (ImageView) findViewById(R.id.pe_purestory_left);
+		storymode_right = (ImageView) findViewById(R.id.pe_purestory_right);
 
 		pictureBackground = (AbsoluteLayout) findViewById(R.id.pe_bg);
 		
@@ -979,8 +979,11 @@ public class PictureEditorActivity extends Activity {
 				pageRight_button.setEnabled(true);
 			}
 			
-			restart_button.setVisibility(View.GONE);
 			read_button.setVisibility(View.VISIBLE);
+			storymode_left.setVisibility(View.VISIBLE);
+			storymode_right.setVisibility(View.VISIBLE);
+			
+			restart_button.setVisibility(View.GONE);
 			retry_button.setVisibility(View.INVISIBLE);
 			save_button.setVisibility(View.INVISIBLE);
 		
