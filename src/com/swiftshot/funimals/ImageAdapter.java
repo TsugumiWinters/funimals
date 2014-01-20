@@ -1,7 +1,6 @@
 package com.swiftshot.funimals;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import android.content.ClipData;
 import android.content.Context;
@@ -96,6 +95,8 @@ public class ImageAdapter extends BaseAdapter {
 			    	    
 		    		}
 		    		else if(view.getContentDescription().toString().startsWith("k")) {
+		    			PictureEditorActivity.tts.speak(name[2], TextToSpeech.QUEUE_FLUSH, null);
+		    			
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  
 			    	    animation.setDuration(500);
 			    	    animation.setRepeatCount(2);

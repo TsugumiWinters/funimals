@@ -30,7 +30,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.UtteranceProgressListener;
 import android.text.Editable;
 import android.text.Html;
 import android.text.SpannableString;
@@ -1034,6 +1033,7 @@ public class PictureEditorActivity extends Activity {
 			    	    
 		    		}
 		    		else if(view.getContentDescription().toString().startsWith("k")) {
+		    			System.out.println(name[2]);
 		    			tts.speak(name[2], TextToSpeech.QUEUE_FLUSH, null);
 		    			
 		    			TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 30.0f);  
