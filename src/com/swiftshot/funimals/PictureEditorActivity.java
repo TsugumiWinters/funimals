@@ -2141,31 +2141,27 @@ public class PictureEditorActivity extends Activity {
 			image.setVisibility(View.VISIBLE);
 			break;
 		case 1:
-			image = (ImageView) findViewById(R.id.tutorial_library);
-			image.setVisibility(View.VISIBLE);
-			break;
-		case 2:
 			image = (ImageView) findViewById(R.id.tutorial_delete);
 			image.setVisibility(View.VISIBLE);
 			break;
-		case 3:
+		case 2:
 			image = (ImageView) findViewById(R.id.tutorial_left_right_bg);
 			image.setVisibility(View.VISIBLE);
 			right_button.setEnabled(true);
 			left_button.setEnabled(true);
 			break;
-		case 4:
+		case 3:
 			image = (ImageView) findViewById(R.id.tutorial_requirements);
 			image.setVisibility(View.VISIBLE);
 			right_button.setEnabled(false);
 			left_button.setEnabled(false);
 			break;
-		case 5:
+		case 4:
 			image = (ImageView) findViewById(R.id.tutorial_kids_tab);
 			image.setVisibility(View.VISIBLE);
 			kids_button.setEnabled(true);
 			break;
-		case 6:
+		case 5:
 			image = (ImageView) findViewById(R.id.tutorial_stickers_hold);
 			image.setVisibility(View.VISIBLE);
 			kids_button.setEnabled(false);
@@ -2173,20 +2169,20 @@ public class PictureEditorActivity extends Activity {
 			pictureBackground.setEnabled(true);
 			pictureBackground.setClickable(true);
 			break;
-		case 7:
+		case 6:
 			restart_button.setEnabled(false);
 			image = (ImageView) findViewById(R.id.tutorial_things_tab);
 			image.setVisibility(View.VISIBLE);
 			things_button.setEnabled(true);
 			break;
-		case 8:
+		case 7:
 			image = (ImageView) findViewById(R.id.tutorial_stickers_hold);
 			image.setVisibility(View.VISIBLE);
 			things_button.setEnabled(false);
 			pictureBackground.setEnabled(true);
 			pictureBackground.setClickable(true);
 			break;
-		case 9:
+		case 8:
 			restart_button.setEnabled(false);
 			image = (ImageView) findViewById(R.id.tutorial_adults_tab);
 			image.setVisibility(View.VISIBLE);
@@ -2196,7 +2192,7 @@ public class PictureEditorActivity extends Activity {
 			pictureBackground.setClickable(false);
 			adults_button.setEnabled(true);
 			break;
-		case 10:
+		case 9:
 			image = (ImageView) findViewById(R.id.tutorial_stickers_hold);
 			image.setVisibility(View.VISIBLE);
 			adults_button.setEnabled(false);
@@ -2204,7 +2200,7 @@ public class PictureEditorActivity extends Activity {
 			pictureBackground.setClickable(true);
 			toggleEnableGridView(true);
 			break;
-		case 11:
+		case 10:
 			restart_button.setEnabled(false);
 			image = (ImageView) findViewById(R.id.tutorial_create_story);
 			image.setVisibility(View.VISIBLE);
@@ -2213,8 +2209,6 @@ public class PictureEditorActivity extends Activity {
 			break;
 		default:
 			image = (ImageView) findViewById(R.id.tutorial_home);
-			image.setVisibility(View.INVISIBLE);
-			image = (ImageView) findViewById(R.id.tutorial_library);
 			image.setVisibility(View.INVISIBLE);
 			image = (ImageView) findViewById(R.id.tutorial_delete);
 			image.setVisibility(View.INVISIBLE);
@@ -2251,7 +2245,7 @@ public class PictureEditorActivity extends Activity {
 		skipped = true;
 		Log.d("Skip Tutorial", "Skip Tutorial");
 		v.setVisibility(View.INVISIBLE);
-		tutorialStep = 11;
+		tutorialStep = 10;
 		tutorialNext(v);
 	}
 

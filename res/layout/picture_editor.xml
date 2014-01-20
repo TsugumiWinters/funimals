@@ -369,18 +369,7 @@
 		android:layout_height="wrap_content"
 		android:src="@drawable/new_tutorial_home"
 		android:layout_below="@+id/pe_back_button"/>
-	  
-	<ImageView
-		android:id="@+id/tutorial_library"
-		android:onClick="tutorialNext"
-		android:contentDescription="@string/description"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:src="@drawable/new_tutorial_library"
-		android:visibility="invisible"
-		android:layout_below="@+id/pe_back_button"
-		android:layout_toRightOf="@+id/pe_back_button"/>
-	 
+	  	 
 	<ImageView
 		android:id="@+id/tutorial_delete"
 		android:onClick="tutorialNext"
@@ -390,7 +379,7 @@
 		android:src="@drawable/new_tutorial_delete"
 		android:visibility="invisible"
 		android:layout_below="@+id/pe_back_button"
-		android:layout_toRightOf="@+id/pe_restart_button"/>
+		android:layout_toRightOf="@+id/pe_back_button"/>
 	 
 	<ImageView
 		android:id="@+id/tutorial_requirements"
@@ -473,7 +462,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_above="@+id/pe_bgTitleLayout"
-	    android:layout_alignLeft="@+id/tutorial_library"
+	    android:layout_alignLeft="@+id/tutorial_delete"
 	    android:layout_marginLeft="33dp"
 	    android:contentDescription="@string/description"
 	    android:onClick="tutorialNext"
