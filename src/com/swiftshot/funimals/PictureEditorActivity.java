@@ -2233,7 +2233,7 @@ public class PictureEditorActivity extends Activity {
 			if(skipped) {
 				if(SelectedAdults.size() < 1 || SelectedKids.size() < 1 || SelectedThings.size() < 1)
 					createstory_button.setEnabled(false);
-				read_button.setEnabled(false);
+				//read_button.setEnabled(false);
 			}				
 			else
 				read_button.setEnabled(true);
@@ -2259,6 +2259,7 @@ public class PictureEditorActivity extends Activity {
 		adults_button.setEnabled(enabled);
 		kids_button.setEnabled(enabled);
 		things_button.setEnabled(enabled);
+		read_button.setEnabled(enabled);
 	}
 
 	public void toggleEnableGridView(boolean enabled) {		
