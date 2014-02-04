@@ -9,7 +9,11 @@ import com.swiftshot.funimals.models.database.entities.UserInformation;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 /* ORIGINAL
 import android.os.Bundle;
 import org.apache.cordova.*;
@@ -21,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class AccountsActivity extends Activity {
@@ -29,6 +34,11 @@ public class AccountsActivity extends Activity {
 	private HorizontalListView accountList;
 	private AccountListAdapter adapter;
 	
+	private Bitmap icon;
+	private BitmapFactory.Options options;
+	private Drawable bg;
+	private RelativeLayout generalBackground;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,6 +46,14 @@ public class AccountsActivity extends Activity {
 		openingActivity = false;
 		
         Log.d("MenuActivity", "Activity created.");
+        
+        options = new BitmapFactory.Options(); 
+		options.inPurgeable = true;
+        
+        generalBackground = (RelativeLayout) findViewById(R.id.accounts_bg);
+        icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_background, options);
+		bg = new BitmapDrawable(getResources(), icon);
+		generalBackground.setBackground(bg);
         
 		accountList = (HorizontalListView) findViewById(R.id.accounts_list);
 		

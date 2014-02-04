@@ -57,6 +57,7 @@ public class UserStoriesActivity extends Activity {
 		options2 = new BitmapFactory.Options(); 
 		options2.inPurgeable = true;
 		options2.inPreferredConfig = Bitmap.Config.RGB_565;
+		options2.inSampleSize = 2;
 		
         icon = BitmapFactory.decodeResource(getResources(),R.drawable.library_openbook, options);
 		bg = new BitmapDrawable(getResources(), icon);
@@ -142,9 +143,8 @@ public class UserStoriesActivity extends Activity {
 	private Bitmap getImageFromFile(String fileName) {
 		String path = Environment.getExternalStorageDirectory().toString()
 				+ "/Funimals/SavedPictures/";
-		
+
 		icon3 = BitmapFactory.decodeFile(path + fileName, options2);
-	//	bg3 =  new BitmapDrawable(getResources(), icon3);
 
 		return icon3;
 	}

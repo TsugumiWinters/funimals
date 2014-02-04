@@ -2098,7 +2098,7 @@ public class PictureEditorActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			save_dialog.dismiss();
-
+			
 			Intent mainIntent = new Intent(PictureEditorActivity.this, UserStoriesActivity.class);
 			startActivity(mainIntent);
 			PictureEditorActivity.createdStory = false;

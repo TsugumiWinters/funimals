@@ -13,20 +13,38 @@ import com.swiftshot.funimals.models.database.entities.UserInformation;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 public class RegistrationLevelActivity extends Activity {
 	
 	private String level;
+	
+	private Bitmap icon;
+	private BitmapFactory.Options options;
+	private Drawable bg;
+	private RelativeLayout generalBackground;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(layout.activity_register_yearlevel);
 		level = null;
+		
+		options = new BitmapFactory.Options(); 
+		options.inPurgeable = true;
+        
+        generalBackground = (RelativeLayout) findViewById(R.id.level_bg);
+        icon = BitmapFactory.decodeResource(getResources(),R.drawable.general_background, options);
+		bg = new BitmapDrawable(getResources(), icon);
+		generalBackground.setBackground(bg);
 	}
 	
 	public void clicked_btnLevel(View v) {
